@@ -6,6 +6,8 @@
 **Nhóm:** BiaHoiHaiXom  
 **Ngày:** 03/08/2026  
 
+> **Legacy snapshot:** thư mục này dùng MSSV cũ `2A202601027`. Không dùng phần benchmark cũ bên dưới để so sánh; kết quả chính thức của Nguyễn Thu Huyền dùng MSSV `2A20261027` và được cập nhật tại [report/REPORT_CANHAN.md](../../report/REPORT_CANHAN.md).
+
 > **Nộp 1 bản / sinh viên.** Phần nhóm (lựa chọn tài liệu, thiết kế chiến lược, bộ câu hỏi đánh giá, demo) nộp chung 1 bản trong `REPORT_NHOM.md`. Chi tiết thang điểm: `docs/SCORING.md`.
 
 **Tổng điểm phần cá nhân: 60** = Khởi động (5) + Hướng tiếp cận (10) + Hoàn thiện code (30) + Dự đoán độ tương tự (5) + Kết quả truy xuất của tôi (10).
@@ -150,26 +152,29 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 
 ## 5. Kết quả truy xuất cá nhân (Benchmark Results with `RecursiveChunker`) — Cá nhân (10 điểm)
 
-Đã chạy benchmark chung 5 câu hỏi từ `data/k3_university_services/benchmarks.json` với chiến lược được phân công **`RecursiveChunker(chunk_size=400)`** cùng mô hình nhúng chung **`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`** trên tập corpus chung `data/k3_university_services` (tổng 32 chunks).
+Đây là snapshot legacy dùng MSSV cũ `2A202601027`; không dùng bảng cũ bên dưới để so sánh. Kết quả chính thức của Nguyễn Thu Huyền dùng MSSV `2A20261027`, được chạy bằng `bench.py` với OpenAI `text-embedding-3-small`, `gpt-4o-mini`, `top_k=3`, exact chunk-level evidence checker và cùng prompt với các thành viên còn lại. Kết quả chính thức nằm tại [report/REPORT_CANHAN.md](../../report/REPORT_CANHAN.md), [2A20261027/benchmark/recursive_results.json](../../2A20261027/benchmark/recursive_results.json) và `benchmark_results.json`.
 
 | # | Query ID | Câu hỏi (Query) | Top-1 Chunk truy xuất được | Điểm Score | Evidence Hit (Top-3) | Agent Answer (tóm tắt) | Điểm (0/1/2) |
 |---|---|---|---|---|---|---|---|
-| 1 | `q1` | Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là bao nhiêu tín chỉ? | `course-registration-student::chunk_4` | 0.7156 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 2 | `q2` | Điều kiện GPA và điểm rèn luyện để đạt học bổng loại A là gì? | `scholarship-policy::chunk_3` | 0.7311 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 3 | `q3` | Quy trình sử dụng phòng đọc tại chỗ gồm những bước nào? | `library-services::chunk_1` | 0.6765 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 4 | `q4` | Học bổng KKHT có những mức nào và mức của từng loại được tính như thế nào so với loại khá? | `scholarship-policy::chunk_1` | 0.8334 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 5 | `q5` | Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện những thao tác nào và trong thời điểm nào? | `course-registration-student::chunk_1` | 0.7509 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+| 1 | `q1` | Khối lượng đăng ký tối đa... | `course-registration-student::chunk_3` | 0.606405 | True (Rank 1) | Agent trả lời đúng số liệu nhưng quote dùng `...` | 1 |
+| 2 | `q2` | Điều kiện GPA và điểm rèn luyện... | `scholarship-policy::chunk_3` | 0.721844 | True (Rank 1) | Agent trả lời đúng và có context quote | 2 |
+| 3 | `q3` | Quy trình sử dụng phòng đọc... | `library-services::chunk_0` | 0.713061 | False | Exact evidence không nằm trong một chunk | 0 |
+| 4 | `q4` | Học bổng KKHT có những mức... | `scholarship-policy::chunk_2` | 0.769859 | True (Rank 1) | Evidence ở top-1 nhưng agent không có quote kiểm chứng được | 1 |
+| 5 | `q5` | Khi cần điều chỉnh đăng ký... | `course-registration-student::chunk_2` | 0.675889 | True (Rank 1) | Filter student, agent grounded | 2 |
 
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 5 / 5  
-**Tổng điểm Benchmark:** **10 / 10**
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 4 / 5
+**Agent answer được xác nhận grounded:** 2 / 5
+**Tổng điểm Benchmark chính thức:** **6 / 10**
 
 ### Phân tích Phân Tách & Tối Ưu (Chunking & Optimization Analysis):
-- **Query Q1 (`q1`):** `chunk_3` chứa bằng chứng chính xác ("tối đa 24 tín chỉ") xuất hiện ở vị trí Rank 2 với score 0.6833, đảm bảo 2/2 điểm.
-- **Query Q2 (`q2`):** `scholarship-policy::chunk_3` đứng ở vị trí Rank 1 (score 0.7311), chứa chính xác điều kiện GPA 3.6 và ĐRL 90.
-- **Query Q3 (`q3`), Q4 (`q4`), Q5 (`q5`):** Đều tìm thấy chunk chứa bằng chứng chính xác lọt vào Top-2 kết quả tìm kiếm vector.
+- **Query Q1 (`q1`):** Evidence ở `course-registration-student::chunk_3`, rank 1, nhưng agent quote dùng `...`, nên đạt 1/2.
+- **Query Q2 (`q2`):** `scholarship-policy::chunk_3` đứng rank 1 và agent có context quote, đạt 2/2.
+- **Query Q3 (`q3`):** Evidence phrase dài không nằm trọn trong một chunk, đạt 0/2.
+- **Query Q4 (`q4`):** Evidence ở rank 1 nhưng agent không có quote kiểm chứng được, đạt 1/2.
+- **Query Q5 (`q5`):** Filter student giữ evidence ở rank 1 và agent grounded, đạt 2/2.
 
 **Bài học về `RecursiveChunker`:**
-> `RecursiveChunker` bảo tồn cấu trúc đoạn văn bản và ranh giới tự nhiên của câu rất hoàn hảo. Khi kết hợp với mô hình vector embedding tiếng Việt (`paraphrase-multilingual-MiniLM-L12-v2`), chiến lược đạt **10 / 10 điểm tuyệt đối** trên bộ benchmark chung của nhóm.
+> Kết quả chính thức đạt **6 / 10** trong run công bằng. Evidence của q3 quá dài để nằm trọn trong một chunk 400 ký tự; q4 có evidence ở top-1 nhưng agent không cung cấp quote kiểm chứng được theo evaluator chung.
 
 ---
 

@@ -6,6 +6,8 @@
 **Nhóm:** BiaHoiHaiXom  
 **Ngày:** 03/08/2026  
 
+> **Legacy snapshot:** thư mục này dùng MSSV cũ `2A202601027`. Không dùng phần benchmark cũ bên dưới để so sánh; kết quả chính thức của Nguyễn Thu Huyền dùng MSSV `2A20261027` và được cập nhật tại [report/REPORT_CANHAN.md](../../report/REPORT_CANHAN.md).
+
 > **Nộp 1 bản / sinh viên.** Phần nhóm (lựa chọn tài liệu, thiết kế chiến lược, bộ câu hỏi đánh giá, demo) nộp chung 1 bản trong `REPORT_NHOM.md`. Chi tiết thang điểm: `docs/SCORING.md`.
 
 **Tổng điểm phần cá nhân: 60** = Khởi động (5) + Hướng tiếp cận (10) + Hoàn thiện code (30) + Dự đoán độ tương tự (5) + Kết quả truy xuất của tôi (10).
@@ -150,29 +152,29 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 
 ## 5. Kết quả truy xuất cá nhân (Benchmark Results with `RecursiveChunker`) — Cá nhân (10 điểm)
 
-Đã chạy benchmark chung 5 câu hỏi từ `data/k3_university_services/benchmarks.json` với chiến lược được phân công **`RecursiveChunker(chunk_size=400)`** cùng mô hình nhúng chung **`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`** trên tập corpus chung `data/k3_university_services` (tổng 40 chunks).
+Đây là bản sao legacy dùng MSSV cũ `2A202601027`; không dùng bảng cũ bên dưới để so sánh. Kết quả chính thức của Nguyễn Thu Huyền dùng MSSV `2A20261027`, được chạy bằng `bench.py` với OpenAI `text-embedding-3-small`, `gpt-4o-mini`, `top_k=3`, exact chunk-level evidence checker và cùng prompt với các thành viên còn lại. Kết quả chính thức nằm tại [report/REPORT_CANHAN.md](../../report/REPORT_CANHAN.md), [2A20261027/benchmark/recursive_results.json](../../2A20261027/benchmark/recursive_results.json) và `benchmark_results.json`.
 
 | # | Query ID | Câu hỏi (Query) | Top-1 Chunk truy xuất được | Điểm Score | Evidence Hit (Top-3) | Agent Answer (tóm tắt) | Điểm (0/1/2) |
 |---|---|---|---|---|---|---|---|
-| 1 | `q1` | Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ chính? | `course-registration-student::chunk_4` | 0.8415 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 2 | `q2` | Quy định điều kiện xét cấp học bổng khuyến khích học tập loại A (Xuất sắc)... | `scholarship-policy::chunk_0` | 0.7904 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 3 | `q3` | Hạn mượn tối đa đối với sách giáo trình dành cho sinh viên tại thư viện... | `library-services::chunk_3` | 0.8424 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 4 | `q4` | Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí... | `tuition-policy::chunk_2` | 0.8253 | False (Rank 1 doc) | `[DEMO LLM] Answer generated from context preview...` | 0 |
-| 5 | `q5` | Thẩm quyền và quy trình phê duyệt danh mục học phần tương đương... | `course-equivalency-policy::chunk_4` | 0.7683 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+| 1 | `q1` | Khối lượng đăng ký tối đa... | `course-registration-student::chunk_3` | 0.606405 | True (Rank 1) | Agent trả lời đúng số liệu nhưng quote dùng `...` | 1 |
+| 2 | `q2` | Điều kiện GPA và điểm rèn luyện... | `scholarship-policy::chunk_3` | 0.721844 | True (Rank 1) | Agent trả lời đúng và có context quote | 2 |
+| 3 | `q3` | Quy trình sử dụng phòng đọc... | `library-services::chunk_0` | 0.713061 | False | Exact evidence không nằm trong một chunk | 0 |
+| 4 | `q4` | Học bổng KKHT có những mức... | `scholarship-policy::chunk_2` | 0.769859 | True (Rank 1) | Evidence ở top-1 nhưng agent không có quote kiểm chứng được | 1 |
+| 5 | `q5` | Khi cần điều chỉnh đăng ký... | `course-registration-student::chunk_2` | 0.675889 | True (Rank 1) | Filter student, agent grounded | 2 |
 
 **Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 4 / 5  
-**Tổng điểm Benchmark:** **8 / 10**
+**Agent answer được xác nhận grounded:** 2 / 5
+**Tổng điểm Benchmark chính thức:** **6 / 10**
 
 ### Phân tích Failure Case:
-- **Query thất bại tiêu biểu:** Q4 (`q4`) — *"Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí theo quy định hiện hành của nhà trường?"*
-- **Gold Doc:** `tuition-policy`
-- **Gold Evidence:** *"Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí: Sinh viên là con của người có công với cách mạng... Sinh viên mồ côi cả cha lẫn mẹ... Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng... Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo."*
-- **Nguyên nhân thất bại:**
-  `RecursiveChunker(chunk_size=400)` ngắt tại ranh giới 400 ký tự mà không có overlap. Tiêu đề Mục 3 rơi vào cuối `chunk_2`, còn nội dung liệt kê 4 đối tượng bị đẩy sang `chunk_3`. Do từ khóa "học phí" có độ tương đồng ngữ nghĩa chung cao ở `chunk_2` (score 0.8253), `chunk_3` bị trôi ra ngoài Top-3.
-- **Đề xuất cải thiện:** Thêm cơ chế overlap 50-100 ký tự hoặc dùng Markdown Header Chunking để giữ tiêu đề section đi kèm danh sách liệt kê chi tiết.
+- **Query thất bại tiêu biểu:** Q3 (`q3`) — quy trình sử dụng phòng đọc tại chỗ.
+- **Gold Doc:** `library-services`
+- **Nguyên nhân thất bại:** Evidence phrase của q3 dài 349 ký tự, không nằm trọn trong một chunk 400 ký tự của RecursiveChunker; vì evaluator yêu cầu exact phrase trong một chunk nên query đạt 0/2 dù agent không được coi là grounded.
+- **Failure bổ sung:** q4 có evidence ở rank 1, nhưng agent không cung cấp quote kiểm chứng được theo evaluator chung nên chỉ đạt 1/2.
+- **Đề xuất cải thiện:** Khóa evidence phrase ngắn hơn ở lần thiết kế corpus tiếp theo hoặc dùng strategy giữ trọn section; không thay đổi corpus/query sau khi benchmark đã khóa.
 
 **Bài học về `RecursiveChunker`:**
-> `RecursiveChunker` bảo tồn ngữ cảnh tự nhiên của câu và đoạn rất tốt khi đi kèm với Local Multilingual Embedder (`paraphrase-multilingual-MiniLM-L12-v2`), giúp đạt 8/10 điểm trên benchmark. Tuy nhiên, việc thiếu overlap khiến các thông tin danh sách chi tiết có nguy cơ bị đứt đoạn khỏi tiêu đề dẫn nhập.
+> Kết quả chính thức đạt **6 / 10** trong run công bằng. Evidence của q3 quá dài để nằm trọn trong một chunk 400 ký tự; q4 có evidence ở top-1 nhưng agent không cung cấp quote kiểm chứng được theo evaluator chung.
 
 ---
 

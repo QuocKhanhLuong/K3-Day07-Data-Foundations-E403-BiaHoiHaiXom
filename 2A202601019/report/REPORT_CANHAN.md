@@ -1,7 +1,7 @@
 # Báo Cáo Cá Nhân — Lab 7: Embedding & Vector Store
 
 **Họ tên:** Trần Nguyễn Mỹ Anh
-**Mã số sinh viên:** 2A202601019
+**Mã số sinh viên:** 2A20261019
 **Lớp/biến thể lab:** K3
 **Nhóm:** Chưa có thông tin nhóm trong repo
 **Ngày:** 2026-08-03
@@ -118,19 +118,19 @@ Các cặp 1 và 2 có nội dung gần nhau theo cách hiểu của con ngườ
 
 ## 5. Kết quả truy xuất của tôi (Competition Results) — Cá nhân (10 điểm)
 
-Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân của bạn trong gói `src`. **5 câu hỏi này phải trùng với các thành viên cùng nhóm** (xem `REPORT_NHOM.md`).
+Chạy bằng `bench.py` dùng chung với `SentenceChunker(max_sentences_per_chunk=2)`, cùng corpus, 5 query, OpenAI `text-embedding-3-small`, agent `gpt-4o-mini`, prompt, exact evidence checker và `top_k=3`. Kết quả chuẩn nằm tại `2A20261019/benchmark/sentence_results.json`.
 
-> **Trạng thái dữ liệu:** `REPORT_NHOM.md` hiện chưa có 5 benchmark queries hoặc gold answers (bảng nhóm còn trống). Vì vậy chưa thể chạy và ghi kết quả retrieval chung mà không tự tạo thông tin nhóm; các score/top-1/top-3 bên dưới được để trống có chủ đích.
+| Query | Top-1 chunk | Score | Evidence rank | Agent grounding |
+|---|---|---:|---:|---|
+| q1 | `course-registration-student::chunk_5` (0.697893) | 1/2 | 1 | Quote dùng `...`, không exact |
+| q2 | `scholarship-policy::chunk_6` (0.772711) | 0/2 | — | Agent answer không được xác nhận grounded vì exact evidence không trong top-3 |
+| q3 | `library-services::chunk_0` (0.716665) | 0/2 | — | Evidence dài bị tách |
+| q4 | `scholarship-policy::chunk_3` (0.781989) | 0/2 | — | Agent answer không được xác nhận grounded vì exact evidence không trong top-3 |
+| q5 | `course-registration-student::chunk_3` (0.712055) | 2/2 | 1 | Filter student, agent grounded |
 
-| # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Điểm Score | Có liên quan không? (Relevant) | Câu trả lời của Agent (tóm tắt) |
-|---|-------|--------------------------------|-------|-----------|------------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
-
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** Chưa xác định / 5 (chưa có benchmark queries)
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 2 / 5
+**Agent answer được xác nhận grounded:** 1 / 5
+**Tổng điểm benchmark:** **3 / 10**
 
 **Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
 Chưa có dữ liệu demo hoặc kết quả của thành viên khác trong repo để đưa ra nhận xét có căn cứ.

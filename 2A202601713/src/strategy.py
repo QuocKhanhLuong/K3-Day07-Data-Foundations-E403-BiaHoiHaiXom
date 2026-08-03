@@ -8,7 +8,10 @@ from __future__ import annotations
 
 import re
 
-from .chunking import RecursiveChunker
+try:
+    from .chunking import RecursiveChunker
+except ImportError:  # Allow the common root runner to load this file directly.
+    from src.chunking import RecursiveChunker
 
 
 class HeadingAwareChunker:

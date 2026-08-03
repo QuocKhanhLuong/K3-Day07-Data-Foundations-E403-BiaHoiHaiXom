@@ -91,43 +91,36 @@ Chạy `ChunkingStrategyComparator().compare()` trên 2-3 tài liệu:
 > Mỗi thành viên điền một khối dưới đây (copy thêm nếu nhóm có nhiều hơn 3 người).
 
 **Thành viên 1 — Lương Quốc Khánh**
-- **Loại chiến lược:** `SentenceChunker`
-- **Mô tả & lý do chọn cho chủ đề này:** Dựa trên cấu trúc tài liệu quy định/hướng dẫn thường có các câu độc lập rõ ý. Việc chia theo câu giúp LLM lấy được trọn vẹn ngữ cảnh của từng quy định.
-- **Code snippet (nếu custom):** Dùng class `SentenceChunker` có sẵn nhưng tùy chỉnh `max_sentences_per_chunk=2`.
+- **Loại chiến lược:** Heading-aware chunking + Recursive fallback
+- **Mô tả & lý do chọn cho chủ đề này:** Giữ hierarchy của Markdown heading trong chunk; section dài được chia tiếp theo recursive separators. Cách này phù hợp với corpus quy chế có mục `##` rõ ràng, đồng thời vẫn có giới hạn `chunk_size=400`.
+- **Tham số khóa:** `chunk_size=400`.
 
 **Thành viên 2 — Hoàng Đức Anh**
 - **Loại chiến lược:** `FixedSizeChunker`
-- **Mô tả & lý do chọn:** Là phương pháp đơn giản nhất, đảm bảo kích thước các chunk rất đều nhau, phù hợp khi tài liệu dài và không phân biệt cấu trúc đoạn quá khắt khe, tiết kiệm token.
-- **Code snippet (nếu custom):** Dùng class `FixedSizeChunker` mặc định với `chunk_size=300`, `overlap=50`.
+- **Mô tả & lý do chọn:** Cửa sổ ký tự cố định giúp so sánh dễ tái lập trên cùng corpus; overlap giữ một phần ngữ cảnh tại biên.
+- **Tham số khóa:** `chunk_size=400`, `overlap=80`, `stride=320`.
 
 **Thành viên 3 — Trần Nguyễn Mỹ Anh**
-- **Loại chiến lược:** `RecursiveChunker`
-- **Mô tả & lý do chọn:** Do các văn bản quy định học vụ thường có cấu trúc Header (##) và List, recursive chunker theo các dấu phân cách Markdown như `\n\n`, `\n` sẽ giữ nguyên được cấu trúc danh sách.
-- **Code snippet (nếu custom):** Dùng class `RecursiveChunker` mặc định với `chunk_size=400`.
+- **Loại chiến lược:** `SentenceChunker`
+- **Mô tả & lý do chọn:** Gom tối đa hai câu trong một chunk để giữ ranh giới câu, phù hợp khi câu hỏi yêu cầu điều kiện hoặc một quy trình ngắn.
+- **Tham số khóa:** `max_sentences_per_chunk=2`.
 
 **Thành viên 4 — Nguyễn Thu Huyền**
-- **Loại chiến lược:** `CustomMarkdownHeaderChunker`
-- **Mô tả & lý do chọn:** Các thông báo và quy định thường chia thành các Điều/Mục rõ ràng (bằng thẻ Header `##`). Cắt chunk theo Header giúp nhóm thông tin của cùng một chuyên mục vào chung một chunk.
-- **Code snippet (nếu custom):**
-```python
-class CustomMarkdownHeaderChunker:
-    def chunk(self, text: str) -> list[str]:
-        import re
-        sections = re.split(r'(?=^## )', text, flags=re.MULTILINE)
-        return [s.strip() for s in sections if s.strip()]
-```
+- **Loại chiến lược:** `RecursiveChunker`
+- **Mô tả & lý do chọn:** Thử các separator theo thứ tự đoạn, dòng, câu, khoảng trắng rồi mới cắt ký tự; giữ ranh giới tự nhiên trong tài liệu quy định.
+- **Tham số khóa:** `chunk_size=400`.
 
 ### So Sánh Giữa Các Thành Viên
 
-| Thành viên | Chiến lược (Strategy) | Điểm truy xuất (/10) | Điểm mạnh | Điểm yếu |
-|-----------|----------|----------------------|-----------|----------|
-| Quốc Khánh | `SentenceChunker` | 8/10 | Giữ trọn nghĩa câu, không bị cắt chữ | Các câu ngắn có thể bị thiếu ngữ cảnh xung quanh |
-| Đức Anh | `FixedSizeChunker` | 5/10 | Chunk đều, tối ưu số lượng token | Cắt ngang đoạn, đôi khi làm mất nửa câu quan trọng |
-| Mỹ Anh | `RecursiveChunker` | 9/10 | Bảo toàn được các đoạn văn và danh sách | Code chạy chậm hơn, các chunk có thể không đều nhau |
-| Thu Huyền | `CustomHeader` | 10/10 | Hoàn hảo với tài liệu quy chế chia theo mục | Nếu mục quá dài sẽ vượt giới hạn chunk cho phép |
+| Thành viên | Chiến lược | Chunks | Evidence top-3 | Evidence top-1 | Agent grounded | Điểm /10 |
+|-----------|----------|---:|---:|---:|---:|---:|
+| Lương Quốc Khánh | Heading-aware + Recursive fallback | 41 | 3/5 | 3/5 | 2/5 | **5** |
+| Hoàng Đức Anh | FixedSize (`400/80`) | 28 | 4/5 | 3/5 | 3/5 | **6** |
+| Nguyễn Thu Huyền | Recursive (`400`) | 32 | 4/5 | 4/5 | 2/5 | **6** |
+| Trần Nguyễn Mỹ Anh | Sentence (`2 câu/chunk`) | 45 | 2/5 | 2/5 | 1/5 | **3** |
 
-**Chiến lược nào tốt nhất cho chủ đề này? Tại sao?**
-> *Chiến lược Custom (Tách theo Markdown Header) kết hợp với RecursiveChunker là tốt nhất. Bởi vì tài liệu quy chế đại học (như quy chế đào tạo, học bổng) có tính cấu trúc rất cao, mỗi mục (##) giải quyết một vấn đề cụ thể (như "Điều kiện học bổng"). Chia theo Header giúp context chứa toàn vẹn quy định của mục đó.*
+**Chiến lược nào tốt nhất trong lần chạy công bằng này? Tại sao?**
+> `FixedSizeChunker(400/80)` và `RecursiveChunker(chunk_size=400)` cùng đạt 6/10 trong bốn strategy. Recursive giữ evidence ở top-1 nhiều hơn, còn FixedSize có thêm một kết quả agent grounded; tuy nhiên q3 vẫn thất bại vì evidence phrase dài không nằm trọn trong một chunk 400 ký tự. Kết luận này chỉ áp dụng cho đúng corpus, query, model và agent configuration của run này.
 
 ---
 
@@ -147,35 +140,35 @@ class CustomMarkdownHeaderChunker:
 
 ### Tổng hợp chất lượng truy xuất của nhóm
 
-> Cách chấm (theo `docs/SCORING.md`): **2 điểm/câu** — top-3 chứa chunk liên quan + agent trả lời đúng (2), có liên quan nhưng thiếu/không ở top-1 (1), không có trong top-3 (0).
+Benchmark được chạy bằng `bench.py` dùng chung với cùng corpus, `benchmarks.json`, OpenAI `text-embedding-3-small`, `gpt-4o-mini`, `top_k=3`, prompt agent, metadata filter và exact evidence checker. Kết quả đầy đủ nằm trong `benchmark_results.json`.
 
-> Benchmark chính thức chưa chạy; các ô kết quả bên dưới được giữ TODO, không điền score/retrieval result trước khi nhóm chạy cùng chiến lược.
+> Cách chấm: **2 điểm/câu** khi evidence nằm trong chunk top-1 và agent có câu trả lời grounded bằng evidence/context quote; **1 điểm** khi evidence chỉ nằm trong top-3 hoặc agent chưa kiểm chứng được; **0 điểm** khi không có evidence trong top-3.
 
-| # | Câu hỏi | Chiến lược tốt nhất cho câu này | Có chunk liên quan trong top-3? | Ghi chú |
-|---|---------|-------------------------------|-------------------------------|---------|
-| 1 | Khối lượng đăng ký tối đa... | `CustomHeader` | Có (Top 1) | Lấy chính xác mục "Khối lượng tín chỉ đăng ký" |
-| 2 | Điều kiện GPA và điểm rèn luyện... | `SentenceChunker` | Có (Top 1) | Mệnh đề nằm gọn trong 1 câu nên trả về cực chuẩn |
-| 3 | Quy trình sử dụng phòng đọc... | `RecursiveChunker` | Có (Top 1) | Giữ nguyên được danh sách 4 bước không bị cắt lẻ |
-| 4 | Học bổng KKHT có những mức... | `RecursiveChunker` | Có (Top 1) | Giữ được bảng/đoạn liệt kê 3 mức học bổng |
-| 5 | Khi cần điều chỉnh đăng ký... | `CustomHeader` + Metadata | Có (Top 1) | Phân biệt quy định sinh viên/giảng viên nhờ metadata |
+| # | Câu hỏi | Điểm theo strategy (QK / Đức Anh / Huyền / Mỹ Anh) | Evidence top-3 tốt nhất | Ghi chú |
+|---|---------|---|---|---------|
+| 1 | Khối lượng đăng ký tối đa... | 1 / 1 / 1 / 1 | Cả bốn đều top-1 | Agent q1 dùng quote rút gọn có `...`, nên không đạt 2 điểm |
+| 2 | Điều kiện GPA và điểm rèn luyện... | 2 / 2 / 2 / 0 | QK, Đức Anh, Huyền | Sentence strategy không đưa exact evidence phrase vào top-3 |
+| 3 | Quy trình sử dụng phòng đọc... | 0 / 0 / 0 / 0 | Không strategy nào | Evidence phrase 349 ký tự không nằm trọn trong chunk 400 |
+| 4 | Học bổng KKHT có những mức... | 2 / 1 / 2 / 0 | QK và Huyền | Fixed tìm thấy evidence ở rank 2; Sentence không có exact phrase trong top-3 |
+| 5 | Khi cần điều chỉnh đăng ký... | 0 / 2 / 2 / 2 | Đức Anh, Huyền, Mỹ Anh | QK bị tách evidence bởi heading context; filter giúp loại faculty chunk ở Recursive |
 
 **Lọc bằng metadata có giúp ích không? Ở câu hỏi nào?**
-> *Lọc bằng metadata cực kỳ hữu ích, đặc biệt ở câu 5 (Quy định điều chỉnh đăng ký). Do tập dữ liệu có cả thông báo cho khoa (faculty) và quy chế cho sinh viên (student), nếu không có tham số lọc `{"audience": "student"}`, hệ thống có thể trả về thông báo nội bộ của giảng viên gây sai lệch câu trả lời cho đối tượng sinh viên.*
+> q5 được chạy A/B cho cả bốn strategy. Trong run này, filter không đổi top-1 của QK, Đức Anh và Mỹ Anh vì các chunk student vốn đã đứng đầu; với Recursive, filter loại `course-registration-faculty::chunk_1` khỏi top-3 nhưng vẫn giữ gold chunk ở top-1. Vì vậy filter có tác dụng giảm nhiễu, nhưng không được tuyên bố là luôn cải thiện điểm nếu output không cho thấy điều đó.
 
 ---
 
 ## 4. Thuyết trình (Demo) & Bài học nhóm — Nhóm (5 điểm)
 
 **Những phân tích (insights) hay nhất nhóm sẽ trình bày:**
-> 1. Dữ liệu dạng quy định pháp lý/quy chế trường học rất nhạy cảm với việc bị cắt ngang đoạn, `FixedSizeChunker` cho kết quả kém nhất ở tài liệu này.
-> 2. Metadata filtering là bắt buộc khi hệ thống phục vụ nhiều đối tượng (sinh viên, giảng viên) có các quy trình khác nhau nhưng chung từ khóa (như "đăng ký học tập").
-> 3. Kích thước chunk càng lớn không có nghĩa là càng tốt; nếu ôm quá nhiều mục sẽ làm loãng độ tương tự (cosine similarity).
+> 1. Cấu hình benchmark phải được khóa: chỉ thay strategy/parameter, nếu trộn local, mock và OpenAI thì điểm cũ không thể so sánh.
+> 2. FixedSize và Recursive đồng hạng cao nhất ở 6/10 trong run chung, nhưng không strategy nào chứa được evidence q3 trong một chunk 400; đây là failure cụ thể của chunk-level evaluation.
+> 3. Metadata filter q5 giảm nhiễu faculty trong top-3 của Recursive, nhưng A/B không thay đổi top-1 ở ba strategy còn lại.
 
 **Bài học rút ra khi so sánh trong nhóm:**
-> *Cùng một tài liệu nhưng nếu dùng `FixedSizeChunker`, câu hỏi có thể không tìm thấy đáp án do từ khóa bị chia cắt ở hai chunk khác nhau. Trong khi đó, `RecursiveChunker` và `CustomHeaderChunker` gom nhóm ngữ nghĩa tốt hơn, đẩy độ tương tự (cosine similarity) của chunk chứa đáp án lên vị trí Top-1.*
+> *Không thể suy ra strategy tốt chỉ từ top-1 semantic score hoặc từ một kết quả cũ. Cần chấm evidence exact ở mức chunk và kiểm tra agent answer bằng cùng prompt; khi đó điểm thấp của Sentence và failure q3 được nhìn thấy rõ thay vì bị fuzzy hit che khuất.*
 
 **Nếu làm lại, nhóm sẽ thay đổi gì trong chiến lược dữ liệu (data strategy)?**
-> *Nhóm sẽ tăng cường trích xuất metadata phong phú hơn (ví dụ: thêm tags từ khóa chính) và làm sạch dữ liệu Markdown kỹ hơn (loại bỏ các bảng biểu phức tạp chuyển thành text dạng list) để các chiến lược chia nhỏ hoạt động hiệu quả tối đa.*
+> *Nhóm sẽ thiết kế evidence phrase ngắn hơn nhưng vẫn đủ đặc trưng để kiểm tra một chunk, đồng thời giữ nguyên query/corpus sau khi benchmark khóa. Với corpus mới, cần test trước xem evidence phrase có phù hợp với giới hạn chunk của tất cả strategy hay không.*
 
 ---
 
