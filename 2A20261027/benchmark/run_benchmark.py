@@ -14,7 +14,7 @@ if str(root_dir) not in sys.path:
 from ingest import build_knowledge_base
 from src.agent import KnowledgeBaseAgent
 from src.chunking import RecursiveChunker
-from src.embeddings import EMBEDDING_PROVIDER_ENV, LocalEmbedder, MockEmbedder
+from src.embeddings import LocalEmbedder, MockEmbedder
 
 
 def normalize_text(text: str) -> str:
@@ -106,7 +106,7 @@ def run_benchmark():
             top3_filtered = store.search_with_filter(query, top_k=3, metadata_filter=metadata_filter)
             top3_unfiltered = store.search(query, top_k=3)
         else:
-            top3_filtered = store.search(query, top_k=3)
+            top3_filtered = store.search_with_filter(query, top_k=3, metadata_filter=None)
             top3_unfiltered = top3_filtered
 
         top3_eval = []
@@ -178,19 +178,19 @@ def run_benchmark():
     print(f"FINAL BENCHMARK SCORE: {total_score} / 10")
     print("==================================================")
 
-    # Save JSON results
-    out_dir = Path("2A20261027/benchmark")
+    # Save JSON results to 2A20261027/benchmark/
+    out_dir = Path(__file__).resolve().parent
     out_dir.mkdir(parents=True, exist_ok=True)
     json_path = out_dir / "recursive_results.json"
     with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(results_data, f, ensure_ascii=False, indent=2)
+        json.dump(results_data, f, ensure_ascii=False, indent=2, default=str)
     print(f"Saved results to {json_path}")
 
     # Also save to 2A202601027/benchmark/
     alt_dir = Path("2A202601027/benchmark")
     alt_dir.mkdir(parents=True, exist_ok=True)
     with open(alt_dir / "recursive_results.json", "w", encoding="utf-8") as f:
-        json.dump(results_data, f, ensure_ascii=False, indent=2)
+        json.dump(results_data, f, ensure_ascii=False, indent=2, default=str)
 
     return results_data
 

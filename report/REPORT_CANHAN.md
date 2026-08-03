@@ -1,10 +1,10 @@
 # Báo Cáo Cá Nhân — Lab 7: Embedding & Vector Store
 
-**Họ tên:** Nguyễn Thu Huyền  
-**MSSV:** 2A20261027  
-**Chiến lược phân công:** RecursiveChunker (`chunk_size = 400`)  
-**Nhóm:** BiaHoiHaiXom  
-**Ngày:** 03/08/2026  
+**Họ tên:** Lương Quốc Khánh
+**Mã số sinh viên:** 2A202601713
+**Lớp/biến thể lab:** K3
+**Nhóm:** Chưa có thông tin nhóm trong repo
+**Ngày:** 2026-08-03
 
 > **Nộp 1 bản / sinh viên.** Phần nhóm (lựa chọn tài liệu, thiết kế chiến lược, bộ câu hỏi đánh giá, demo) nộp chung 1 bản trong `REPORT_NHOM.md`. Chi tiết thang điểm: `docs/SCORING.md`.
 
@@ -17,29 +17,34 @@
 ### Độ tương tự Cosine (Cosine Similarity) (Bài tập 1.1)
 
 **Độ tương tự cosine cao (High cosine similarity) nghĩa là gì?**
-> Góc giữa hai vector nhúng nhỏ (hướng trùng nhau), phản ánh hai đoạn văn bản có ý nghĩa/nội dung rất tương đồng với nhau, không phụ thuộc vào độ dài ngắn của từng câu.
+Hai vector embedding có hướng gần nhau, nên hai đoạn văn bản thường có nội dung hoặc ý nghĩa gần nhau. Điểm càng gần 1 thì mức tương đồng theo hướng càng cao.
 
 **Ví dụ có độ tương tự CAO:**
-- Câu A: Sinh viên có thể mượn tối đa 5 cuốn sách tại thư viện trường.
-- Câu B: Thư viện đại học cho phép người học mượn tối đa 5 đầu sách.
-- Tại sao tương đồng: Cả hai câu đều diễn đạt cùng một chủ đề (quy định mượn sách thư viện) với các từ ngữ mang ý nghĩa tương đương.
+- Câu A: Sinh viên cần kiểm tra học phần tiên quyết trước khi đăng ký.
+- Câu B: Trước khi đăng ký, sinh viên phải xem các môn học tiên quyết.
+- Tại sao tương đồng: Hai câu cùng diễn đạt yêu cầu kiểm tra môn tiên quyết trước khi đăng ký học phần.
 
 **Ví dụ có độ tương tự THẤP:**
-- Câu A: Sinh viên có thể mượn tối đa 5 cuốn sách tại thư viện trường.
-- Câu B: Đội tuyển bóng đá nam đã giành chiến thắng thuyết phục trong trận chung kết.
-- Tại sao khác: Hai câu thuộc hai lĩnh vực hoàn toàn khác nhau (quy định thư viện vs thể thao), không có mối liên hệ ngữ nghĩa.
+- Câu A: Sinh viên đăng ký học phần trên cổng học vụ.
+- Câu B: Thư viện cho mượn tài liệu bằng thẻ định danh.
+- Tại sao khác: Một câu nói về đăng ký môn học, câu còn lại nói về dịch vụ mượn tài liệu thư viện.
 
 **Tại sao độ tương tự cosine (cosine similarity) được ưu tiên hơn khoảng cách Euclid (Euclidean distance) cho text embeddings?**
-> Khoảng cách Euclid bị ảnh hưởng bởi độ dài (độ lớn vector), khiến hai văn bản cùng nội dung nhưng độ dài khác nhau có khoảng cách xa. Độ tương tự cosine chỉ đo góc hướng vector (đã chuẩn hóa độ dài), giúp đánh giá chính xác độ tương đồng ngữ nghĩa.
+Cosine tập trung vào góc giữa hai vector và ít bị ảnh hưởng bởi độ lớn tuyệt đối của vector, phù hợp khi so sánh hướng biểu diễn ngữ nghĩa của văn bản. Khoảng cách Euclid nhạy hơn với độ dài hoặc chuẩn vector, dù hai văn bản có thể cùng hướng.
 
 ### Bài toán tính toán Chunking (Bài tập 1.2)
 
 **Tài liệu 10,000 ký tự, chunk_size=500, overlap=50. Bao nhiêu chunks?**
-> *Trình bày phép tính:* $\text{số lượng chunk} = \text{làm\_tròn\_lên}\left(\frac{10000 - 50}{500 - 50}\right) = \text{làm\_tròn\_lên}\left(\frac{9950}{450}\right) = \text{làm\_tròn\_lên}(22.11) = 23$
-> *Đáp án:* 23 chunks
+> *Trình bày phép tính:*
+
+`stride = 500 - 50 = 450`.
+
+`ceil((10,000 - 50) / 450) = ceil(9,950 / 450) = ceil(22.111...) = 23`.
+
+> *Đáp án:* **23 chunks**.
 
 **Nếu độ chồng chéo (overlap) tăng lên 100, số lượng chunk thay đổi thế nào? Tại sao muốn độ chồng chéo nhiều hơn?**
-> Khi overlap tăng lên 100, số lượng chunk tăng từ 23 lên 25 chunks ($\frac{9900}{400} = 24.75 \rightarrow 25$). Tăng độ chồng chéo giúp giữ lại ngữ cảnh liên tục ở ranh giới giữa các chunk lân cận, tránh việc ý nghĩa của câu bị ngắt đoạn khi chia nhỏ.
+Khi `overlap=100`, `stride=500-100=400` và số chunk là `ceil((10,000-100)/400) = ceil(24.75) = 25` chunks. Overlap lớn hơn giúp giữ ngữ cảnh nằm ở ranh giới hai chunk, nhưng làm tăng số chunk, dung lượng lưu trữ và chi phí tìm kiếm.
 
 ---
 
@@ -50,23 +55,23 @@ Giải thích cách tiếp cận của bạn khi lập trình (implement) các p
 ### Các hàm chia nhỏ (Chunking Functions)
 
 **`SentenceChunker.chunk`** — hướng tiếp cận:
-> Sử dụng biểu thức chính quy `re.split(r'(?<=[.!?])\s+|\.\n', text)` với kỹ thuật lookbehind để tách văn bản chính xác theo ranh giới câu mà không làm mất dấu câu. Sau đó nhóm các câu lại thành từng chunk có tối đa `max_sentences_per_chunk` câu. Xử lý các edge cases như văn bản rỗng, văn bản không có dấu câu hoặc ngắn hơn kích thước nhóm.
+Mình dùng regex `(?<=[.!?])\s+` để tách sau dấu chấm, chấm than hoặc chấm hỏi khi theo sau là khoảng trắng hoặc xuống dòng; dấu câu được giữ lại trong câu. Các câu sau đó được loại khoảng trắng thừa và gom tối đa `max_sentences_per_chunk` câu mỗi chunk. Văn bản rỗng trả về danh sách rỗng, còn giá trị `max_sentences_per_chunk` nhỏ hơn 1 được chặn ở 1.
 
 **`RecursiveChunker.chunk` / `_split`** — hướng tiếp cận:
-> Sử dụng giải thuật đệ quy thử nghiệm danh sách dấu phân cách theo thứ tự ưu tiên `["\n\n", "\n", ". ", " ", ""]`. Base case là khi đoạn văn bản ngắn hơn `chunk_size` hoặc không còn separator nào (sẽ cắt chuỗi theo độ dài). Nếu một đoạn tách ra vẫn lớn hơn `chunk_size`, hàm sẽ gọi đệ quy `_split` với danh sách dấu phân cách tiếp theo.
+Thuật toán thử các separator theo thứ tự ưu tiên: đoạn, dòng, câu, khoảng trắng rồi đến cắt theo ký tự. Base case là đoạn đã không dài hơn `chunk_size`; nếu không còn separator phù hợp thì cắt cố định để luôn tiến triển. Các phần quá dài được đệ quy với các separator còn lại, sau đó các phần liền kề được gộp khi vẫn nằm trong giới hạn kích thước.
 
 ### Lớp EmbeddingStore
 
 **`add_documents` + `search`** — hướng tiếp cận:
-> Với `add_documents`, mỗi document được chuẩn hóa thành một record chứa `id`, `content`, `metadata` và vector `embedding` (sinh bởi `self._embedding_fn`) rồi đưa vào `self._store`. Với `search`, query được nhúng thành vector và tính điểm Cosine Similarity với từng chunk trong store, sắp xếp giảm dần và lấy `top_k` kết quả tốt nhất.
+Mỗi `Document` được chuyển thành record gồm id, nội dung, metadata và embedding; metadata được sao chép và có `doc_id` mặc định để hỗ trợ xóa. Store dùng ChromaDB nếu có, nếu không dùng danh sách trong bộ nhớ. Với store trong bộ nhớ, query được embed rồi xếp hạng các record bằng tích vô hướng giảm dần và lấy tối đa `top_k` kết quả.
 
 **`search_with_filter` + `delete_document`** — hướng tiếp cận:
-> `search_with_filter` thực hiện pre-filtering (lọc trước): lọc danh sách các chunk trong store khớp toàn bộ điều kiện `metadata_filter` rồi mới tính similarity search trên tập kết quả đó. `delete_document` lọc bỏ tất cả chunk có `id` hoặc `metadata['doc_id']` trùng với `doc_id` cần xóa, trả về `True` nếu có ít nhất 1 chunk bị loại bỏ.
+Metadata được lọc trước khi tính/xếp hạng similarity; record phải khớp tất cả các cặp khóa-giá trị trong bộ lọc. `delete_document` xóa mọi record có `metadata['doc_id']` bằng `doc_id` yêu cầu, đồng thời hỗ trợ id trực tiếp cho các document chưa có metadata doc_id.
 
 ### Tác tử KnowledgeBaseAgent
 
 **`answer`** — hướng tiếp cận:
-> Lấy ra top `top_k` chunks liên quan nhất từ `EmbeddingStore`, định dạng thành chuỗi `Context` có đánh số thứ tự. Ghép `Context` và `Question` vào template prompt RAG chuẩn rồi truyền vào `llm_fn` (tích hợp OpenAI API `gpt-4o-mini` hoặc fallback demo) để tạo ra câu trả lời cuối cùng.
+Agent gọi `store.search(question, top_k)` để lấy các chunk liên quan, gắn nội dung và source vào từng block context, rồi đưa context cùng câu hỏi vào prompt. Prompt yêu cầu chỉ trả lời dựa trên context và nói rõ khi bằng chứng không đủ; cuối cùng agent gọi `llm_fn` đúng một lần.
 
 ---
 
@@ -76,60 +81,23 @@ Vượt qua bộ kiểm thử là điều kiện tính điểm phần này.
 
 ### Kết Quả Kiểm Thử (Test Results)
 
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- D:\vin\lab06\K3-Day07-Data-Foundations\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: D:\vin\lab06\K3-Day07-Data-Foundations
-collecting ... collected 42 items
+```
+$ pytest tests/ -v
+platform darwin -- Python 3.13.2, pytest-8.3.4
+collected 42 items
+============================== 42 passed in 0.04s ==============================
 
-tests/test_solution.py::TestProjectStructure::test_root_main_entrypoint_exists PASSED [  2%]
-tests/test_solution.py::TestProjectStructure::test_src_package_exists PASSED [  4%]
-tests/test_solution.py::TestClassBasedInterfaces::test_chunker_classes_exist PASSED [  7%]
-tests/test_solution.py::TestClassBasedInterfaces::test_mock_embedder_exists PASSED [  9%]
-tests/test_solution.py::TestFixedSizeChunker::test_chunks_respect_size PASSED [ 11%]
-tests/test_solution.py::TestFixedSizeChunker::test_correct_number_of_chunks_no_overlap PASSED [ 14%]
-tests/test_solution.py::TestFixedSizeChunker::test_empty_text_returns_empty_list PASSED [ 16%]
-tests/test_solution.py::TestFixedSizeChunker::test_no_overlap_no_shared_content PASSED [ 19%]
-tests/test_solution.py::TestFixedSizeChunker::test_overlap_creates_shared_content PASSED [ 21%]
-tests/test_solution.py::TestFixedSizeChunker::test_returns_list PASSED   [ 23%]
-tests/test_solution.py::TestFixedSizeChunker::test_single_chunk_if_text_shorter PASSED [ 26%]
-tests/test_solution.py::TestSentenceChunker::test_chunks_are_strings PASSED [ 28%]
-tests/test_solution.py::TestSentenceChunker::test_respects_max_sentences PASSED [ 30%]
-tests/test_solution.py::TestSentenceChunker::test_returns_list PASSED    [ 33%]
-tests/test_solution.py::TestSentenceChunker::test_single_sentence_max_gives_many_chunks PASSED [ 35%]
-tests/test_solution.py::TestRecursiveChunker::test_chunks_within_size_when_possible PASSED [ 38%]
-tests/test_solution.py::TestRecursiveChunker::test_empty_separators_falls_back_gracefully PASSED [ 40%]
-tests/test_solution.py::TestRecursiveChunker::test_handles_double_newline_separator PASSED [ 42%]
-tests/test_solution.py::TestRecursiveChunker::test_returns_list PASSED   [ 45%]
-tests/test_solution.py::TestEmbeddingStore::test_add_documents_increases_size PASSED [ 47%]
-tests/test_solution.py::TestEmbeddingStore::test_add_more_increases_further PASSED [ 50%]
-tests/test_solution.py::TestEmbeddingStore::test_initial_size_is_zero PASSED [ 52%]
-tests/test_solution.py::TestEmbeddingStore::test_search_results_have_content_key PASSED [ 54%]
-tests/test_solution.py::TestEmbeddingStore::test_search_results_have_score_key PASSED [ 57%]
-tests/test_solution.py::TestEmbeddingStore::test_search_results_sorted_by_score_descending PASSED [ 59%]
-tests/test_solution.py::TestEmbeddingStore::test_search_returns_at_most_top_k PASSED [ 61%]
-tests/test_solution.py::TestEmbeddingStore::test_search_returns_list PASSED [ 64%]
-tests/test_solution.py::TestKnowledgeBaseAgent::test_answer_non_empty PASSED [ 66%]
-tests/test_solution.py::TestKnowledgeBaseAgent::test_answer_returns_string PASSED [ 69%]
-tests/test_solution.py::TestComputeSimilarity::test_identical_vectors_return_1 PASSED [ 71%]
-tests/test_solution.py::TestComputeSimilarity::test_opposite_vectors_return_minus_1 PASSED [ 73%]
-tests/test_solution.py::TestComputeSimilarity::test_orthogonal_vectors_return_0 PASSED [ 76%]
-tests/test_solution.py::TestComputeSimilarity::test_zero_vector_returns_0 PASSED [ 78%]
-tests/test_solution.py::TestCompareChunkingStrategies::test_counts_are_positive PASSED [ 80%]
-tests/test_solution.py::TestCompareChunkingStrategies::test_each_strategy_has_count_and_avg_length PASSED [ 83%]
-tests/test_solution.py::TestCompareChunkingStrategies::test_returns_three_strategies PASSED [ 85%]
-tests/test_solution.py::TestEmbeddingStoreSearchWithFilter::test_filter_by_department PASSED [ 88%]
-tests/test_solution.py::TestEmbeddingStoreSearchWithFilter::test_no_filter_returns_all_candidates PASSED [ 90%]
-tests/test_solution.py::TestEmbeddingStoreSearchWithFilter::test_returns_at_most_top_k PASSED [ 92%]
-tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_reduces_collection_size PASSED [ 95%]
-tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_false_for_nonexistent_doc PASSED [ 97%]
-tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_true_for_existing_doc PASSED [100%]
+$ .venv/bin/python -m unittest discover -s tests -v
+Python 3.11.15
+----------------------------------------------------------------------
+Ran 42 tests in 0.004s
 
-============================= 42 passed in 0.12s ==============================
+OK
 ```
 
-**Số lượng bài test vượt qua (pass):** 42 / 42
+**Số lượng bài test vượt qua (pass):** **42 / 42**
+
+> Ghi chú môi trường: pytest đã chạy pass trên Python 3.13.2; bộ unittest tương đương cũng chạy pass trên Python 3.11.15 trong `.venv`. Venv Python 3.11 chưa có pytest vì `ensurepip` của bản Homebrew hiện lỗi khi nạp `pyexpat`; đây là vấn đề môi trường, không phải lỗi implementation.
 
 ---
 
@@ -137,43 +105,35 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 
 | Cặp | Câu A | Câu B | Dự đoán | Điểm thực tế | Đúng? |
 |------|-----------|-----------|---------|--------------|-------|
-| 1 | Sinh viên được mượn tối đa 5 cuốn sách. | Thư viện cho phép người học mượn tối đa 5 đầu sách. | cao | 0.892 | Đúng |
-| 2 | Quy định về đóng học phí học kỳ 1. | Hướng dẫn mượn trả sách tại thư viện. | thấp | 0.105 | Đúng |
-| 3 | Thời hạn đăng ký học phần là tuần thứ 2. | Sinh viên đăng ký môn học trước tuần 2 của kỳ. | cao | 0.854 | Đúng |
-| 4 | Điều kiện xét học bổng khuyến khích học tập. | Quy định xử lý kỷ luật sinh viên vi phạm. | thấp | 0.187 | Đúng |
-| 5 | Thủ tục tạm ngưng học tập xin lưu kết quả. | Hướng dẫn xin tạm hoãn học tập giữ điểm. | cao | 0.831 | Đúng |
+| 1 | Course registration requires checking prerequisites. | Students should check prerequisite courses before registering. | cao | -0.008684476 | Không |
+| 2 | The library lends books and provides study space. | The library offers borrowing services and places to study. | cao | -0.001762505 | Không |
+| 3 | Students register for courses through the academic portal. | Scholarships may have eligibility requirements. | thấp | 0.104955991 | Không |
+| 4 | Check the timetable before enrolling in a course. | Borrow a book using a valid library identification card. | thấp | -0.265218510 | Có |
+| 5 | Vector databases store embeddings for similarity search. | Embeddings are stored in vector databases to support similarity search. | cao | 0.100825166 | Có |
 
 **Kết quả nào bất ngờ nhất? Điều này nói gì về cách embeddings biểu diễn ý nghĩa?**
-> Cặp 5 gây bất ngờ nhất vì hai câu sử dụng các từ ngữ khác nhau ("tạm ngưng" vs "tạm hoãn", "lưu kết quả" vs "giữ điểm") nhưng điểm độ tương tự vẫn rất cao (0.831). Điều này cho thấy vector embeddings biểu diễn khái niệm ngữ nghĩa trong không gian nhiều chiều chứ không phụ thuộc vào từ vựng trùng lặp chính xác (exact word match).
+Các cặp 1 và 2 có nội dung gần nhau theo cách hiểu của con người nhưng điểm mock lại âm hoặc gần 0, trong khi cặp 3 không liên quan lại có điểm dương. Điều này cho thấy `_mock_embed` chỉ tạo vector xác định để kiểm thử, gần như ngẫu nhiên theo toàn chuỗi; không được dùng để kết luận chất lượng semantic retrieval tiếng Việt.
 
 ---
 
-## 5. Kết quả truy xuất cá nhân (Benchmark Results with `RecursiveChunker`) — Cá nhân (10 điểm)
+## 5. Kết quả truy xuất của tôi (Competition Results) — Cá nhân (10 điểm)
 
-Đã chạy benchmark chung 5 câu hỏi từ `data/k3_university_services/benchmarks.json` với chiến lược được phân công **`RecursiveChunker(chunk_size=400)`** trên tập corpus chung `data/k3_university_services` (tổng 40 chunks).
+Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân của bạn trong gói `src`. **5 câu hỏi này phải trùng với các thành viên cùng nhóm** (xem `REPORT_NHOM.md`).
 
-| # | Query ID | Câu hỏi (Query) | Top-1 Chunk truy xuất được | Điểm Score | Evidence Hit (Top-3) | Agent Answer (tóm tắt) | Điểm (0/1/2) |
-|---|---|---|---|---|---|---|---|
-| 1 | `q1` | Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ chính? | `scholarship-policy::chunk_4` | 0.1899 | False | `[DEMO LLM] Answer generated from context preview...` | 0 |
-| 2 | `q2` | Quy định điều kiện xét cấp học bổng khuyến khích học tập loại A (Xuất sắc)... | `course-registration-student::chunk_5` | 0.3226 | False | `[DEMO LLM] Answer generated from context preview...` | 0 |
-| 3 | `q3` | Hạn mượn tối đa đối với sách giáo trình dành cho sinh viên tại thư viện... | `dormitory-regulations::chunk_3` | 0.2951 | False | `[DEMO LLM] Answer generated from context preview...` | 0 |
-| 4 | `q4` | Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí... | `dormitory-regulations::chunk_3` | 0.2381 | False | `[DEMO LLM] Answer generated from context preview...` | 0 |
-| 5 | `q5` | Thẩm quyền và quy trình phê duyệt danh mục học phần tương đương... | `course-registration-faculty::chunk_1` | 0.0876 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+> **Trạng thái dữ liệu:** `REPORT_NHOM.md` hiện chưa có 5 benchmark queries hoặc gold answers (bảng nhóm còn trống). Vì vậy chưa thể chạy và ghi kết quả retrieval chung mà không tự tạo thông tin nhóm; các score/top-1/top-3 bên dưới được để trống có chủ đích.
 
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 1 / 5  
-**Tổng điểm Benchmark:** **2 / 10**
+| # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Điểm Score | Có liên quan không? (Relevant) | Câu trả lời của Agent (tóm tắt) |
+|---|-------|--------------------------------|-------|-----------|------------------------|
+| 1 | | | | | |
+| 2 | | | | | |
+| 3 | | | | | |
+| 4 | | | | | |
+| 5 | | | | | |
 
-### Phân tích Failure Case:
-- **Query thất bại tiêu biểu:** Q1 (`q1`) — *"Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ chính?"*
-- **Gold Doc:** `course-registration-student`
-- **Gold Evidence:** *"Sinh viên bị cảnh cáo học tập mức 1: Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính."*
-- **Nguyên nhân thất bại:**
-  1. Hạn chế môi trường run: Chạy smoke test với `MockEmbedder` (do môi trường Python 3.14 chưa có wheel `sentence-transformers`), nên điểm cosine similarity chưa phản ánh chính xác tương quan ngữ nghĩa tiếng Việt.
-  2. Không có overlap: `RecursiveChunker` với `chunk_size=400` ngắt câu tại ranh giới cứng, làm đoạn thông tin chi tiết về số tín chỉ bị chia rẽ khỏi tiêu đề mục 2.
-- **Đề xuất cải thiện:** Kết hợp `RecursiveChunker` với cơ chế overlap (ví dụ 50 ký tự) hoặc cắt theo ranh giới tiêu đề Section Markdown.
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** Chưa xác định / 5 (chưa có benchmark queries)
 
-**Bài học về `RecursiveChunker`:**
-> `RecursiveChunker` bảo tồn cấu trúc đoạn và câu tự nhiên rất tốt, không bị vụn từ như `FixedSizeChunker`. Tuy nhiên, để đạt kết quả truy xuất cao nhất trên tài liệu dài, cần kết hợp cơ chế overlap hoặc chunking theo tiêu đề Header.
+**Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
+Chưa có dữ liệu demo hoặc kết quả của thành viên khác trong repo để đưa ra nhận xét có căn cứ.
 
 ---
 
@@ -181,9 +141,9 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 
 | Tiêu chí | Điểm tự đánh giá |
 |----------|-------------------|
-| Khởi động (Warm-up) | 5 / 5 |
-| Hướng tiếp cận của tôi (My Approach) | 10 / 10 |
-| Hoàn thiện code (Core Implementation — tests) | 30 / 30 |
-| Dự đoán độ tương tự (Similarity Predictions) | 5 / 5 |
-| Kết quả truy xuất của tôi (Competition Results) | 10 / 10 |
-| **Tổng phần cá nhân** | **60 / 60** |
+| Khởi động (Warm-up) | / 5 |
+| Hướng tiếp cận của tôi (My Approach) | / 10 |
+| Hoàn thiện code (Core Implementation — tests) | / 30 |
+| Dự đoán độ tương tự (Similarity Predictions) | / 5 |
+| Kết quả truy xuất của tôi (Competition Results) | / 10 |
+| **Tổng phần cá nhân** | **/ 60** |
