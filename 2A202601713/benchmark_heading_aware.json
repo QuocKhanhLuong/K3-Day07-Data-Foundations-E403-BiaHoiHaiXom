@@ -1,0 +1,786 @@
+{
+  "student": {
+    "name": "Lương Quốc Khánh",
+    "student_id": "2A202601713",
+    "branch": "qkhanh"
+  },
+  "strategy": {
+    "name": "Heading-aware chunking + Recursive fallback",
+    "implementation": "2A202601713/src/strategy.py",
+    "chunk_size_characters": 800,
+    "fallback_separators": [
+      "\n\n",
+      "\n",
+      ". ",
+      " ",
+      ""
+    ]
+  },
+  "configuration": {
+    "corpus": "data/k3_university_services",
+    "benchmark_file": "data/k3_university_services/benchmarks.json",
+    "embedding_provider": "openai",
+    "embedding_model": "text-embedding-3-small",
+    "agent_provider": "openai",
+    "agent_model": "gpt-4o-mini",
+    "top_k": 3,
+    "collection_size": 22
+  },
+  "chunk_inventory": [
+    {
+      "doc_id": "course-equivalency-policy",
+      "chunk_count": 2,
+      "chunk_lengths": [
+        740,
+        679
+      ],
+      "chunker_stats": {
+        "section_count": 2,
+        "fallback_sections": 0,
+        "chunk_count": 2,
+        "max_chunk_length": 740
+      }
+    },
+    {
+      "doc_id": "course-registration-faculty",
+      "chunk_count": 2,
+      "chunk_lengths": [
+        555,
+        345
+      ],
+      "chunker_stats": {
+        "section_count": 2,
+        "fallback_sections": 0,
+        "chunk_count": 2,
+        "max_chunk_length": 555
+      }
+    },
+    {
+      "doc_id": "course-registration-student",
+      "chunk_count": 4,
+      "chunk_lengths": [
+        716,
+        446,
+        502,
+        195
+      ],
+      "chunker_stats": {
+        "section_count": 3,
+        "fallback_sections": 1,
+        "chunk_count": 4,
+        "max_chunk_length": 716
+      }
+    },
+    {
+      "doc_id": "dormitory-regulations",
+      "chunk_count": 4,
+      "chunk_lengths": [
+        201,
+        448,
+        193,
+        488
+      ],
+      "chunker_stats": {
+        "section_count": 4,
+        "fallback_sections": 0,
+        "chunk_count": 4,
+        "max_chunk_length": 488
+      }
+    },
+    {
+      "doc_id": "library-services",
+      "chunk_count": 2,
+      "chunk_lengths": [
+        425,
+        566
+      ],
+      "chunker_stats": {
+        "section_count": 2,
+        "fallback_sections": 0,
+        "chunk_count": 2,
+        "max_chunk_length": 566
+      }
+    },
+    {
+      "doc_id": "scholarship-policy",
+      "chunk_count": 4,
+      "chunk_lengths": [
+        690,
+        385,
+        322,
+        424
+      ],
+      "chunker_stats": {
+        "section_count": 4,
+        "fallback_sections": 0,
+        "chunk_count": 4,
+        "max_chunk_length": 690
+      }
+    },
+    {
+      "doc_id": "tuition-policy",
+      "chunk_count": 4,
+      "chunk_lengths": [
+        298,
+        401,
+        369,
+        207
+      ],
+      "chunker_stats": {
+        "section_count": 4,
+        "fallback_sections": 0,
+        "chunk_count": 4,
+        "max_chunk_length": 401
+      }
+    }
+  ],
+  "queries": [
+    {
+      "query_id": "q1",
+      "type": "numeric",
+      "query": "Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là bao nhiêu tín chỉ?",
+      "gold_answer": "Người học không thuộc diện cảnh báo học tập được đăng ký tối đa 24 TC trong học kỳ chính.",
+      "gold_doc_id": "course-registration-student",
+      "expected_section": "## 2. Khối lượng tín chỉ đăng ký",
+      "evidence_phrase": "được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính",
+      "metadata_filter": null,
+      "filter_applied": false,
+      "retrieval": {
+        "gold_doc_id": "course-registration-student",
+        "evidence_in_top1": true,
+        "evidence_in_top3": true,
+        "evidence_rank": 1,
+        "expected_section_in_top3": true,
+        "expected_section_rank": 1,
+        "top_results": [
+          {
+            "id": "course-registration-student::chunk_2",
+            "doc_id": "course-registration-student",
+            "chunk_index": 2,
+            "audience": "student",
+            "score": 0.6287128565870717,
+            "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 2. Khối lượng tín chỉ đăng ký\n\nSinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăng ký tối đa 8 TC trong học kỳ hè.\n\nSinh viên đang bị cảnh báo học tập bị giới hạn khối lượng đăng ký học tập theo quy định tại khoản 2 Điều 19 của Quy chế này.",
+            "metadata": {
+              "doc_id": "course-registration-student",
+              "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2025",
+              "audience": "student",
+              "category": "hoc-vu",
+              "department": "ban-dao-tao",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+              "chunk_index": 2
+            }
+          },
+          {
+            "id": "tuition-policy::chunk_1",
+            "doc_id": "tuition-policy",
+            "chunk_index": 1,
+            "audience": "student",
+            "score": 0.47418036133018404,
+            "content": "# Thông báo về học phí kỳ I năm học 2025-2026 (20251) - đợt 2\n## 2. Cách tính và kiểm tra học phí\n\nHọc phí của mỗi học kỳ được tính toán theo 02 đợt: Đợt 1 tính toán sơ bộ học phí cần đóng, sau đó Đợt 2 sẽ tính lại chính xác học phí của học kỳ.\n\nĐịnh mức học phí với học phần trong và ngoài CTĐT là như nhau, tuy nhiên nếu chưa chính xác sẽ ảnh hưởng đến tiền học bổng khuyến khích học tập của kỳ sau.",
+            "metadata": {
+              "doc_id": "tuition-policy",
+              "title": "Thông báo về học phí kỳ I năm học 2025-2026 (20251) - đợt 2",
+              "source_url": "https://ctt.hust.edu.vn/DisplayWeb/DisplayKehoach?kehoach=27231",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2025-2026",
+              "audience": "student",
+              "category": "hoc-phi",
+              "department": "ban-dao-tao",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/tuition-policy.md",
+              "chunk_index": 1
+            }
+          },
+          {
+            "id": "course-registration-student::chunk_1",
+            "doc_id": "course-registration-student",
+            "chunk_index": 1,
+            "audience": "student",
+            "score": 0.4713764423197375,
+            "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.",
+            "metadata": {
+              "doc_id": "course-registration-student",
+              "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2025",
+              "audience": "student",
+              "category": "hoc-vu",
+              "department": "ban-dao-tao",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+              "chunk_index": 1
+            }
+          }
+        ]
+      },
+      "agent": {
+        "answer": "Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là 24 tín chỉ.\n\nBằng chứng: \"Sinh viên không thuộc diện cảnh báo học tập... được đăng ký tối đa 24 TC.\"",
+        "contains_gold_evidence_phrase": false,
+        "context_quote": null,
+        "contains_context_quote": false,
+        "grounded": false
+      },
+      "score": 1,
+      "ab": null
+    },
+    {
+      "query_id": "q2",
+      "type": "condition",
+      "query": "Điều kiện GPA và điểm rèn luyện để đạt học bổng loại A là gì?",
+      "gold_answer": "Học bổng loại A yêu cầu GPA từ 3,6 trở lên và điểm rèn luyện học kỳ từ 90 điểm trở lên.",
+      "gold_doc_id": "scholarship-policy",
+      "expected_section": "## 3. Tiêu chuẩn xét cấp học bổng",
+      "evidence_phrase": "Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.",
+      "metadata_filter": null,
+      "filter_applied": false,
+      "retrieval": {
+        "gold_doc_id": "scholarship-policy",
+        "evidence_in_top1": true,
+        "evidence_in_top3": true,
+        "evidence_rank": 1,
+        "expected_section_in_top3": true,
+        "expected_section_rank": 1,
+        "top_results": [
+          {
+            "id": "scholarship-policy::chunk_2",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 2,
+            "audience": "student",
+            "score": 0.6449627810125662,
+            "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.",
+            "metadata": {
+              "doc_id": "scholarship-policy",
+              "title": "Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguyen%20Viet%20Tien/files/Quy%20%C4%91%E1%BB%8Bnh%20v%E1%BB%81%20vi%E1%BB%87c%20x%C3%A9t%20c%E1%BA%A5p%20HB%20KKHT.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2020-11-30",
+              "audience": "student",
+              "category": "hoc-bong",
+              "department": "phong-cong-tac-sinh-vien",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/scholarship-policy.md",
+              "chunk_index": 2
+            }
+          },
+          {
+            "id": "scholarship-policy::chunk_1",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 1,
+            "audience": "student",
+            "score": 0.5479083449233713,
+            "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.",
+            "metadata": {
+              "doc_id": "scholarship-policy",
+              "title": "Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguyen%20Viet%20Tien/files/Quy%20%C4%91%E1%BB%8Bnh%20v%E1%BB%81%20vi%E1%BB%87c%20x%C3%A9t%20c%E1%BA%A5p%20HB%20KKHT.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2020-11-30",
+              "audience": "student",
+              "category": "hoc-bong",
+              "department": "phong-cong-tac-sinh-vien",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/scholarship-policy.md",
+              "chunk_index": 1
+            }
+          },
+          {
+            "id": "scholarship-policy::chunk_3",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 3,
+            "audience": "student",
+            "score": 0.45831531177488216,
+            "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 4. Trường hợp không xét cấp học bổng\n\nKhông xét cấp học bổng đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng.",
+            "metadata": {
+              "doc_id": "scholarship-policy",
+              "title": "Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguyen%20Viet%20Tien/files/Quy%20%C4%91%E1%BB%8Bnh%20v%E1%BB%81%20vi%E1%BB%87c%20x%C3%A9t%20c%E1%BA%A5p%20HB%20KKHT.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2020-11-30",
+              "audience": "student",
+              "category": "hoc-bong",
+              "department": "phong-cong-tac-sinh-vien",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/scholarship-policy.md",
+              "chunk_index": 3
+            }
+          }
+        ]
+      },
+      "agent": {
+        "answer": "Điều kiện GPA và điểm rèn luyện để đạt học bổng loại A là GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.\n\nBằng chứng: \"Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.\"",
+        "contains_gold_evidence_phrase": true,
+        "context_quote": null,
+        "contains_context_quote": false,
+        "grounded": true
+      },
+      "score": 2,
+      "ab": null
+    },
+    {
+      "query_id": "q3",
+      "type": "process",
+      "query": "Quy trình sử dụng phòng đọc tại chỗ gồm những bước nào?",
+      "gold_answer": "Tra cứu tài liệu để xác định phòng; dùng thẻ sinh viên hoặc app iCTSV checkin tại quầy thủ thư; vào kho tự chọn sách theo ký hiệu xếp giá; đọc xong trả sách tại bàn đúng nơi quy định.",
+      "gold_doc_id": "library-services",
+      "expected_section": "## 1. Quy trình sử dụng phòng đọc tại chỗ",
+      "evidence_phrase": "Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào. Bước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư. Bước 3: Vào kho sách tự chọn sách theo ký hiệu xếp giá (xem thêm bảng chỉ dẫn đầu mỗi giá sách). Bước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.",
+      "metadata_filter": null,
+      "filter_applied": false,
+      "retrieval": {
+        "gold_doc_id": "library-services",
+        "evidence_in_top1": true,
+        "evidence_in_top3": true,
+        "evidence_rank": 1,
+        "expected_section_in_top3": true,
+        "expected_section_rank": 1,
+        "top_results": [
+          {
+            "id": "library-services::chunk_0",
+            "doc_id": "library-services",
+            "chunk_index": 0,
+            "audience": "all",
+            "score": 0.7209450232808194,
+            "content": "# Quy trình sử dụng phòng đọc\n## 1. Quy trình sử dụng phòng đọc tại chỗ\n\nBước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.\n\nBước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư.\n\nBước 3: Vào kho sách tự chọn sách theo ký hiệu xếp giá (xem thêm bảng chỉ dẫn đầu mỗi giá sách).\n\nBước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.",
+            "metadata": {
+              "doc_id": "library-services",
+              "title": "Quy trình sử dụng phòng đọc",
+              "source_url": "https://library.hust.edu.vn/vi/node/471",
+              "retrieved_at": "2026-08-03",
+              "document_version": "not-stated",
+              "audience": "all",
+              "category": "thu-vien",
+              "department": "trung-tam-truyen-thong-va-tri-thuc-so",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/library-services.md",
+              "chunk_index": 0
+            }
+          },
+          {
+            "id": "library-services::chunk_1",
+            "doc_id": "library-services",
+            "chunk_index": 1,
+            "audience": "all",
+            "score": 0.718859917119488,
+            "content": "# Quy trình sử dụng phòng đọc\n## 2. Một số lưu ý khi sử dụng phòng đọc\n\n- Mỗi sinh viên chỉ lấy 01 cuốn sách ra bàn đọc (sinh viên được lấy 2 quyển trong trường hợp sách lý thuyết + bài tập hoặc sách ngoại văn + từ điển).\n- Giữ gìn vệ sinh chung, để rác đúng nơi quy định. Không nghe điện thoại (điện thoại để chế độ im lặng); không trao đổi gây mất trật tự trong phòng đọc.\n- Không mang balo, cặp sách vào phòng đọc (Gửi tại phòng gửi đồ tầng 1).\n- Máy tính trang bị tại phòng đọc chỉ sử dụng để tra cứu tài liệu và phục vụ học tập. KHÔNG sử dụng vào mục đích khác.",
+            "metadata": {
+              "doc_id": "library-services",
+              "title": "Quy trình sử dụng phòng đọc",
+              "source_url": "https://library.hust.edu.vn/vi/node/471",
+              "retrieved_at": "2026-08-03",
+              "document_version": "not-stated",
+              "audience": "all",
+              "category": "thu-vien",
+              "department": "trung-tam-truyen-thong-va-tri-thuc-so",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/library-services.md",
+              "chunk_index": 1
+            }
+          },
+          {
+            "id": "dormitory-regulations::chunk_1",
+            "doc_id": "dormitory-regulations",
+            "chunk_index": 1,
+            "audience": "student",
+            "score": 0.4715731715411948,
+            "content": "# Hướng dẫn đăng ký phòng\n## 2. Đăng ký phòng\n\nSinh viên chọn nút “Đăng ký phòng” ở góc bên phải màn hình. Sinh viên tham khảo thông tin các khu nhà được mở trong kỳ này tại bảng thông tin trên đầu trang và lựa chọn khu nhà mong muốn ở. Sinh viên kiểm tra tình trạng phòng và lựa chọn phòng mong muốn ở.\n\nSau khi xác nhận, phòng sẽ được giữ cho trong vòng 15 phút. Sinh viên cần thực hiện thanh toán trong thời gian giữ phòng để hoàn tất đặt phòng.",
+            "metadata": {
+              "doc_id": "dormitory-regulations",
+              "title": "Hướng dẫn đăng ký phòng",
+              "source_url": "https://ktx.hust.edu.vn/huong-dan-dang-ky-phong",
+              "retrieved_at": "2026-08-03",
+              "document_version": "not-stated",
+              "audience": "student",
+              "category": "ky-tuc-xa",
+              "department": "trung-tam-dich-vu-va-ho-tro-bach-khoa",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/dormitory-regulations.md",
+              "chunk_index": 1
+            }
+          }
+        ]
+      },
+      "agent": {
+        "answer": "Quy trình sử dụng phòng đọc tại chỗ gồm các bước sau:\n\nBước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.\n\nBước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư.\n\nBước 3: Vào kho sách tự chọn sách theo ký hiệu xếp giá (xem thêm bảng chỉ dẫn đầu mỗi giá sách).\n\nBước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.\n\nBằng chứng: \"Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.\"",
+        "contains_gold_evidence_phrase": true,
+        "context_quote": "Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.",
+        "contains_context_quote": true,
+        "grounded": true
+      },
+      "score": 2,
+      "ab": null
+    },
+    {
+      "query_id": "q4",
+      "type": "list",
+      "query": "Học bổng KKHT có những mức nào và mức của từng loại được tính như thế nào so với loại khá?",
+      "gold_answer": "Có 3 mức: loại khá (C) bằng tổng học phí của các học phần tính GPA; loại giỏi (B) bằng 1,2 lần loại khá; loại xuất sắc (A) bằng 1,5 lần loại khá.",
+      "gold_doc_id": "scholarship-policy",
+      "expected_section": "## 2. Các mức học bổng",
+      "evidence_phrase": "Học bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.",
+      "metadata_filter": null,
+      "filter_applied": false,
+      "retrieval": {
+        "gold_doc_id": "scholarship-policy",
+        "evidence_in_top1": true,
+        "evidence_in_top3": true,
+        "evidence_rank": 1,
+        "expected_section_in_top3": true,
+        "expected_section_rank": 1,
+        "top_results": [
+          {
+            "id": "scholarship-policy::chunk_1",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 1,
+            "audience": "student",
+            "score": 0.7635668570960661,
+            "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.",
+            "metadata": {
+              "doc_id": "scholarship-policy",
+              "title": "Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguyen%20Viet%20Tien/files/Quy%20%C4%91%E1%BB%8Bnh%20v%E1%BB%81%20vi%E1%BB%87c%20x%C3%A9t%20c%E1%BA%A5p%20HB%20KKHT.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2020-11-30",
+              "audience": "student",
+              "category": "hoc-bong",
+              "department": "phong-cong-tac-sinh-vien",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/scholarship-policy.md",
+              "chunk_index": 1
+            }
+          },
+          {
+            "id": "scholarship-policy::chunk_0",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 0,
+            "audience": "student",
+            "score": 0.5993794494110034,
+            "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 1. Phạm vi và nguồn quỹ\n\nVăn bản này quy định về nguyên tắc, tiêu chuẩn và phương thức thực hiện xét duyệt và cấp học bổng cho sinh viên hệ đại học của Trường Đại học Bách khoa Hà Nội. Quy định này áp dụng đối với sinh viên hệ đại học của Trường.\n\nHọc bổng khuyến khích học tập (KKHT) cấp cho các sinh viên được lựa chọn bởi Hội đồng xét cấp học bổng theo từng học kỳ chính của năm học, căn cứ vào thành tích học tập và rèn luyện của từng cá nhân trong học kỳ liền trước đó.\n\nQuỹ học bổng KKHT hình thành từ nguồn học phí và bằng 8% (tám phần trăm) học phí của học kỳ lấy điểm xét cấp học bổng.",
+            "metadata": {
+              "doc_id": "scholarship-policy",
+              "title": "Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguyen%20Viet%20Tien/files/Quy%20%C4%91%E1%BB%8Bnh%20v%E1%BB%81%20vi%E1%BB%87c%20x%C3%A9t%20c%E1%BA%A5p%20HB%20KKHT.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2020-11-30",
+              "audience": "student",
+              "category": "hoc-bong",
+              "department": "phong-cong-tac-sinh-vien",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/scholarship-policy.md",
+              "chunk_index": 0
+            }
+          },
+          {
+            "id": "scholarship-policy::chunk_2",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 2,
+            "audience": "student",
+            "score": 0.5270958742809739,
+            "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.",
+            "metadata": {
+              "doc_id": "scholarship-policy",
+              "title": "Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguyen%20Viet%20Tien/files/Quy%20%C4%91%E1%BB%8Bnh%20v%E1%BB%81%20vi%E1%BB%87c%20x%C3%A9t%20c%E1%BA%A5p%20HB%20KKHT.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2020-11-30",
+              "audience": "student",
+              "category": "hoc-bong",
+              "department": "phong-cong-tac-sinh-vien",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/scholarship-policy.md",
+              "chunk_index": 2
+            }
+          }
+        ]
+      },
+      "agent": {
+        "answer": "Học bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\n\nBằng chứng: \"Học bổng KKHT có 3 mức: - Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\"",
+        "contains_gold_evidence_phrase": true,
+        "context_quote": "- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).",
+        "contains_context_quote": true,
+        "grounded": true
+      },
+      "score": 2,
+      "ab": null
+    },
+    {
+      "query_id": "q5",
+      "type": "metadata-filter",
+      "query": "Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện những thao tác nào và trong thời điểm nào?",
+      "gold_answer": "Có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với học phần chưa đăng ký trước; mỗi học kỳ chính có hai đợt điều chỉnh kết thúc trước khi bắt đầu học kỳ, còn đăng ký bổ sung vào lớp đã mở chỉ thực hiện trong tuần đầu học kỳ.",
+      "gold_doc_id": "course-registration-student",
+      "expected_section": "## 1. Ba giai đoạn đăng ký học tập",
+      "evidence_phrase": "c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.",
+      "metadata_filter": {
+        "audience": "student"
+      },
+      "filter_applied": true,
+      "retrieval": {
+        "gold_doc_id": "course-registration-student",
+        "evidence_in_top1": true,
+        "evidence_in_top3": true,
+        "evidence_rank": 1,
+        "expected_section_in_top3": true,
+        "expected_section_rank": 1,
+        "top_results": [
+          {
+            "id": "course-registration-student::chunk_1",
+            "doc_id": "course-registration-student",
+            "chunk_index": 1,
+            "audience": "student",
+            "score": 0.6875725298940552,
+            "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.",
+            "metadata": {
+              "doc_id": "course-registration-student",
+              "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2025",
+              "audience": "student",
+              "category": "hoc-vu",
+              "department": "ban-dao-tao",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+              "chunk_index": 1
+            }
+          },
+          {
+            "id": "course-registration-student::chunk_3",
+            "doc_id": "course-registration-student",
+            "chunk_index": 3,
+            "audience": "student",
+            "score": 0.6686409340026103,
+            "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 3. Rút đăng ký học phần\n\nSau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập.",
+            "metadata": {
+              "doc_id": "course-registration-student",
+              "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2025",
+              "audience": "student",
+              "category": "hoc-vu",
+              "department": "ban-dao-tao",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+              "chunk_index": 3
+            }
+          },
+          {
+            "id": "course-registration-student::chunk_0",
+            "doc_id": "course-registration-student",
+            "chunk_index": 0,
+            "audience": "student",
+            "score": 0.6067528453791056,
+            "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nĐăng ký học tập là quy trình bắt buộc của sinh viên cho mỗi học kỳ, trừ các sinh viên mới nhập học được xếp thời khóa biểu theo kế hoạch học tập chuẩn, không phải đăng ký học tập nhưng có thể tự điều chỉnh một số lớp.\n\nQuá trình đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.",
+            "metadata": {
+              "doc_id": "course-registration-student",
+              "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+              "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+              "retrieved_at": "2026-08-03",
+              "document_version": "2025",
+              "audience": "student",
+              "category": "hoc-vu",
+              "department": "ban-dao-tao",
+              "language": "vi",
+              "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+              "chunk_index": 0
+            }
+          }
+        ]
+      },
+      "agent": {
+        "answer": "Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện các thao tác như chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ.\n\nBằng chứng: \"Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.\"",
+        "contains_gold_evidence_phrase": false,
+        "context_quote": "Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.",
+        "contains_context_quote": true,
+        "grounded": true
+      },
+      "score": 2,
+      "ab": {
+        "unfiltered": {
+          "retrieval": {
+            "gold_doc_id": "course-registration-student",
+            "evidence_in_top1": true,
+            "evidence_in_top3": true,
+            "evidence_rank": 1,
+            "expected_section_in_top3": true,
+            "expected_section_rank": 1,
+            "top_results": [
+              {
+                "id": "course-registration-student::chunk_1",
+                "doc_id": "course-registration-student",
+                "chunk_index": 1,
+                "audience": "student",
+                "score": 0.6875725298940552,
+                "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.",
+                "metadata": {
+                  "doc_id": "course-registration-student",
+                  "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+                  "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+                  "retrieved_at": "2026-08-03",
+                  "document_version": "2025",
+                  "audience": "student",
+                  "category": "hoc-vu",
+                  "department": "ban-dao-tao",
+                  "language": "vi",
+                  "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+                  "chunk_index": 1
+                }
+              },
+              {
+                "id": "course-registration-student::chunk_3",
+                "doc_id": "course-registration-student",
+                "chunk_index": 3,
+                "audience": "student",
+                "score": 0.6686409340026103,
+                "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 3. Rút đăng ký học phần\n\nSau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập.",
+                "metadata": {
+                  "doc_id": "course-registration-student",
+                  "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+                  "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+                  "retrieved_at": "2026-08-03",
+                  "document_version": "2025",
+                  "audience": "student",
+                  "category": "hoc-vu",
+                  "department": "ban-dao-tao",
+                  "language": "vi",
+                  "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+                  "chunk_index": 3
+                }
+              },
+              {
+                "id": "course-registration-student::chunk_0",
+                "doc_id": "course-registration-student",
+                "chunk_index": 0,
+                "audience": "student",
+                "score": 0.6067528453791056,
+                "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nĐăng ký học tập là quy trình bắt buộc của sinh viên cho mỗi học kỳ, trừ các sinh viên mới nhập học được xếp thời khóa biểu theo kế hoạch học tập chuẩn, không phải đăng ký học tập nhưng có thể tự điều chỉnh một số lớp.\n\nQuá trình đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.",
+                "metadata": {
+                  "doc_id": "course-registration-student",
+                  "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+                  "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+                  "retrieved_at": "2026-08-03",
+                  "document_version": "2025",
+                  "audience": "student",
+                  "category": "hoc-vu",
+                  "department": "ban-dao-tao",
+                  "language": "vi",
+                  "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+                  "chunk_index": 0
+                }
+              }
+            ]
+          },
+          "agent": {
+            "answer": "Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện các thao tác như chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ.\n\nBằng chứng: \"Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.\"",
+            "contains_gold_evidence_phrase": false,
+            "context_quote": "Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.",
+            "contains_context_quote": true,
+            "grounded": true
+          }
+        },
+        "filtered": {
+          "retrieval": {
+            "gold_doc_id": "course-registration-student",
+            "evidence_in_top1": true,
+            "evidence_in_top3": true,
+            "evidence_rank": 1,
+            "expected_section_in_top3": true,
+            "expected_section_rank": 1,
+            "top_results": [
+              {
+                "id": "course-registration-student::chunk_1",
+                "doc_id": "course-registration-student",
+                "chunk_index": 1,
+                "audience": "student",
+                "score": 0.6875725298940552,
+                "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.",
+                "metadata": {
+                  "doc_id": "course-registration-student",
+                  "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+                  "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+                  "retrieved_at": "2026-08-03",
+                  "document_version": "2025",
+                  "audience": "student",
+                  "category": "hoc-vu",
+                  "department": "ban-dao-tao",
+                  "language": "vi",
+                  "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+                  "chunk_index": 1
+                }
+              },
+              {
+                "id": "course-registration-student::chunk_3",
+                "doc_id": "course-registration-student",
+                "chunk_index": 3,
+                "audience": "student",
+                "score": 0.6686409340026103,
+                "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 3. Rút đăng ký học phần\n\nSau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập.",
+                "metadata": {
+                  "doc_id": "course-registration-student",
+                  "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+                  "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+                  "retrieved_at": "2026-08-03",
+                  "document_version": "2025",
+                  "audience": "student",
+                  "category": "hoc-vu",
+                  "department": "ban-dao-tao",
+                  "language": "vi",
+                  "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+                  "chunk_index": 3
+                }
+              },
+              {
+                "id": "course-registration-student::chunk_0",
+                "doc_id": "course-registration-student",
+                "chunk_index": 0,
+                "audience": "student",
+                "score": 0.6067528453791056,
+                "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nĐăng ký học tập là quy trình bắt buộc của sinh viên cho mỗi học kỳ, trừ các sinh viên mới nhập học được xếp thời khóa biểu theo kế hoạch học tập chuẩn, không phải đăng ký học tập nhưng có thể tự điều chỉnh một số lớp.\n\nQuá trình đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.",
+                "metadata": {
+                  "doc_id": "course-registration-student",
+                  "title": "Quy chế đào tạo — đăng ký học tập chương trình đại học",
+                  "source_url": "https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf",
+                  "retrieved_at": "2026-08-03",
+                  "document_version": "2025",
+                  "audience": "student",
+                  "category": "hoc-vu",
+                  "department": "ban-dao-tao",
+                  "language": "vi",
+                  "source": "/Users/alvinluong/K3-Day07-Data-Foundations/data/k3_university_services/course-registration-student.md",
+                  "chunk_index": 0
+                }
+              }
+            ]
+          },
+          "agent": {
+            "answer": "Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện các thao tác như chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ.\n\nBằng chứng: \"Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.\"",
+            "contains_gold_evidence_phrase": false,
+            "context_quote": "Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.",
+            "contains_context_quote": true,
+            "grounded": true
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "query_count": 5,
+    "top3_evidence_hits": 5,
+    "top1_evidence_hits": 5,
+    "grounded_agent_answers": 4,
+    "score_total": 9,
+    "score_max": 10
+  },
+  "failure_analysis": {
+    "type": "agent_grounding_check",
+    "query_id": "q1",
+    "observation": "Retrieval put the evidence first, but the answer did not contain a verifiable context quote.",
+    "evidence_rank": 1,
+    "contains_context_quote": false
+  }
+}
