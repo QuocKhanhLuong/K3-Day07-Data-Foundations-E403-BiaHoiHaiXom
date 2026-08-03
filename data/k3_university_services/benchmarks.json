@@ -1,0 +1,53 @@
+[
+  {
+    "query_id": "q1",
+    "query": "Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ chính?",
+    "gold_answer": "Sinh viên bị cảnh cáo học tập mức 1 chỉ được đăng ký tối đa 14 tín chỉ trong một học kỳ chính.",
+    "gold_doc_id": "course-registration-student",
+    "expected_section": "## 2. Quy định về khối lượng học tập tối thiểu và tối đa",
+    "evidence_phrase": "Sinh viên bị cảnh cáo học tập mức 1: Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.",
+    "metadata_filter": {
+      "audience": "student"
+    }
+  },
+  {
+    "query_id": "q2",
+    "query": "Quy định điều kiện xét cấp học bổng khuyến khích học tập loại A (Xuất sắc) dành cho sinh viên bao gồm những tiêu chuẩn gì về GPA và điểm rèn luyện?",
+    "gold_answer": "Học bổng khuyến khích học tập loại A (Xuất sắc) yêu cầu sinh viên có điểm trung bình học kỳ GPA đạt từ 3.6 trở lên (thang điểm 4) và điểm rèn luyện đạt từ 90 điểm trở lên (thang điểm 100).",
+    "gold_doc_id": "scholarship-policy",
+    "expected_section": "## 2. Tiêu chuẩn và phân loại mức học bổng khuyến khích học tập",
+    "evidence_phrase": "Loại A (Xuất sắc): Sinh viên có điểm trung bình học kỳ GPA đạt từ 3.6 trở lên (thang điểm 4) và điểm rèn luyện đạt từ 90 điểm trở lên (thang điểm 100).",
+    "metadata_filter": {
+      "audience": "student"
+    }
+  },
+  {
+    "query_id": "q3",
+    "query": "Hạn mượn tối đa đối với sách giáo trình dành cho sinh viên tại thư viện là bao nhiêu ngày và được gia hạn mấy lần?",
+    "gold_answer": "Sách giáo trình được mượn tối đa 5 cuốn trong thời hạn 30 ngày và được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày nếu không có độc giả khác đặt mượn trước.",
+    "gold_doc_id": "library-services",
+    "expected_section": "## 3. Thời hạn mượn và quy định gia hạn tài liệu",
+    "evidence_phrase": "Sách giáo trình: Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo trình được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày",
+    "metadata_filter": null
+  },
+  {
+    "query_id": "q4",
+    "query": "Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí theo quy định hiện hành của nhà trường?",
+    "gold_answer": "Sinh viên là con của người có công với cách mạng; sinh viên mồ côi cả cha lẫn mẹ; sinh viên bị khuyết tật nặng/đặc biệt nặng; và sinh viên dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
+    "gold_doc_id": "tuition-policy",
+    "expected_section": "## 3. Các đối tượng sinh viên được miễn 100% học phí",
+    "evidence_phrase": "Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí: Sinh viên là con của người có công với cách mạng... Sinh viên mồ côi cả cha lẫn mẹ... Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng... Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
+    "metadata_filter": null
+  },
+  {
+    "query_id": "q5",
+    "query": "Thẩm quyền và quy trình phê duyệt danh mục học phần tương đương hoặc học phần thay thế dành cho giảng viên/cố vấn học tập được thực hiện qua các cấp nào?",
+    "gold_answer": "Quy trình gồm 3 cấp: Trưởng bộ môn chuyên môn lập danh mục đề xuất, Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định, và Trưởng Phòng Đào tạo ra quyết định công nhận chính thức.",
+    "gold_doc_id": "course-equivalency-policy",
+    "expected_section": "## 3. Quy trình và thẩm quyền phê duyệt",
+    "evidence_phrase": "Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục... Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định... Trưởng Phòng Đào tạo ra quyết định công nhận",
+    "metadata_filter": {
+      "audience": "faculty"
+    }
+  }
+]
