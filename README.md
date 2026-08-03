@@ -7,7 +7,7 @@
   
   | STT | Họ và tên | Mã sinh viên |
   |:---:|---|---|
-  | 1 | Lương Quốc Khánh | 2A20261713 |
+  | 1 | Lương Quốc Khánh | 2A202601713 |
   | 2 | Hoàng Đức Anh | 2A202601223 |
   | 3 | Trần Nguyễn Mỹ Anh | 2A20261019 |
   | 4 | Nguyễn Thu Huyền | 2A20261027 |

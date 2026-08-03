@@ -1,29 +1,35 @@
 ---
 doc_id: course-registration-student
-title: Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên
-source_url: https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=582
-retrieved_at: 2026-08-03
-document_version: not-stated
+title: "Quy chế đào tạo — đăng ký học tập chương trình đại học"
+source_url: https://ctt.hust.edu.vn/Upload/Nguy%E1%BB%85n%20Qu%E1%BB%91c%20%C4%90%E1%BA%A1t/files/DTDH_QDQC/Hoctap/QCDT_2025_5445_QD-DHBK.pdf
+retrieved_at: "2026-08-03"
+document_version: "2025"
 audience: student
 category: hoc-vu
-department: phong-dao-tao
+department: ban-dao-tao
 language: vi
 ---
 
-# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên
+# Quy chế đào tạo — đăng ký học tập chương trình đại học
 
-## 1. Quy trình đăng ký học tập trên hệ thống
-Đăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc:
-- **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ký danh sách các mã học phần dự định sẽ học trong học kỳ kế tiếp.
-- **Bước 2: Đăng ký lớp học chính thức.** Sinh viên đăng ký mã lớp học cụ thể phù hợp với thời khóa biểu cá nhân dựa trên danh sách học phần đã đăng ký kế hoạch.
+## 1. Ba giai đoạn đăng ký học tập
 
-## 2. Quy định về khối lượng học tập tối thiểu và tối đa
-Khối lượng đăng ký học tập trong một học kỳ chính đối với sinh viên hệ chính quy được quy định cụ thể như sau:
-- **Sinh viên ở trạng thái học tập bình thường:** Khối lượng đăng ký tối thiểu là 12 tín chỉ và tối đa là 24 tín chỉ trong mỗi học kỳ chính.
-- **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.
-- **Sinh viên bị cảnh cáo học tập mức 2:** Khối lượng đăng ký tối đa không quá 12 tín chỉ trong một học kỳ chính.
-- **Học kỳ hè (học kỳ phụ):** Sinh viên được phép đăng ký tối đa không quá 12 tín chỉ và không quy định mức tối thiểu.
+Đăng ký học tập là quy trình bắt buộc của sinh viên cho mỗi học kỳ, trừ các sinh viên mới nhập học được xếp thời khóa biểu theo kế hoạch học tập chuẩn, không phải đăng ký học tập nhưng có thể tự điều chỉnh một số lớp.
 
-## 3. Điều kiện đăng ký và điều chỉnh đăng ký học phần
-- Sinh viên phải tuân thủ các điều kiện về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo.
-- Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí và không ghi điểm F trên bảng điểm.
+Quá trình đăng ký học tập gồm 3 giai đoạn:
+
+a) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.
+
+b) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.
+
+c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.
+
+## 2. Khối lượng tín chỉ đăng ký
+
+Sinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăng ký tối đa 8 TC trong học kỳ hè.
+
+Sinh viên đang bị cảnh báo học tập bị giới hạn khối lượng đăng ký học tập theo quy định tại khoản 2 Điều 19 của Quy chế này.
+
+## 3. Rút đăng ký học phần
+
+Sau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập.
