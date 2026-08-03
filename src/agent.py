@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+import os
 from typing import Callable
 
 from .store import EmbeddingStore
@@ -13,76 +16,58 @@ class KnowledgeBaseAgent:
         3. Call the LLM to generate an answer.
     """
 
-    def __init__(
-        self,
-        store: EmbeddingStore,
-        llm_fn: Callable[[str], str],
-    ) -> None:
+    def __init__(self, store: EmbeddingStore, llm_fn: Callable[[str], str] | None = None) -> None:
         self.store = store
-        self.llm_fn = llm_fn
+        if llm_fn is not None:
+            self.llm_fn = llm_fn
+        else:
+            self.llm_fn = create_default_llm_fn()
 
     def answer(self, question: str, top_k: int = 3) -> str:
-        """
-        Answer a question using retrieved knowledge-base chunks.
+        results = self.store.search(question, top_k=top_k)
+        context_parts = []
+        for index, r in enumerate(results, 1):
+            context_parts.append(f"[{index}] {r.get('content', '')}")
+        context = "\n\n".join(context_parts)
 
-        The LLM is instructed to rely only on the retrieved context and
-        explicitly state when the context is insufficient.
-        """
-        if not isinstance(question, str) or not question.strip():
-            raise ValueError("question must be a non-empty string")
-
-        if top_k <= 0:
-            raise ValueError("top_k must be greater than 0")
-
-        results = self.store.search(
-            query=question.strip(),
-            top_k=top_k,
+        prompt = (
+            f"You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\n"
+            f"Context:\n{context}\n\n"
+            f"Question: {question}\n\n"
+            f"Answer:"
         )
 
-        if not results:
-            context = "No relevant context was found in the knowledge base."
-        else:
-            context_parts: list[str] = []
-
-            for index, result in enumerate(results, start=1):
-                content = result.get(
-                    "content",
-                    result.get("document", ""),
-                )
-                metadata = result.get("metadata", {})
-                score = result.get(
-                    "score",
-                    result.get("similarity"),
-                )
-
-                header = f"[Context {index}]"
-
-                if metadata:
-                    header += f"\nMetadata: {metadata}"
-
-                if score is not None:
-                    header += f"\nSimilarity score: {float(score):.4f}"
-
-                context_parts.append(
-                    f"{header}\n{str(content).strip()}"
-                )
-
-            context = "\n\n".join(context_parts)
-
-        prompt = f"""You are a knowledge-base assistant.
-
-Use only the provided context to answer the user's question.
-Do not invent facts that are not supported by the context.
-If the context does not contain enough information, clearly say that
-the knowledge base does not provide sufficient information.
-
-Context:
-{context}
-
-Question:
-{question.strip()}
-
-Answer:
-"""
-
         return self.llm_fn(prompt)
+
+
+def create_default_llm_fn(model_name: str = "gpt-4o-mini") -> Callable[[str], str]:
+    """
+    Creates an LLM function that calls OpenAI if OPENAI_API_KEY is present,
+    otherwise falls back to a deterministic dummy preview response.
+    """
+    api_key = os.getenv("OPENAI_API_KEY")
+    if api_key:
+        try:
+            from openai import OpenAI
+
+            client = OpenAI(api_key=api_key)
+
+            def _openai_call(prompt: str) -> str:
+                response = client.chat.completions.create(
+                    model=os.getenv("OPENAI_MODEL", model_name),
+                    messages=[
+                        {"role": "system", "content": "You are a helpful assistant."},
+                        {"role": "user", "content": prompt},
+                    ],
+                    temperature=0.2,
+                )
+                return response.choices[0].message.content or ""
+
+            return _openai_call
+        except Exception:
+            pass
+
+    def _fallback_llm(prompt: str) -> str:
+        return f"[DEMO LLM] Answer generated from context preview: {prompt[:300]}..."
+
+    return _fallback_llm

@@ -22,29 +22,16 @@ class FixedSizeChunker:
     def chunk(self, text: str) -> list[str]:
         if not text:
             return []
-
-        if self.chunk_size <= 0:
-            raise ValueError("chunk_size must be greater than 0")
-
-        if self.overlap < 0:
-            raise ValueError("overlap must be non-negative")
-
-        if self.overlap >= self.chunk_size:
-            raise ValueError("overlap must be smaller than chunk_size")
-
         if len(text) <= self.chunk_size:
             return [text]
 
         step = self.chunk_size - self.overlap
         chunks: list[str] = []
-
         for start in range(0, len(text), step):
             chunk = text[start : start + self.chunk_size]
             chunks.append(chunk)
-
             if start + self.chunk_size >= len(text):
                 break
-
         return chunks
 
 
@@ -52,7 +39,7 @@ class SentenceChunker:
     """
     Split text into chunks of at most max_sentences_per_chunk sentences.
 
-    Sentence detection: split on ". ", "! ", "? " or ".\\n".
+    Sentence detection: split on ". ", "! ", "? " or ".\n".
     Strip extra whitespace from each chunk.
     """
 
@@ -63,32 +50,15 @@ class SentenceChunker:
         if not text or not text.strip():
             return []
 
-        # Split after sentence-ending punctuation followed by whitespace.
-        # The punctuation itself is retained because lookbehind is used.
-        sentence_pattern = r"(?<=[.!?])[ \t]+|(?<=\.)\r?\n+"
-
-        sentences = [
-            sentence.strip()
-            for sentence in re.split(sentence_pattern, text.strip())
-            if sentence.strip()
-        ]
+        raw_sentences = re.split(r'(?<=[.!?])\s+|\.\n', text)
+        sentences = [s.strip() for s in raw_sentences if s.strip()]
+        if not sentences:
+            return []
 
         chunks: list[str] = []
-
-        for start in range(
-            0,
-            len(sentences),
-            self.max_sentences_per_chunk,
-        ):
-            sentence_group = sentences[
-                start : start + self.max_sentences_per_chunk
-            ]
-
-            chunk = " ".join(sentence_group).strip()
-
-            if chunk:
-                chunks.append(chunk)
-
+        for i in range(0, len(sentences), self.max_sentences_per_chunk):
+            chunk_group = sentences[i : i + self.max_sentences_per_chunk]
+            chunks.append(" ".join(chunk_group))
         return chunks
 
 
@@ -97,146 +67,74 @@ class RecursiveChunker:
     Recursively split text using separators in priority order.
 
     Default separator priority:
-        ["\\n\\n", "\\n", ". ", " ", ""]
+        ["\n\n", "\n", ". ", " ", ""]
     """
 
     DEFAULT_SEPARATORS = ["\n\n", "\n", ". ", " ", ""]
 
-    def __init__(
-        self,
-        separators: list[str] | None = None,
-        chunk_size: int = 500,
-    ) -> None:
-        self.separators = (
-            self.DEFAULT_SEPARATORS
-            if separators is None
-            else list(separators)
-        )
+    def __init__(self, separators: list[str] | None = None, chunk_size: int = 500) -> None:
+        self.separators = self.DEFAULT_SEPARATORS if separators is None else list(separators)
         self.chunk_size = chunk_size
 
     def chunk(self, text: str) -> list[str]:
-        if not text or not text.strip():
+        if not text:
             return []
+        return self._split(text, self.separators)
 
-        if self.chunk_size <= 0:
-            raise ValueError("chunk_size must be greater than 0")
-
-        raw_chunks = self._split(
-            current_text=text.strip(),
-            remaining_separators=self.separators,
-        )
-
-        # Remove chunks containing only whitespace and normalize
-        # whitespace around chunk boundaries.
-        return [
-            current_chunk.strip()
-            for current_chunk in raw_chunks
-            if current_chunk.strip()
-        ]
-
-    def _split(
-        self,
-        current_text: str,
-        remaining_separators: list[str],
-    ) -> list[str]:
-        """
-        Recursively split current_text until every chunk is at most
-        self.chunk_size characters long.
-        """
+    def _split(self, current_text: str, remaining_separators: list[str]) -> list[str]:
         if not current_text:
             return []
-
         if len(current_text) <= self.chunk_size:
             return [current_text]
 
-        # No separators remain, so perform a hard character split.
         if not remaining_separators:
-            return [
-                current_text[start : start + self.chunk_size]
-                for start in range(
-                    0,
-                    len(current_text),
-                    self.chunk_size,
-                )
-            ]
+            return [current_text[i : i + self.chunk_size] for i in range(0, len(current_text), self.chunk_size)]
 
-        separator = remaining_separators[0]
-        next_separators = remaining_separators[1:]
+        sep = remaining_separators[0]
+        next_seps = remaining_separators[1:]
 
-        # Empty separator means character-level splitting.
-        if separator == "":
-            return [
-                current_text[start : start + self.chunk_size]
-                for start in range(
-                    0,
-                    len(current_text),
-                    self.chunk_size,
-                )
-            ]
+        if sep == "":
+            return [current_text[i : i + self.chunk_size] for i in range(0, len(current_text), self.chunk_size)]
 
-        # Try the next separator when the current one is not present.
-        if separator not in current_text:
-            return self._split(
-                current_text=current_text,
-                remaining_separators=next_separators,
-            )
-
-        raw_parts = current_text.split(separator)
-        parts: list[str] = []
-
-        # Reattach separators so punctuation and line breaks are not
-        # silently discarded during recursive splitting.
-        for index, part in enumerate(raw_parts):
-            is_last_part = index == len(raw_parts) - 1
-
-            if not is_last_part:
-                parts.append(part + separator)
-            elif part:
-                parts.append(part)
+        splits = current_text.split(sep)
+        if len(splits) == 1:
+            return self._split(current_text, next_seps)
 
         chunks: list[str] = []
-        current_chunk = ""
+        current_chunk: list[str] = []
+        current_len = 0
 
-        for part in parts:
-            # The part itself is still too large. Split it again using
-            # separators with lower priority.
-            if len(part) > self.chunk_size:
-                if current_chunk:
-                    chunks.append(current_chunk)
-                    current_chunk = ""
+        for part in splits:
+            part_len = len(part)
+            join_len = len(sep) if current_chunk else 0
 
-                chunks.extend(
-                    self._split(
-                        current_text=part,
-                        remaining_separators=next_separators,
-                    )
-                )
-                continue
-
-            candidate = current_chunk + part
-
-            if len(candidate) <= self.chunk_size:
-                current_chunk = candidate
+            if current_len + join_len + part_len <= self.chunk_size:
+                current_chunk.append(part)
+                current_len += join_len + part_len
             else:
                 if current_chunk:
-                    chunks.append(current_chunk)
+                    chunks.append(sep.join(current_chunk))
+                    current_chunk = []
+                    current_len = 0
 
-                current_chunk = part
+                if part_len <= self.chunk_size:
+                    current_chunk.append(part)
+                    current_len = part_len
+                else:
+                    sub_chunks = self._split(part, next_seps)
+                    chunks.extend(sub_chunks)
 
         if current_chunk:
-            chunks.append(current_chunk)
+            chunks.append(sep.join(current_chunk))
 
-        return chunks
+        return [c for c in chunks if c]
 
 
 def _dot(a: list[float], b: list[float]) -> float:
     return sum(x * y for x, y in zip(a, b))
 
 
-def compute_similarity(
-    vec_a: list[float],
-    vec_b: list[float],
-) -> float:
+def compute_similarity(vec_a: list[float], vec_b: list[float]) -> float:
     """
     Compute cosine similarity between two vectors.
 
@@ -244,68 +142,38 @@ def compute_similarity(
 
     Returns 0.0 if either vector has zero magnitude.
     """
-    if len(vec_a) != len(vec_b):
-        raise ValueError(
-            "Vectors must have the same number of dimensions"
-        )
+    mag_a = math.sqrt(sum(x * x for x in vec_a))
+    mag_b = math.sqrt(sum(y * y for y in vec_b))
 
-    magnitude_a = math.sqrt(_dot(vec_a, vec_a))
-    magnitude_b = math.sqrt(_dot(vec_b, vec_b))
-
-    if magnitude_a == 0.0 or magnitude_b == 0.0:
+    if mag_a == 0.0 or mag_b == 0.0:
         return 0.0
 
-    return _dot(vec_a, vec_b) / (magnitude_a * magnitude_b)
+    return _dot(vec_a, vec_b) / (mag_a * mag_b)
 
 
 class ChunkingStrategyComparator:
     """Run all built-in chunking strategies and compare their results."""
 
     def compare(self, text: str, chunk_size: int = 200) -> dict:
-        if chunk_size <= 0:
-            raise ValueError("chunk_size must be greater than 0")
+        fixed_chunker = FixedSizeChunker(chunk_size=chunk_size)
+        sentence_chunker = SentenceChunker()
+        recursive_chunker = RecursiveChunker(chunk_size=chunk_size)
 
-        # FixedSizeChunker requires overlap < chunk_size.
-        overlap = min(50, chunk_size - 1)
+        fixed_chunks = fixed_chunker.chunk(text)
+        sentence_chunks = sentence_chunker.chunk(text)
+        recursive_chunks = recursive_chunker.chunk(text)
 
-        strategy_chunks = {
-            "fixed_size": FixedSizeChunker(
-                chunk_size=chunk_size,
-                overlap=overlap,
-            ).chunk(text),
-            "by_sentences": SentenceChunker(
-                max_sentences_per_chunk=3,
-            ).chunk(text),
-            "recursive": RecursiveChunker(
-                chunk_size=chunk_size,
-            ).chunk(text),
-        }
-
-        comparison: dict[str, dict] = {}
-
-        for strategy_name, chunks in strategy_chunks.items():
-            chunk_lengths = [len(chunk) for chunk in chunks]
-
-            if chunk_lengths:
-                average_length = (
-                    sum(chunk_lengths) / len(chunk_lengths)
-                )
-                minimum_length = min(chunk_lengths)
-                maximum_length = max(chunk_lengths)
-            else:
-                average_length = 0.0
-                minimum_length = 0
-                maximum_length = 0
-
-            comparison[strategy_name] = {
+        def _stats(chunks: list[str]) -> dict:
+            count = len(chunks)
+            avg_length = sum(len(c) for c in chunks) / count if count > 0 else 0.0
+            return {
+                "count": count,
+                "avg_length": avg_length,
                 "chunks": chunks,
-                "count": len(chunks),
-                "avg_length": average_length,
-                "num_chunks": len(chunks),
-                "total_characters": sum(chunk_lengths),
-                "min_chunk_length": minimum_length,
-                "max_chunk_length": maximum_length,
-                "avg_chunk_length": average_length,
             }
 
-        return comparison
+        return {
+            "fixed_size": _stats(fixed_chunks),
+            "by_sentences": _stats(sentence_chunks),
+            "recursive": _stats(recursive_chunks),
+        }
