@@ -1,53 +1,54 @@
 [
   {
     "query_id": "q1",
-    "query": "Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ chính?",
-    "gold_answer": "Sinh viên bị cảnh cáo học tập mức 1 chỉ được đăng ký tối đa 14 tín chỉ trong một học kỳ chính.",
+    "type": "numeric",
+    "query": "Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là bao nhiêu tín chỉ?",
+    "gold_answer": "Người học không thuộc diện cảnh báo học tập được đăng ký tối đa 24 TC trong học kỳ chính.",
     "gold_doc_id": "course-registration-student",
-    "expected_section": "## 2. Quy định về khối lượng học tập tối thiểu và tối đa",
-    "evidence_phrase": "Sinh viên bị cảnh cáo học tập mức 1: Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.",
-    "metadata_filter": {
-      "audience": "student"
-    }
+    "expected_section": "## 2. Khối lượng tín chỉ đăng ký",
+    "evidence_phrase": "được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính",
+    "metadata_filter": null
   },
   {
     "query_id": "q2",
-    "query": "Quy định điều kiện xét cấp học bổng khuyến khích học tập loại A (Xuất sắc) dành cho sinh viên bao gồm những tiêu chuẩn gì về GPA và điểm rèn luyện?",
-    "gold_answer": "Học bổng khuyến khích học tập loại A (Xuất sắc) yêu cầu sinh viên có điểm trung bình học kỳ GPA đạt từ 3.6 trở lên (thang điểm 4) và điểm rèn luyện đạt từ 90 điểm trở lên (thang điểm 100).",
+    "type": "condition",
+    "query": "Điều kiện GPA và điểm rèn luyện để đạt học bổng loại A là gì?",
+    "gold_answer": "Học bổng loại A yêu cầu GPA từ 3,6 trở lên và điểm rèn luyện học kỳ từ 90 điểm trở lên.",
     "gold_doc_id": "scholarship-policy",
-    "expected_section": "## 2. Tiêu chuẩn và phân loại mức học bổng khuyến khích học tập",
-    "evidence_phrase": "Loại A (Xuất sắc): Sinh viên có điểm trung bình học kỳ GPA đạt từ 3.6 trở lên (thang điểm 4) và điểm rèn luyện đạt từ 90 điểm trở lên (thang điểm 100).",
-    "metadata_filter": {
-      "audience": "student"
-    }
+    "expected_section": "## 3. Tiêu chuẩn xét cấp học bổng",
+    "evidence_phrase": "Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.",
+    "metadata_filter": null
   },
   {
     "query_id": "q3",
-    "query": "Hạn mượn tối đa đối với sách giáo trình dành cho sinh viên tại thư viện là bao nhiêu ngày và được gia hạn mấy lần?",
-    "gold_answer": "Sách giáo trình được mượn tối đa 5 cuốn trong thời hạn 30 ngày và được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày nếu không có độc giả khác đặt mượn trước.",
+    "type": "process",
+    "query": "Quy trình sử dụng phòng đọc tại chỗ gồm những bước nào?",
+    "gold_answer": "Tra cứu tài liệu để xác định phòng; dùng thẻ sinh viên hoặc app iCTSV checkin tại quầy thủ thư; vào kho tự chọn sách theo ký hiệu xếp giá; đọc xong trả sách tại bàn đúng nơi quy định.",
     "gold_doc_id": "library-services",
-    "expected_section": "## 3. Thời hạn mượn và quy định gia hạn tài liệu",
-    "evidence_phrase": "Sách giáo trình: Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo trình được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày",
+    "expected_section": "## 1. Quy trình sử dụng phòng đọc tại chỗ",
+    "evidence_phrase": "Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào. Bước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư. Bước 3: Vào kho sách tự chọn sách theo ký hiệu xếp giá (xem thêm bảng chỉ dẫn đầu mỗi giá sách). Bước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.",
     "metadata_filter": null
   },
   {
     "query_id": "q4",
-    "query": "Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí theo quy định hiện hành của nhà trường?",
-    "gold_answer": "Sinh viên là con của người có công với cách mạng; sinh viên mồ côi cả cha lẫn mẹ; sinh viên bị khuyết tật nặng/đặc biệt nặng; và sinh viên dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
-    "gold_doc_id": "tuition-policy",
-    "expected_section": "## 3. Các đối tượng sinh viên được miễn 100% học phí",
-    "evidence_phrase": "Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí: Sinh viên là con của người có công với cách mạng... Sinh viên mồ côi cả cha lẫn mẹ... Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng... Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
+    "type": "list",
+    "query": "Học bổng KKHT có những mức nào và mức của từng loại được tính như thế nào so với loại khá?",
+    "gold_answer": "Có 3 mức: loại khá (C) bằng tổng học phí của các học phần tính GPA; loại giỏi (B) bằng 1,2 lần loại khá; loại xuất sắc (A) bằng 1,5 lần loại khá.",
+    "gold_doc_id": "scholarship-policy",
+    "expected_section": "## 2. Các mức học bổng",
+    "evidence_phrase": "Học bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.",
     "metadata_filter": null
   },
   {
     "query_id": "q5",
-    "query": "Thẩm quyền và quy trình phê duyệt danh mục học phần tương đương hoặc học phần thay thế dành cho giảng viên/cố vấn học tập được thực hiện qua các cấp nào?",
-    "gold_answer": "Quy trình gồm 3 cấp: Trưởng bộ môn chuyên môn lập danh mục đề xuất, Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định, và Trưởng Phòng Đào tạo ra quyết định công nhận chính thức.",
-    "gold_doc_id": "course-equivalency-policy",
-    "expected_section": "## 3. Quy trình và thẩm quyền phê duyệt",
-    "evidence_phrase": "Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục... Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định... Trưởng Phòng Đào tạo ra quyết định công nhận",
+    "type": "metadata-filter",
+    "query": "Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện những thao tác nào và trong thời điểm nào?",
+    "gold_answer": "Có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với học phần chưa đăng ký trước; mỗi học kỳ chính có hai đợt điều chỉnh kết thúc trước khi bắt đầu học kỳ, còn đăng ký bổ sung vào lớp đã mở chỉ thực hiện trong tuần đầu học kỳ.",
+    "gold_doc_id": "course-registration-student",
+    "expected_section": "## 1. Ba giai đoạn đăng ký học tập",
+    "evidence_phrase": "c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.",
     "metadata_filter": {
-      "audience": "faculty"
+      "audience": "student"
     }
   }
 ]

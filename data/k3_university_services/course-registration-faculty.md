@@ -1,26 +1,23 @@
 ---
 doc_id: course-registration-faculty
-title: Quy định về tư vấn và phê duyệt kế hoạch học tập dành cho Giảng viên và Cố vấn học tập
-source_url: https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=789
-retrieved_at: 2026-08-03
+title: "Thông báo cập nhật đăng ký học tập chương trình đào tạo ngành Công nghệ giáo dục"
+source_url: https://fed.hust.edu.vn/vi/news/tin-tuc/thong-bao-cap-nhat-dang-ky-hoc-tap-chuong-trinh-dao-tao-nganh-cong-nghe-giao-duc-302797.html
+retrieved_at: "2026-08-03"
 document_version: not-stated
 audience: faculty
 category: hoc-vu
-department: phong-dao-tao
+department: khoa-kh-cn-giao-duc
 language: vi
 ---
 
-# Quy định về tư vấn và phê duyệt kế hoạch học tập dành cho Giảng viên và Cố vấn học tập
+# Thông báo cập nhật đăng ký học tập chương trình đào tạo ngành Công nghệ giáo dục
 
-## 1. Trách nhiệm của Cố vấn học tập (CVHT)
-- Cố vấn học tập có nhiệm vụ hướng dẫn sinh viên xây dựng lộ trình học tập toàn khóa phù hợp với năng lực và điều kiện cá nhân.
-- Kiểm tra danh sách đăng ký kế hoạch học tập của sinh viên được phân công quản lý trước khi mở đợt đăng ký lớp học chính thức.
-- Cảnh báo kịp thời đối với sinh viên có nguy cơ bị cảnh cáo học tập hoặc không đạt khối lượng đăng ký tối thiểu theo quy định.
+## 1. Nội dung cập nhật
 
-## 2. Thẩm quyền duyệt ngoại lệ khối lượng học tập
-- Trường hợp sinh viên có hoàn cảnh đặc biệt hoặc sinh viên năm cuối cần đăng ký vượt quá 24 tín chỉ (tối đa 28 tín chỉ) để đủ điều kiện tốt nghiệp, Cố vấn học tập phải lập bản đánh giá năng lực và gửi đề xuất lên Trưởng Khoa/Viện.
-- Việc phê duyệt đăng ký vượt định mức tối đa do Trưởng Phòng Đào tạo quyết định dựa trên đề xuất của Khoa/Viện quản lý ngành.
+Nhằm tạo điều kiện thuận lợi cho sinh viên đăng ký học tập, đồng thời đảm bảo đúng lộ trình học tập theo Khung Chương trình đào tạo, Khoa KH & CN Giáo dục đã điều chỉnh điều kiện học phần (học phần học tiên quyết, học phần học trước và học phần học song hành) của một số học phần trong chương trình đào tạo ngành Công nghệ giáo dục. Những thay đổi chi tiết được thể hiện trong văn bản đính kèm thông báo này. Thay đổi này được áp dụng từ kỳ 20242.
 
-## 3. Quy trình xử lý hủy lớp và điều chỉnh giảng dạy
-- Trong trường hợp lớp học phần có số lượng sinh viên đăng ký dưới mức tối thiểu (dưới 15 sinh viên đối với lớp đại trà), Trưởng bộ môn phối hợp với CVHT để thông báo cho sinh viên chuyển sang lớp học phần khác tương đương.
-- CVHT hướng dẫn sinh viên điều chỉnh lại thời khóa biểu trong thời hạn quy định.
+## 2. Phối hợp thông báo
+
+Khoa gửi thông báo đến toàn thể sinh viên các khoá K66, K67, K68 và K69 được biết để đăng ký học tập phù hợp.
+
+Kính đề nghị các Thầy, Cô trong Ban Cố vấn học tập, Cán bộ quản lý lớp phối hợp thông báo tới tất cả các sinh viên được biết.

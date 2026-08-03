@@ -1,32 +1,33 @@
 ---
 doc_id: tuition-policy
-title: Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí
-source_url: https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1205
-retrieved_at: 2026-08-03
-document_version: not-stated
+title: "Thông báo về học phí kỳ I năm học 2025-2026 (20251) - đợt 2"
+source_url: https://ctt.hust.edu.vn/DisplayWeb/DisplayKehoach?kehoach=27231
+retrieved_at: "2026-08-03"
+document_version: "2025-2026"
 audience: student
 category: hoc-phi
-department: phong-tai-chinh-ke-toan
+department: ban-dao-tao
 language: vi
 ---
 
-# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí
+# Thông báo về học phí kỳ I năm học 2025-2026 (20251) - đợt 2
 
-## 1. Mức thu học phí và phương thức tính
-- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ.
-- Mức học phí trên một tín chỉ được quy định theo từng định mức kinh tế kỹ thuật của ngành đào tạo và công khai trước đầu năm học.
+## 1. Hướng dẫn tra cứu học phí
 
-## 2. Thời hạn nộp học phí và xử lý nợ học phí
-- Sinh viên có nghĩa vụ nộp đủ học phí theo đúng thời hạn thông báo của Phòng Tài chính - Kế toán (thường vào tuần thứ 6 đến tuần thứ 10 của học kỳ).
-- Sinh viên không nộp đủ học phí đúng hạn mà không có đơn xin gia hạn được phê duyệt sẽ bị hủy đăng ký học phần, không được dự thi kết thúc học phần và bị cấm đăng ký học phần ở học kỳ tiếp theo.
+Sinh viên tra cứu học phí học kỳ 1 đợt 2 năm học 2025-2026 bằng cách đăng nhập tài khoản trên Cổng thông tin sinh viên (ctt.hust.edu.vn), vào mục “Dịch vụ” và sau đó vào xem tại phần “Học phí – Công nợ”.
 
-## 3. Các đối tượng sinh viên được miễn 100% học phí
-Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí theo quy định hiện hành:
-- Sinh viên là con của người có công với cách mạng theo quy định của pháp luật về ưu đãi người có công với cách mạng.
-- Sinh viên mồ côi cả cha lẫn mẹ, không nơi tựa cậy.
-- Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng có giấy chứng nhận khuyết tật do cơ quan có thẩm quyền cấp.
-- Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo theo quy định của Thủ tướng Chính phủ.
+## 2. Cách tính và kiểm tra học phí
 
-## 4. Hồ sơ và thủ tục xin miễn giảm học phí
-- Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên.
-- Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ chính.
+Học phí của mỗi học kỳ được tính toán theo 02 đợt: Đợt 1 tính toán sơ bộ học phí cần đóng, sau đó Đợt 2 sẽ tính lại chính xác học phí của học kỳ.
+
+Định mức học phí với học phần trong và ngoài CTĐT là như nhau, tuy nhiên nếu chưa chính xác sẽ ảnh hưởng đến tiền học bổng khuyến khích học tập của kỳ sau.
+
+## 3. Thanh toán và hệ quả khi chưa hoàn thành nghĩa vụ
+
+Sinh viên thực hiện đóng học phí bằng một trong các phương thức thanh toán theo hướng dẫn đi kèm phần số liệu học phí trong tài khoản sinh viên.
+
+Sinh viên không hoàn thành nghĩa vụ học phí khi hết Đợt 2 sẽ bị xem xét đình chỉ đăng ký học tập kỳ tới.
+
+## 4. Miễn giảm chế độ chính sách
+
+Với các sinh viên thuộc diện chế độ chính sách: số tiền miễn giảm sẽ được trừ trực tiếp vào học phí đợt 2 này.
