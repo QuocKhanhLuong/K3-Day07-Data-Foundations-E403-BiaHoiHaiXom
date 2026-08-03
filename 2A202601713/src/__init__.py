@@ -6,7 +6,7 @@ from .chunking import (
     SentenceChunker,
     compute_similarity,
 )
-from ..embeddings import (
+from .embeddings import (
     EMBEDDING_PROVIDER_ENV,
     LOCAL_EMBEDDING_MODEL,
     OPENAI_EMBEDDING_MODEL,
@@ -15,7 +15,7 @@ from ..embeddings import (
     OpenAIEmbedder,
     _mock_embed,
 )
-from ..models import Document
+from .models import Document
 from .store import EmbeddingStore
 
 __all__ = [
