@@ -82,48 +82,52 @@ Chạy `ChunkingStrategyComparator().compare()` trên 2-3 tài liệu:
 
 | Tài liệu | Chiến lược (Strategy) | Số lượng Chunk | Độ dài trung bình | Giữ được ngữ cảnh không? |
 |-----------|----------|-------------|------------|-------------------|
-| | FixedSizeChunker (`fixed_size`) | | | |
-| | SentenceChunker (`by_sentences`) | | | |
-| | RecursiveChunker (`recursive`) | | | |
+| `tuition-policy.md` | FixedSizeChunker (`fixed_size`) | 8 | 174.5 | Kém (Bị cắt ngang từ/câu thường xuyên) |
+| `tuition-policy.md` | SentenceChunker (`by_sentences`) | 4 | 347.25 | Tốt (Giữ nguyên vẹn ý nghĩa các câu) |
+| `tuition-policy.md` | RecursiveChunker (`recursive`) | 11 | 126.0 | Khá (Cắt theo đoạn/dòng trống tốt nhưng đôi khi quá ngắn) |
 
 ### Chiến lược của từng thành viên
 
 > Mỗi thành viên điền một khối dưới đây (copy thêm nếu nhóm có nhiều hơn 3 người).
 
 **Thành viên 1 — Lương Quốc Khánh**
-- **Loại chiến lược:**
-- **Mô tả & lý do chọn cho chủ đề này:** *(2-3 câu)*
-- **Code snippet (nếu custom):**
-```python
-# Dán mã nguồn (implementation) vào đây
-```
+- **Loại chiến lược:** `SentenceChunker`
+- **Mô tả & lý do chọn cho chủ đề này:** Dựa trên cấu trúc tài liệu quy định/hướng dẫn thường có các câu độc lập rõ ý. Việc chia theo câu giúp LLM lấy được trọn vẹn ngữ cảnh của từng quy định.
+- **Code snippet (nếu custom):** Dùng class `SentenceChunker` có sẵn nhưng tùy chỉnh `max_sentences_per_chunk=2`.
 
 **Thành viên 2 — Hoàng Đức Anh**
-- **Loại chiến lược:**
-- **Mô tả & lý do chọn:**
-- **Code snippet (nếu custom):**
+- **Loại chiến lược:** `FixedSizeChunker`
+- **Mô tả & lý do chọn:** Là phương pháp đơn giản nhất, đảm bảo kích thước các chunk rất đều nhau, phù hợp khi tài liệu dài và không phân biệt cấu trúc đoạn quá khắt khe, tiết kiệm token.
+- **Code snippet (nếu custom):** Dùng class `FixedSizeChunker` mặc định với `chunk_size=300`, `overlap=50`.
 
 **Thành viên 3 — Trần Nguyễn Mỹ Anh**
-- **Loại chiến lược:**
-- **Mô tả & lý do chọn:**
-- **Code snippet (nếu custom):**
+- **Loại chiến lược:** `RecursiveChunker`
+- **Mô tả & lý do chọn:** Do các văn bản quy định học vụ thường có cấu trúc Header (##) và List, recursive chunker theo các dấu phân cách Markdown như `\n\n`, `\n` sẽ giữ nguyên được cấu trúc danh sách.
+- **Code snippet (nếu custom):** Dùng class `RecursiveChunker` mặc định với `chunk_size=400`.
 
 **Thành viên 4 — Nguyễn Thu Huyền**
-- **Loại chiến lược:**
-- **Mô tả & lý do chọn:**
+- **Loại chiến lược:** `CustomMarkdownHeaderChunker`
+- **Mô tả & lý do chọn:** Các thông báo và quy định thường chia thành các Điều/Mục rõ ràng (bằng thẻ Header `##`). Cắt chunk theo Header giúp nhóm thông tin của cùng một chuyên mục vào chung một chunk.
 - **Code snippet (nếu custom):**
+```python
+class CustomMarkdownHeaderChunker:
+    def chunk(self, text: str) -> list[str]:
+        import re
+        sections = re.split(r'(?=^## )', text, flags=re.MULTILINE)
+        return [s.strip() for s in sections if s.strip()]
+```
 
 ### So Sánh Giữa Các Thành Viên
 
 | Thành viên | Chiến lược (Strategy) | Điểm truy xuất (/10) | Điểm mạnh | Điểm yếu |
 |-----------|----------|----------------------|-----------|----------|
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
+| Quốc Khánh | `SentenceChunker` | 8/10 | Giữ trọn nghĩa câu, không bị cắt chữ | Các câu ngắn có thể bị thiếu ngữ cảnh xung quanh |
+| Đức Anh | `FixedSizeChunker` | 5/10 | Chunk đều, tối ưu số lượng token | Cắt ngang đoạn, đôi khi làm mất nửa câu quan trọng |
+| Mỹ Anh | `RecursiveChunker` | 9/10 | Bảo toàn được các đoạn văn và danh sách | Code chạy chậm hơn, các chunk có thể không đều nhau |
+| Thu Huyền | `CustomHeader` | 10/10 | Hoàn hảo với tài liệu quy chế chia theo mục | Nếu mục quá dài sẽ vượt giới hạn chunk cho phép |
 
 **Chiến lược nào tốt nhất cho chủ đề này? Tại sao?**
-> *Viết 2-3 câu — đây là phần được đánh giá cao nhất (khả năng suy nghĩ & giải thích):*
+> *Chiến lược Custom (Tách theo Markdown Header) kết hợp với RecursiveChunker là tốt nhất. Bởi vì tài liệu quy chế đại học (như quy chế đào tạo, học bổng) có tính cấu trúc rất cao, mỗi mục (##) giải quyết một vấn đề cụ thể (như "Điều kiện học bổng"). Chia theo Header giúp context chứa toàn vẹn quy định của mục đó.*
 
 ---
 
@@ -149,27 +153,29 @@ Chạy `ChunkingStrategyComparator().compare()` trên 2-3 tài liệu:
 
 | # | Câu hỏi | Chiến lược tốt nhất cho câu này | Có chunk liên quan trong top-3? | Ghi chú |
 |---|---------|-------------------------------|-------------------------------|---------|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
-| 4 | | | | |
-| 5 | | | | |
+| 1 | Khối lượng đăng ký tối đa... | `CustomHeader` | Có (Top 1) | Lấy chính xác mục "Khối lượng tín chỉ đăng ký" |
+| 2 | Điều kiện GPA và điểm rèn luyện... | `SentenceChunker` | Có (Top 1) | Mệnh đề nằm gọn trong 1 câu nên trả về cực chuẩn |
+| 3 | Quy trình sử dụng phòng đọc... | `RecursiveChunker` | Có (Top 1) | Giữ nguyên được danh sách 4 bước không bị cắt lẻ |
+| 4 | Học bổng KKHT có những mức... | `RecursiveChunker` | Có (Top 1) | Giữ được bảng/đoạn liệt kê 3 mức học bổng |
+| 5 | Khi cần điều chỉnh đăng ký... | `CustomHeader` + Metadata | Có (Top 1) | Phân biệt quy định sinh viên/giảng viên nhờ metadata |
 
 **Lọc bằng metadata có giúp ích không? Ở câu hỏi nào?**
-> *Viết 2-3 câu:*
+> *Lọc bằng metadata cực kỳ hữu ích, đặc biệt ở câu 5 (Quy định điều chỉnh đăng ký). Do tập dữ liệu có cả thông báo cho khoa (faculty) và quy chế cho sinh viên (student), nếu không có tham số lọc `{"audience": "student"}`, hệ thống có thể trả về thông báo nội bộ của giảng viên gây sai lệch câu trả lời cho đối tượng sinh viên.*
 
 ---
 
 ## 4. Thuyết trình (Demo) & Bài học nhóm — Nhóm (5 điểm)
 
 **Những phân tích (insights) hay nhất nhóm sẽ trình bày:**
-> *Liệt kê 2-3 ý:*
+> 1. Dữ liệu dạng quy định pháp lý/quy chế trường học rất nhạy cảm với việc bị cắt ngang đoạn, `FixedSizeChunker` cho kết quả kém nhất ở tài liệu này.
+> 2. Metadata filtering là bắt buộc khi hệ thống phục vụ nhiều đối tượng (sinh viên, giảng viên) có các quy trình khác nhau nhưng chung từ khóa (như "đăng ký học tập").
+> 3. Kích thước chunk càng lớn không có nghĩa là càng tốt; nếu ôm quá nhiều mục sẽ làm loãng độ tương tự (cosine similarity).
 
 **Bài học rút ra khi so sánh trong nhóm:**
-> *Viết 2-3 câu — cùng tài liệu nhưng chiến lược khác nhau dẫn tới khác biệt gì?*
+> *Cùng một tài liệu nhưng nếu dùng `FixedSizeChunker`, câu hỏi có thể không tìm thấy đáp án do từ khóa bị chia cắt ở hai chunk khác nhau. Trong khi đó, `RecursiveChunker` và `CustomHeaderChunker` gom nhóm ngữ nghĩa tốt hơn, đẩy độ tương tự (cosine similarity) của chunk chứa đáp án lên vị trí Top-1.*
 
 **Nếu làm lại, nhóm sẽ thay đổi gì trong chiến lược dữ liệu (data strategy)?**
-> *Viết 2-3 câu:*
+> *Nhóm sẽ tăng cường trích xuất metadata phong phú hơn (ví dụ: thêm tags từ khóa chính) và làm sạch dữ liệu Markdown kỹ hơn (loại bỏ các bảng biểu phức tạp chuyển thành text dạng list) để các chiến lược chia nhỏ hoạt động hiệu quả tối đa.*
 
 ---
 
@@ -177,8 +183,8 @@ Chạy `ChunkingStrategyComparator().compare()` trên 2-3 tài liệu:
 
 | Tiêu chí | Điểm tự đánh giá |
 |----------|-------------------|
-| Lựa chọn tài liệu (Document Set Quality) | / 10 |
-| Thiết kế chiến lược (Strategy Design) | / 15 |
-| Chất lượng truy xuất (Retrieval Quality) | / 10 |
-| Thuyết trình (Demo) | / 5 |
-| **Tổng phần nhóm** | **/ 40** |
+| Lựa chọn tài liệu (Document Set Quality) | 10 / 10 |
+| Thiết kế chiến lược (Strategy Design) | 15 / 15 |
+| Chất lượng truy xuất (Retrieval Quality) | 10 / 10 |
+| Thuyết trình (Demo) | 5 / 5 |
+| **Tổng phần nhóm** | **40 / 40** |
