@@ -1,5 +1,17 @@
 # K3 — Ngày 7: Nền Tảng Dữ Liệu, Embedding & Vector Store
 
+## Team
+
+- **Team:** BiaHoiHaiXom
+- **Members:** 4 thành viên
+  
+  | STT | Họ và tên | Mã sinh viên |
+  |:---:|---|---|
+  | 1 | Lương Quốc Khánh | 2A20261713 |
+  | 2 | Hoàng Đức Anh | 2A202601223 |
+  | 3 | Trần Nguyễn Mỹ Anh | 2A20261019 |
+  | 4 | Nguyễn Thu Huyền | 2A20261027 |
+
 > Bản K3 của Lab 07. Hướng dẫn Codelabs được phát riêng trên lớp/LMS (không kèm trong repo); yêu cầu Giai đoạn 2 riêng xem [K3_VARIANT.md](K3_VARIANT.md).
 
 ---
