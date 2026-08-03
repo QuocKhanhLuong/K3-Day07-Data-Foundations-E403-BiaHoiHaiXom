@@ -124,11 +124,11 @@ Kết quả được lưu đầy đủ tại `2A202601713/benchmark_heading_awar
 
 | Query | Top-1 chunk | Score | Evidence rank | Expected section | Agent grounding |
 |---|---|---:|---:|---:|---|
-| q1 numeric | `course-registration-student::chunk_2` (0.628713) | 1/2 | 1 | 1 | Chưa đạt kiểm tra quote: agent dùng dấu `...`, không chứa chuỗi bằng chứng liên tục |
-| q2 condition | `scholarship-policy::chunk_2` (0.644963) | 2/2 | 1 | 1 | Đạt; trả lời GPA ≥ 3,6 và rèn luyện ≥ 90, kèm quote từ context |
+| q1 numeric | `course-registration-student::chunk_2` (0.628992) | 1/2 | 1 | 1 | Chưa đạt kiểm tra quote: agent dùng dấu `...`, không chứa chuỗi bằng chứng liên tục |
+| q2 condition | `scholarship-policy::chunk_2` (0.644975) | 2/2 | 1 | 1 | Đạt; trả lời GPA ≥ 3,6 và rèn luyện ≥ 90, kèm quote từ context |
 | q3 process | `library-services::chunk_0` (0.720945) | 2/2 | 1 | 1 | Đạt; nêu đủ 4 bước và quote Bước 1 từ context |
-| q4 list | `scholarship-policy::chunk_1` (0.763567) | 2/2 | 1 | 1 | Đạt; nêu đủ 3 mức và quote từ context |
-| q5 metadata-filter | `course-registration-student::chunk_1` (0.687573) | 2/2 | 1 | 1 | Đạt; nêu thao tác điều chỉnh và các mốc thời gian |
+| q4 list | `scholarship-policy::chunk_1` (0.763628) | 2/2 | 1 | 1 | Đạt; nêu đủ 3 mức và quote từ context |
+| q5 metadata-filter | `course-registration-student::chunk_1` (0.687504) | 2/2 | 1 | 1 | Đạt; nêu thao tác điều chỉnh và các mốc thời gian |
 
 **Tổng quan:** 5/5 query có evidence trong top-3; 5/5 có evidence ở top-1; 4/5 câu trả lời có context quote kiểm chứng được. Tổng điểm theo rubric retrieval + grounded answer là **9/10**.
 
@@ -138,8 +138,8 @@ q5 chạy hai lần với cùng query và `top_k=3`:
 
 | Chế độ | Top-1 | Audience | Score | Evidence rank |
 |---|---|---|---:|---:|
-| Không filter | `course-registration-student::chunk_1` | student | 0.687573 | 1 |
-| `{"audience": "student"}` | `course-registration-student::chunk_1` | student | 0.687573 | 1 |
+| Không filter | `course-registration-student::chunk_1` | student | 0.687504 | 1 |
+| `{"audience": "student"}` | `course-registration-student::chunk_1` | student | 0.687504 | 1 |
 
 Filter được áp dụng đúng, nhưng không làm thay đổi top-1/top-3 trong lần chạy này vì truy vấn không filter vốn đã xếp tài liệu `audience=student` lên đầu. Đây là một kết quả A/B cần ghi nhận, không phải lý do để thay đổi query sau khi benchmark đã chạy.
 

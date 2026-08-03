@@ -158,7 +158,7 @@
             "doc_id": "course-registration-student",
             "chunk_index": 2,
             "audience": "student",
-            "score": 0.6287128565870717,
+            "score": 0.6289923530414114,
             "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 2. Khối lượng tín chỉ đăng ký\n\nSinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăng ký tối đa 8 TC trong học kỳ hè.\n\nSinh viên đang bị cảnh báo học tập bị giới hạn khối lượng đăng ký học tập theo quy định tại khoản 2 Điều 19 của Quy chế này.",
             "metadata": {
               "doc_id": "course-registration-student",
@@ -179,7 +179,7 @@
             "doc_id": "tuition-policy",
             "chunk_index": 1,
             "audience": "student",
-            "score": 0.47418036133018404,
+            "score": 0.4744723083285862,
             "content": "# Thông báo về học phí kỳ I năm học 2025-2026 (20251) - đợt 2\n## 2. Cách tính và kiểm tra học phí\n\nHọc phí của mỗi học kỳ được tính toán theo 02 đợt: Đợt 1 tính toán sơ bộ học phí cần đóng, sau đó Đợt 2 sẽ tính lại chính xác học phí của học kỳ.\n\nĐịnh mức học phí với học phần trong và ngoài CTĐT là như nhau, tuy nhiên nếu chưa chính xác sẽ ảnh hưởng đến tiền học bổng khuyến khích học tập của kỳ sau.",
             "metadata": {
               "doc_id": "tuition-policy",
@@ -200,7 +200,7 @@
             "doc_id": "course-registration-student",
             "chunk_index": 1,
             "audience": "student",
-            "score": 0.4713764423197375,
+            "score": 0.47156326786530656,
             "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.",
             "metadata": {
               "doc_id": "course-registration-student",
@@ -219,7 +219,7 @@
         ]
       },
       "agent": {
-        "answer": "Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là 24 tín chỉ.\n\nBằng chứng: \"Sinh viên không thuộc diện cảnh báo học tập... được đăng ký tối đa 24 TC.\"",
+        "answer": "Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là 24 tín chỉ.\n\nBằng chứng: \"Sinh viên không thuộc diện cảnh báo học tập... được đăng ký tối đa 24 TC...\"",
         "contains_gold_evidence_phrase": false,
         "context_quote": null,
         "contains_context_quote": false,
@@ -251,7 +251,7 @@
             "doc_id": "scholarship-policy",
             "chunk_index": 2,
             "audience": "student",
-            "score": 0.6449627810125662,
+            "score": 0.6449746536758312,
             "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.",
             "metadata": {
               "doc_id": "scholarship-policy",
@@ -272,7 +272,7 @@
             "doc_id": "scholarship-policy",
             "chunk_index": 1,
             "audience": "student",
-            "score": 0.5479083449233713,
+            "score": 0.54792998063499,
             "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.",
             "metadata": {
               "doc_id": "scholarship-policy",
@@ -293,7 +293,7 @@
             "doc_id": "scholarship-policy",
             "chunk_index": 3,
             "audience": "student",
-            "score": 0.45831531177488216,
+            "score": 0.45830212981263685,
             "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 4. Trường hợp không xét cấp học bổng\n\nKhông xét cấp học bổng đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng.",
             "metadata": {
               "doc_id": "scholarship-policy",
@@ -437,7 +437,7 @@
             "doc_id": "scholarship-policy",
             "chunk_index": 1,
             "audience": "student",
-            "score": 0.7635668570960661,
+            "score": 0.7636279368566079,
             "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.",
             "metadata": {
               "doc_id": "scholarship-policy",
@@ -458,7 +458,7 @@
             "doc_id": "scholarship-policy",
             "chunk_index": 0,
             "audience": "student",
-            "score": 0.5993794494110034,
+            "score": 0.6004442671925858,
             "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 1. Phạm vi và nguồn quỹ\n\nVăn bản này quy định về nguyên tắc, tiêu chuẩn và phương thức thực hiện xét duyệt và cấp học bổng cho sinh viên hệ đại học của Trường Đại học Bách khoa Hà Nội. Quy định này áp dụng đối với sinh viên hệ đại học của Trường.\n\nHọc bổng khuyến khích học tập (KKHT) cấp cho các sinh viên được lựa chọn bởi Hội đồng xét cấp học bổng theo từng học kỳ chính của năm học, căn cứ vào thành tích học tập và rèn luyện của từng cá nhân trong học kỳ liền trước đó.\n\nQuỹ học bổng KKHT hình thành từ nguồn học phí và bằng 8% (tám phần trăm) học phí của học kỳ lấy điểm xét cấp học bổng.",
             "metadata": {
               "doc_id": "scholarship-policy",
@@ -479,7 +479,7 @@
             "doc_id": "scholarship-policy",
             "chunk_index": 2,
             "audience": "student",
-            "score": 0.5270958742809739,
+            "score": 0.5267995923874196,
             "content": "# Quy định về việc xét cấp học bổng khuyến khích học tập tại Trường Đại học Bách khoa Hà Nội\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.",
             "metadata": {
               "doc_id": "scholarship-policy",
@@ -498,7 +498,7 @@
         ]
       },
       "agent": {
-        "answer": "Học bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\n\nBằng chứng: \"Học bổng KKHT có 3 mức: - Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\"",
+        "answer": "Học bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\n\nBằng chứng: \"Học bổng KKHT có 3 mức: - Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA). - Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá. - Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\"",
         "contains_gold_evidence_phrase": true,
         "context_quote": "- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).",
         "contains_context_quote": true,
@@ -532,7 +532,7 @@
             "doc_id": "course-registration-student",
             "chunk_index": 1,
             "audience": "student",
-            "score": 0.6875725298940552,
+            "score": 0.6875039276757207,
             "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.",
             "metadata": {
               "doc_id": "course-registration-student",
@@ -553,7 +553,7 @@
             "doc_id": "course-registration-student",
             "chunk_index": 3,
             "audience": "student",
-            "score": 0.6686409340026103,
+            "score": 0.6684713945476233,
             "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 3. Rút đăng ký học phần\n\nSau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập.",
             "metadata": {
               "doc_id": "course-registration-student",
@@ -574,7 +574,7 @@
             "doc_id": "course-registration-student",
             "chunk_index": 0,
             "audience": "student",
-            "score": 0.6067528453791056,
+            "score": 0.6069574684350414,
             "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nĐăng ký học tập là quy trình bắt buộc của sinh viên cho mỗi học kỳ, trừ các sinh viên mới nhập học được xếp thời khóa biểu theo kế hoạch học tập chuẩn, không phải đăng ký học tập nhưng có thể tự điều chỉnh một số lớp.\n\nQuá trình đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.",
             "metadata": {
               "doc_id": "course-registration-student",
@@ -657,7 +657,7 @@
                 "doc_id": "course-registration-student",
                 "chunk_index": 0,
                 "audience": "student",
-                "score": 0.6067528453791056,
+                "score": 0.6070665095237473,
                 "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nĐăng ký học tập là quy trình bắt buộc của sinh viên cho mỗi học kỳ, trừ các sinh viên mới nhập học được xếp thời khóa biểu theo kế hoạch học tập chuẩn, không phải đăng ký học tập nhưng có thể tự điều chỉnh một số lớp.\n\nQuá trình đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.",
                 "metadata": {
                   "doc_id": "course-registration-student",
@@ -697,7 +697,7 @@
                 "doc_id": "course-registration-student",
                 "chunk_index": 1,
                 "audience": "student",
-                "score": 0.6875725298940552,
+                "score": 0.6875039276757207,
                 "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.",
                 "metadata": {
                   "doc_id": "course-registration-student",
@@ -718,7 +718,7 @@
                 "doc_id": "course-registration-student",
                 "chunk_index": 3,
                 "audience": "student",
-                "score": 0.6686409340026103,
+                "score": 0.6684713945476233,
                 "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 3. Rút đăng ký học phần\n\nSau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập.",
                 "metadata": {
                   "doc_id": "course-registration-student",
@@ -739,7 +739,7 @@
                 "doc_id": "course-registration-student",
                 "chunk_index": 0,
                 "audience": "student",
-                "score": 0.6067528453791056,
+                "score": 0.6069574684350414,
                 "content": "# Quy chế đào tạo — đăng ký học tập chương trình đại học\n## 1. Ba giai đoạn đăng ký học tập\n\nĐăng ký học tập là quy trình bắt buộc của sinh viên cho mỗi học kỳ, trừ các sinh viên mới nhập học được xếp thời khóa biểu theo kế hoạch học tập chuẩn, không phải đăng ký học tập nhưng có thể tự điều chỉnh một số lớp.\n\nQuá trình đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.",
                 "metadata": {
                   "doc_id": "course-registration-student",
