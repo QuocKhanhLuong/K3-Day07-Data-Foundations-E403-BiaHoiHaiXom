@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from typing import Callable
 
-from .store import EmbeddingStore
+from .src.store import EmbeddingStore
 
 
 class KnowledgeBaseAgent:
