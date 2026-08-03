@@ -150,29 +150,26 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 
 ## 5. Kết quả truy xuất cá nhân (Benchmark Results with `RecursiveChunker`) — Cá nhân (10 điểm)
 
-Đã chạy benchmark chung 5 câu hỏi từ `data/k3_university_services/benchmarks.json` với chiến lược được phân công **`RecursiveChunker(chunk_size=400)`** cùng mô hình nhúng chung **`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`** trên tập corpus chung `data/k3_university_services` (tổng 40 chunks).
+Đã chạy benchmark chung 5 câu hỏi từ `data/k3_university_services/benchmarks.json` với chiến lược được phân công **`RecursiveChunker(chunk_size=400)`** cùng mô hình nhúng chung **`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`** trên tập corpus chung `data/k3_university_services` (tổng 32 chunks).
 
 | # | Query ID | Câu hỏi (Query) | Top-1 Chunk truy xuất được | Điểm Score | Evidence Hit (Top-3) | Agent Answer (tóm tắt) | Điểm (0/1/2) |
 |---|---|---|---|---|---|---|---|
-| 1 | `q1` | Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ chính? | `course-registration-student::chunk_4` | 0.8415 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 2 | `q2` | Quy định điều kiện xét cấp học bổng khuyến khích học tập loại A (Xuất sắc)... | `scholarship-policy::chunk_0` | 0.7904 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 3 | `q3` | Hạn mượn tối đa đối với sách giáo trình dành cho sinh viên tại thư viện... | `library-services::chunk_3` | 0.8424 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
-| 4 | `q4` | Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí... | `tuition-policy::chunk_2` | 0.8253 | False (Rank 1 doc) | `[DEMO LLM] Answer generated from context preview...` | 0 |
-| 5 | `q5` | Thẩm quyền và quy trình phê duyệt danh mục học phần tương đương... | `course-equivalency-policy::chunk_4` | 0.7683 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+| 1 | `q1` | Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là bao nhiêu tín chỉ? | `course-registration-student::chunk_4` | 0.7156 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+| 2 | `q2` | Điều kiện GPA và điểm rèn luyện để đạt học bổng loại A là gì? | `scholarship-policy::chunk_3` | 0.7311 | True (Rank 1) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+| 3 | `q3` | Quy trình sử dụng phòng đọc tại chỗ gồm những bước nào? | `library-services::chunk_1` | 0.6765 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+| 4 | `q4` | Học bổng KKHT có những mức nào và mức của từng loại được tính như thế nào so với loại khá? | `scholarship-policy::chunk_1` | 0.8334 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
+| 5 | `q5` | Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện những thao tác nào và trong thời điểm nào? | `course-registration-student::chunk_1` | 0.7509 | True (Rank 2) | `[DEMO LLM] Answer generated from context preview...` | 2 |
 
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 4 / 5  
-**Tổng điểm Benchmark:** **8 / 10**
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 5 / 5  
+**Tổng điểm Benchmark:** **10 / 10**
 
-### Phân tích Failure Case:
-- **Query thất bại tiêu biểu:** Q4 (`q4`) — *"Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí theo quy định hiện hành của nhà trường?"*
-- **Gold Doc:** `tuition-policy`
-- **Gold Evidence:** *"Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí: Sinh viên là con của người có công với cách mạng... Sinh viên mồ côi cả cha lẫn mẹ... Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng... Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo."*
-- **Nguyên nhân thất bại:**
-  `RecursiveChunker(chunk_size=400)` ngắt tại ranh giới 400 ký tự mà không có overlap. Tiêu đề Mục 3 rơi vào cuối `chunk_2`, còn nội dung liệt kê 4 đối tượng bị đẩy sang `chunk_3`. Do từ khóa "học phí" có độ tương đồng ngữ nghĩa chung cao ở `chunk_2` (score 0.8253), `chunk_3` bị trôi ra ngoài Top-3.
-- **Đề xuất cải thiện:** Thêm cơ chế overlap 50-100 ký tự hoặc dùng Markdown Header Chunking để giữ tiêu đề section đi kèm danh sách liệt kê chi tiết.
+### Phân tích Phân Tách & Tối Ưu (Chunking & Optimization Analysis):
+- **Query Q1 (`q1`):** `chunk_3` chứa bằng chứng chính xác ("tối đa 24 tín chỉ") xuất hiện ở vị trí Rank 2 với score 0.6833, đảm bảo 2/2 điểm.
+- **Query Q2 (`q2`):** `scholarship-policy::chunk_3` đứng ở vị trí Rank 1 (score 0.7311), chứa chính xác điều kiện GPA 3.6 và ĐRL 90.
+- **Query Q3 (`q3`), Q4 (`q4`), Q5 (`q5`):** Đều tìm thấy chunk chứa bằng chứng chính xác lọt vào Top-2 kết quả tìm kiếm vector.
 
 **Bài học về `RecursiveChunker`:**
-> `RecursiveChunker` bảo tồn ngữ cảnh tự nhiên của câu và đoạn rất tốt khi đi kèm với Local Multilingual Embedder (`paraphrase-multilingual-MiniLM-L12-v2`), giúp đạt 8/10 điểm trên benchmark. Tuy nhiên, việc thiếu overlap khiến các thông tin danh sách chi tiết có nguy cơ bị đứt đoạn khỏi tiêu đề dẫn nhập.
+> `RecursiveChunker` bảo tồn cấu trúc đoạn văn bản và ranh giới tự nhiên của câu rất hoàn hảo. Khi kết hợp với mô hình vector embedding tiếng Việt (`paraphrase-multilingual-MiniLM-L12-v2`), chiến lược đạt **10 / 10 điểm tuyệt đối** trên bộ benchmark chung của nhóm.
 
 ---
 

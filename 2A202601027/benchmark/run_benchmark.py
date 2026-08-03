@@ -52,7 +52,10 @@ def run_benchmark():
 
     chunk_size = 400
     chunker = RecursiveChunker(chunk_size=chunk_size)
-    corpus_dir = "data/k3_university_services"
+    
+    # Absolute paths based on root_dir
+    corpus_dir = root_dir / "data" / "k3_university_services"
+    benchmarks_path = root_dir / "data" / "k3_university_services" / "benchmarks.json"
 
     print("==================================================")
     print("RUNNING BENCHMARK EVALUATION")
@@ -62,11 +65,10 @@ def run_benchmark():
     print(f"Model: {model_name}")
     print("==================================================")
 
-    store = build_knowledge_base(corpus_dir, embedding_fn=embedder, chunker=chunker)
+    store = build_knowledge_base(str(corpus_dir), embedding_fn=embedder, chunker=chunker)
     total_chunks = store.get_collection_size()
     print(f"Total chunks indexed: {total_chunks}\n")
 
-    benchmarks_path = Path("data/k3_university_services/benchmarks.json")
     with open(benchmarks_path, "r", encoding="utf-8") as f:
         benchmarks = json.load(f)
 
@@ -178,18 +180,18 @@ def run_benchmark():
     print(f"FINAL BENCHMARK SCORE: {total_score} / 10")
     print("==================================================")
 
-    # Save JSON results to current directory and 2A202601027/benchmark/
-    out_dir = Path(__file__).resolve().parent
-    out_dir.mkdir(parents=True, exist_ok=True)
-    json_path = out_dir / "recursive_results.json"
-    with open(json_path, "w", encoding="utf-8") as f:
+    # Save JSON results to current script directory and student benchmark dirs
+    script_dir = Path(__file__).resolve().parent
+    with open(script_dir / "recursive_results.json", "w", encoding="utf-8") as f:
         json.dump(results_data, f, ensure_ascii=False, indent=2, default=str)
-    print(f"Saved results to {json_path}")
 
-    alt_dir = Path("2A20261027/benchmark")
-    if alt_dir.exists():
-        with open(alt_dir / "recursive_results.json", "w", encoding="utf-8") as f:
+    for dir_name in ["2A202601027/benchmark", "2A20261027/benchmark"]:
+        target_dir = root_dir / dir_name
+        target_dir.mkdir(parents=True, exist_ok=True)
+        json_path = target_dir / "recursive_results.json"
+        with open(json_path, "w", encoding="utf-8") as f:
             json.dump(results_data, f, ensure_ascii=False, indent=2, default=str)
+        print(f"Saved results to {json_path}")
 
     return results_data
 
