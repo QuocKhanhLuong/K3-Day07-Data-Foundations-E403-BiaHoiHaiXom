@@ -17,7 +17,7 @@
 ### Độ tương tự Cosine (Cosine Similarity) (Bài tập 1.1)
 
 **Độ tương tự cosine cao (High cosine similarity) nghĩa là gì?**
-> Góc giữa hai vector nhúng nhỏ (hướng trùng nhau), phản ánh hai đoạn văn bản có ý nghĩa/nội dung rất tương đồng với nhau, không phụ thuộc vào độ dài ngắn của từng câu.
+> Góc giữa hai vector embed nhỏ (hướng trùng nhau), phản ánh hai đoạn văn bản có ý nghĩa/nội dung rất tương đồng với nhau, không phụ thuộc vào độ dài ngắn của từng câu.
 
 **Ví dụ có độ tương tự CAO:**
 - Câu A: Sinh viên có thể mượn tối đa 5 cuốn sách tại thư viện trường.
