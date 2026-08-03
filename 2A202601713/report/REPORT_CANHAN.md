@@ -60,6 +60,9 @@ Mình dùng regex `(?<=[.!?])\s+` để tách sau dấu chấm, chấm than ho�
 **`RecursiveChunker.chunk` / `_split`** — hướng tiếp cận:
 Thuật toán thử các separator theo thứ tự ưu tiên: đoạn, dòng, câu, khoảng trắng rồi đến cắt theo ký tự. Base case là đoạn đã không dài hơn `chunk_size`; nếu không còn separator phù hợp thì cắt cố định để luôn tiến triển. Các phần quá dài được đệ quy với các separator còn lại, sau đó các phần liền kề được gộp khi vẫn nằm trong giới hạn kích thước.
 
+**`HeadingAwareChunker` — strategy benchmark chính:**
+Chiến lược tách tài liệu theo heading Markdown, giữ hierarchy heading trong nội dung chunk và dùng `RecursiveChunker` cho section vượt ngân sách. Benchmark chung khóa `chunk_size=400`; vì heading context cũng chiếm ký tự, một evidence phrase dài có thể bị tách, đây là trade-off được ghi nhận trong kết quả chứ không điều chỉnh sau khi xem điểm.
+
 ### Lớp EmbeddingStore
 
 **`add_documents` + `search`** — hướng tiếp cận:
@@ -118,19 +121,19 @@ Các cặp 1 và 2 có nội dung gần nhau theo cách hiểu của con ngườ
 
 ## 5. Kết quả truy xuất của tôi (Competition Results) — Cá nhân (10 điểm)
 
-Chạy đúng **5 benchmark query đã khóa** trong `data/k3_university_services/benchmarks.json`, dùng cùng corpus, OpenAI embedding model `text-embedding-3-small` và `top_k=3`. Strategy riêng của mình là **Heading-aware chunking + Recursive fallback**, `chunk_size=800` ký tự: mỗi chunk giữ heading hierarchy; section dài được chia tiếp bằng separators `\n\n`, `\n`, `. `, khoảng trắng và ký tự.
+Kết quả dưới đây được tạo bởi `bench.py` dùng chung cho cả nhóm, với cùng corpus, `data/k3_university_services/benchmarks.json`, OpenAI `text-embedding-3-small`, agent `gpt-4o-mini`, prompt và `top_k=3`. Strategy của mình là **Heading-aware chunking + Recursive fallback**, `chunk_size=400`.
 
-Kết quả được lưu đầy đủ tại `2A202601713/benchmark_heading_aware.json`. Corpus tạo 22 chunks; riêng `course-registration-student` có 1 section dùng recursive fallback.
+Kết quả chi tiết nằm tại `2A202601713/benchmark_heading_aware.json`; common output nằm tại `benchmark_results.json`. Strategy tạo 41 chunks.
 
 | Query | Top-1 chunk | Score | Evidence rank | Expected section | Agent grounding |
 |---|---|---:|---:|---:|---|
-| q1 numeric | `course-registration-student::chunk_2` (0.628992) | 1/2 | 1 | 1 | Chưa đạt kiểm tra quote: agent dùng dấu `...`, không chứa chuỗi bằng chứng liên tục |
-| q2 condition | `scholarship-policy::chunk_2` (0.644975) | 2/2 | 1 | 1 | Đạt; trả lời GPA ≥ 3,6 và rèn luyện ≥ 90, kèm quote từ context |
-| q3 process | `library-services::chunk_0` (0.720945) | 2/2 | 1 | 1 | Đạt; nêu đủ 4 bước và quote Bước 1 từ context |
-| q4 list | `scholarship-policy::chunk_1` (0.763628) | 2/2 | 1 | 1 | Đạt; nêu đủ 3 mức và quote từ context |
-| q5 metadata-filter | `course-registration-student::chunk_1` (0.687504) | 2/2 | 1 | 1 | Đạt; nêu thao tác điều chỉnh và các mốc thời gian |
+| q1 numeric | `course-registration-student::chunk_5` (0.638865) | 1/2 | 1 | 1 | Evidence ở top-1 nhưng agent quote dùng `...`, không phải chuỗi liên tục |
+| q2 condition | `scholarship-policy::chunk_4` (0.645013) | 2/2 | 1 | 1 | Evidence ở top-1; agent trả lời đúng và có context quote |
+| q3 process | `library-services::chunk_1` (0.761519) | 0/2 | — | 1 | Agent trả lời nhưng exact evidence 349 ký tự không nằm trong một chunk |
+| q4 list | `scholarship-policy::chunk_3` (0.763362) | 2/2 | 1 | 1 | Evidence ở top-1; agent trả lời đủ ba mức |
+| q5 metadata-filter | `course-registration-student::chunk_3` (0.683608) | 0/2 | — | 1 | Filter đã áp dụng nhưng evidence bị tách bởi heading context |
 
-**Tổng quan:** 5/5 query có evidence trong top-3; 5/5 có evidence ở top-1; 4/5 câu trả lời có context quote kiểm chứng được. Tổng điểm theo rubric retrieval + grounded answer là **9/10**.
+**Tổng quan:** 3/5 query có evidence trong top-3; 3/5 có evidence ở top-1; 2/5 agent answer được xác nhận grounded vì exact gold evidence phải có trong context. Tổng điểm theo rubric chung là **5/10**.
 
 ### A/B metadata filter cho q5
 
@@ -138,14 +141,14 @@ q5 chạy hai lần với cùng query và `top_k=3`:
 
 | Chế độ | Top-1 | Audience | Score | Evidence rank |
 |---|---|---|---:|---:|
-| Không filter | `course-registration-student::chunk_1` | student | 0.687504 | 1 |
-| `{"audience": "student"}` | `course-registration-student::chunk_1` | student | 0.687504 | 1 |
+| Không filter | `course-registration-student::chunk_3` | student | 0.683608 | — |
+| `{"audience": "student"}` | `course-registration-student::chunk_3` | student | 0.683608 | — |
 
-Filter được áp dụng đúng, nhưng không làm thay đổi top-1/top-3 trong lần chạy này vì truy vấn không filter vốn đã xếp tài liệu `audience=student` lên đầu. Đây là một kết quả A/B cần ghi nhận, không phải lý do để thay đổi query sau khi benchmark đã chạy.
+Filter được áp dụng đúng và không làm thay đổi top-1/top-3 trong lần chạy này vì truy vấn không filter vốn đã xếp các chunk `audience=student` lên đầu. Tuy nhiên, filter không thể ghép hai chunk liền nhau thành một evidence chunk, nên không cứu được q5 với strategy này.
 
 ### Failure case
 
-Ở q1, retrieval đã đưa chunk chứa evidence lên hạng 1 và agent trả lời đúng con số 24 tín chỉ. Tuy nhiên agent tạo quote rút gọn `"Sinh viên không thuộc diện cảnh báo học tập... được đăng ký tối đa 24 TC."`; dấu `...` không phải chuỗi liên tục trong context, nên kiểm tra grounding không chấp nhận quote này. Bài học: prompt cần yêu cầu trích dẫn nguyên văn một câu hoàn chỉnh, và evaluator cần kiểm tra quote/evidence ở mức chuỗi liên tục thay vì chỉ nhìn câu trả lời có đúng số liệu.
+Có hai failure quan sát được: q1 retrieval đúng top-1 nhưng agent quote rút gọn bằng `...`, nên không đạt kiểm tra grounding exact; q3 và q5 có câu trả lời được agent sinh ra nhưng exact evidence không nằm trọn trong một chunk 400 do heading context. Bài học là heading-aware giúp giữ cấu trúc, nhưng phải cân đối ngân sách heading với evidence phrase khi chấm ở mức chunk.
 
 **Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
 Chưa có dữ liệu demo hoặc kết quả của thành viên khác trong repo để đưa ra nhận xét có căn cứ.

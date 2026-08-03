@@ -1,29 +1,30 @@
-# FixedSizeChunker — benchmark summary
+# FixedSizeChunker — common benchmark summary
 
 **Student:** Hoàng Đức Anh (`2A202601223`)  
 **Strategy:** `FixedSizeChunker(chunk_size=400, overlap=80)`  
 **Stride:** 320 characters  
 **Corpus:** `data/k3_university_services`  
-**Embedding:** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`  
-**Local backend:** available  
+**Common runner:** `bench.py`
+**Embedding:** OpenAI `text-embedding-3-small`
+**Agent:** OpenAI `gpt-4o-mini`
+**Top-k:** 3
 **Total chunks:** 28
 
-## Scoring status
+## Kết quả
 
-The local embedder was attempted exactly as specified. Semantic scores are **not claimed** because the local model was unavailable. The recorded top-3 and agent fields come from the deterministic mock backend and are pipeline diagnostics only. The demo LLM is also not a complete grounded answer generator.
+- Evidence trong top-3: **4/5**
+- Evidence ở top-1: **3/5**
+- Agent grounded: **3/5**
+- Tổng điểm: **6/10**
 
-**Total score:** N/A (requires a successful local-embedder run)
+| Query | Top-1 chunk | Score | Evidence rank | Ghi chú |
+|---|---|---:|---:|---|
+| q1 | `course-registration-student::chunk_3` | 0.650069 | 1 | Agent quote dùng `...`, nên 1 điểm |
+| q2 | `scholarship-policy::chunk_3` | 0.640405 | 1 | Agent grounded |
+| q3 | `library-services::chunk_0` | 0.709361 | — | Evidence dài bị cắt giữa chunks |
+| q4 | `scholarship-policy::chunk_1` | 0.677483 | 2 | Evidence không ở top-1 |
+| q5 | `course-registration-student::chunk_2` | 0.696337 | 1 | Filter student, agent grounded |
 
-## Overlap analysis
+q5 A/B có cùng top-3 trước và sau filter trong run này; các chunk top-3 vốn đã thuộc audience `student`.
 
-- `overlap=80` preserves boundary context across adjacent chunks.
-- It can duplicate evidence in neighboring chunks and reduce top-3 diversity.
-- The per-query JSON records adjacent chunk pairs and evidence hits from the pipeline check.
-
-## Filter A/B
-
-For q1, q2 and q5, the JSON records top-3 without a filter and with the required audience filter. Since the backend is mock-only, this comparison is diagnostic and must not be treated as semantic quality evidence.
-
-## Failure case
-
-The benchmark is blocked at the embedding stage: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` was not available in the environment. This is an environment limitation, not evidence that FixedSizeChunker failed. A valid rerun should install the local dependency/model and regenerate this file without changing the corpus, queries, or strategy parameters.
+JSON cùng schema nằm tại `2A202601223/benchmark/fixed_size_results.json`; output tổng hợp nằm tại `benchmark_results.json`.
