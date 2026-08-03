@@ -1,7 +1,7 @@
 # Benchmark Summary — RecursiveChunker Strategy
 
 **Student:** Nguyễn Thu Huyền  
-**MSSV:** 2A202601027 / 2A20261027  
+**MSSV:** 2A202601027  
 **Strategy:** RecursiveChunker  
 **Parameters:** `chunk_size = 400` (Không có overlap giả)  
 **Corpus:** `data/k3_university_services`  

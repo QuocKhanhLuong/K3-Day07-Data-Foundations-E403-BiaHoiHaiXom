@@ -1,7 +1,7 @@
 # Báo Cáo Cá Nhân — Lab 7: Embedding & Vector Store
 
-**Họ tên:** Lương Quốc Khánh
-**Mã số sinh viên:** 2A202601713
+**Họ tên:** Trần Nguyễn Mỹ Anh
+**Mã số sinh viên:** 2A202601019
 **Lớp/biến thể lab:** K3
 **Nhóm:** Chưa có thông tin nhóm trong repo
 **Ngày:** 2026-08-03
@@ -118,34 +118,19 @@ Các cặp 1 và 2 có nội dung gần nhau theo cách hiểu của con ngườ
 
 ## 5. Kết quả truy xuất của tôi (Competition Results) — Cá nhân (10 điểm)
 
-Chạy đúng **5 benchmark query đã khóa** trong `data/k3_university_services/benchmarks.json`, dùng cùng corpus, OpenAI embedding model `text-embedding-3-small` và `top_k=3`. Strategy riêng của mình là **Heading-aware chunking + Recursive fallback**, `chunk_size=800` ký tự: mỗi chunk giữ heading hierarchy; section dài được chia tiếp bằng separators `\n\n`, `\n`, `. `, khoảng trắng và ký tự.
+Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân của bạn trong gói `src`. **5 câu hỏi này phải trùng với các thành viên cùng nhóm** (xem `REPORT_NHOM.md`).
 
-Kết quả được lưu đầy đủ tại `2A202601713/benchmark_heading_aware.json`. Corpus tạo 22 chunks; riêng `course-registration-student` có 1 section dùng recursive fallback.
+> **Trạng thái dữ liệu:** `REPORT_NHOM.md` hiện chưa có 5 benchmark queries hoặc gold answers (bảng nhóm còn trống). Vì vậy chưa thể chạy và ghi kết quả retrieval chung mà không tự tạo thông tin nhóm; các score/top-1/top-3 bên dưới được để trống có chủ đích.
 
-| Query | Top-1 chunk | Score | Evidence rank | Expected section | Agent grounding |
-|---|---|---:|---:|---:|---|
-| q1 numeric | `course-registration-student::chunk_2` (0.628992) | 1/2 | 1 | 1 | Chưa đạt kiểm tra quote: agent dùng dấu `...`, không chứa chuỗi bằng chứng liên tục |
-| q2 condition | `scholarship-policy::chunk_2` (0.644975) | 2/2 | 1 | 1 | Đạt; trả lời GPA ≥ 3,6 và rèn luyện ≥ 90, kèm quote từ context |
-| q3 process | `library-services::chunk_0` (0.720945) | 2/2 | 1 | 1 | Đạt; nêu đủ 4 bước và quote Bước 1 từ context |
-| q4 list | `scholarship-policy::chunk_1` (0.763628) | 2/2 | 1 | 1 | Đạt; nêu đủ 3 mức và quote từ context |
-| q5 metadata-filter | `course-registration-student::chunk_1` (0.687504) | 2/2 | 1 | 1 | Đạt; nêu thao tác điều chỉnh và các mốc thời gian |
+| # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Điểm Score | Có liên quan không? (Relevant) | Câu trả lời của Agent (tóm tắt) |
+|---|-------|--------------------------------|-------|-----------|------------------------|
+| 1 | | | | | |
+| 2 | | | | | |
+| 3 | | | | | |
+| 4 | | | | | |
+| 5 | | | | | |
 
-**Tổng quan:** 5/5 query có evidence trong top-3; 5/5 có evidence ở top-1; 4/5 câu trả lời có context quote kiểm chứng được. Tổng điểm theo rubric retrieval + grounded answer là **9/10**.
-
-### A/B metadata filter cho q5
-
-q5 chạy hai lần với cùng query và `top_k=3`:
-
-| Chế độ | Top-1 | Audience | Score | Evidence rank |
-|---|---|---|---:|---:|
-| Không filter | `course-registration-student::chunk_1` | student | 0.687504 | 1 |
-| `{"audience": "student"}` | `course-registration-student::chunk_1` | student | 0.687504 | 1 |
-
-Filter được áp dụng đúng, nhưng không làm thay đổi top-1/top-3 trong lần chạy này vì truy vấn không filter vốn đã xếp tài liệu `audience=student` lên đầu. Đây là một kết quả A/B cần ghi nhận, không phải lý do để thay đổi query sau khi benchmark đã chạy.
-
-### Failure case
-
-Ở q1, retrieval đã đưa chunk chứa evidence lên hạng 1 và agent trả lời đúng con số 24 tín chỉ. Tuy nhiên agent tạo quote rút gọn `"Sinh viên không thuộc diện cảnh báo học tập... được đăng ký tối đa 24 TC."`; dấu `...` không phải chuỗi liên tục trong context, nên kiểm tra grounding không chấp nhận quote này. Bài học: prompt cần yêu cầu trích dẫn nguyên văn một câu hoàn chỉnh, và evaluator cần kiểm tra quote/evidence ở mức chuỗi liên tục thay vì chỉ nhìn câu trả lời có đúng số liệu.
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** Chưa xác định / 5 (chưa có benchmark queries)
 
 **Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
 Chưa có dữ liệu demo hoặc kết quả của thành viên khác trong repo để đưa ra nhận xét có căn cứ.
