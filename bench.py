@@ -6,11 +6,6 @@ import re
 import sys
 from pathlib import Path
 
-# Add project root to sys.path
-root_dir = Path(__file__).resolve().parent.parent.parent
-if str(root_dir) not in sys.path:
-    sys.path.insert(0, str(root_dir))
-
 from ingest import build_knowledge_base
 from src.agent import KnowledgeBaseAgent
 from src.chunking import RecursiveChunker
@@ -41,7 +36,7 @@ def run_benchmark():
     limitation_msg = None
     try:
         embedder = LocalEmbedder()
-        backend_name = getattr(embedder, "_backend_name", "local")
+        backend_name = getattr(embedder, "_backend_name", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
         model_name = getattr(embedder, "model_name", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
     except Exception as e:
         limitation_msg = f"LocalEmbedder unavailable ({e}). Fallback to MockEmbedder for technical smoke test."
@@ -56,7 +51,7 @@ def run_benchmark():
 
     print("==================================================")
     print("RUNNING BENCHMARK EVALUATION")
-    print("Student: Nguyễn Thu Huyền (2A20261027)")
+    print("Student: Nguyễn Thu Huyền (2A202601027)")
     print(f"Strategy: RecursiveChunker(chunk_size={chunk_size})")
     print(f"Backend: {backend_name}")
     print(f"Model: {model_name}")
@@ -74,7 +69,7 @@ def run_benchmark():
 
     results_data = {
         "student_name": "Nguyễn Thu Huyền",
-        "student_id": "2A20261027",
+        "student_id": "2A202601027",
         "strategy": "RecursiveChunker",
         "parameters": {"chunk_size": chunk_size},
         "embedding_backend": backend_name,
@@ -178,19 +173,12 @@ def run_benchmark():
     print(f"FINAL BENCHMARK SCORE: {total_score} / 10")
     print("==================================================")
 
-    # Save JSON results to 2A20261027/benchmark/
-    out_dir = Path(__file__).resolve().parent
-    out_dir.mkdir(parents=True, exist_ok=True)
-    json_path = out_dir / "recursive_results.json"
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(results_data, f, ensure_ascii=False, indent=2, default=str)
-    print(f"Saved results to {json_path}")
-
-    # Also save to 2A202601027/benchmark/
-    alt_dir = Path("2A202601027/benchmark")
-    alt_dir.mkdir(parents=True, exist_ok=True)
-    with open(alt_dir / "recursive_results.json", "w", encoding="utf-8") as f:
-        json.dump(results_data, f, ensure_ascii=False, indent=2, default=str)
+    for target_dir in [Path("2A202601027/benchmark"), Path("2A20261027/benchmark")]:
+        target_dir.mkdir(parents=True, exist_ok=True)
+        json_path = target_dir / "recursive_results.json"
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(results_data, f, ensure_ascii=False, indent=2, default=str)
+        print(f"Saved results to {json_path}")
 
     return results_data
 

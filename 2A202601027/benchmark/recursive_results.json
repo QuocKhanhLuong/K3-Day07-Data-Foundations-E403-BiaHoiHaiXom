@@ -1,13 +1,13 @@
 {
   "student_name": "Nguyễn Thu Huyền",
-  "student_id": "2A20261027",
+  "student_id": "2A202601027",
   "strategy": "RecursiveChunker",
   "parameters": {
     "chunk_size": 400
   },
-  "embedding_backend": "mock",
-  "embedding_model": "mock-embeddings-fallback",
-  "limitation": "LocalEmbedder unavailable (No module named 'sentence_transformers'). Fallback to MockEmbedder for technical smoke test.",
+  "embedding_backend": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "limitation": null,
   "total_chunks": 40,
   "queries": [
     {
@@ -23,27 +23,27 @@
       "top3": [
         {
           "rank": 1,
-          "score": 0.1899,
-          "doc_id": "scholarship-policy::chunk_4",
+          "score": 0.8415,
+          "doc_id": "course-registration-student::chunk_4",
           "metadata": {
-            "doc_id": "scholarship-policy::chunk_4",
-            "title": "Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên",
-            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1204",
+            "doc_id": "course-registration-student::chunk_4",
+            "title": "Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=582",
             "retrieved_at": "2026-08-03",
             "document_version": "not-stated",
             "audience": "student",
-            "category": "hoc-bong",
-            "department": "phong-cong-tac-sinh-vien",
+            "category": "hoc-vu",
+            "department": "phong-dao-tao",
             "language": "vi",
-            "source": "data\\k3_university_services\\scholarship-policy.md",
+            "source": "data\\k3_university_services\\course-registration-student.md",
             "chunk_index": 4
           },
-          "content_preview": "- **Loại B (Giỏi):** Sinh viên có điểm trung bình học kỳ GPA đạt từ 3.2 đến dưới 3.6 và điểm rèn luyện đạt từ 80 điểm trở lên. Mức học bổng bằng 100% mức học phí của học kỳ.\n- **Loại C (Khá):** Sinh viên có điểm trung bình học kỳ GPA đạt từ 2.5 đến dưới 3.2 và điểm rèn luyện đạt từ 65 điểm trở lên. Mức học bổng bằng 80% mức học phí của học kỳ.",
-          "evidence_hit": false
+          "content_preview": "- **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.\n- **Sinh viên bị cảnh cáo học tập mức 2:** Khối lượng đăng ký tối đa không quá 12 tín chỉ trong một học kỳ chính.\n- **Học kỳ hè (học kỳ phụ):** Sinh viên được phép đăng ký tối đa không quá 12 tín chỉ và không quy định mức tối thiểu.",
+          "evidence_hit": true
         },
         {
           "rank": 2,
-          "score": 0.172,
+          "score": 0.7992,
           "doc_id": "course-registration-student::chunk_3",
           "metadata": {
             "doc_id": "course-registration-student::chunk_3",
@@ -63,38 +63,38 @@
         },
         {
           "rank": 3,
-          "score": 0.1664,
-          "doc_id": "tuition-policy::chunk_2",
+          "score": 0.7317,
+          "doc_id": "course-registration-student::chunk_0",
           "metadata": {
-            "doc_id": "tuition-policy::chunk_2",
-            "title": "Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí",
-            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1205",
+            "doc_id": "course-registration-student::chunk_0",
+            "title": "Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=582",
             "retrieved_at": "2026-08-03",
             "document_version": "not-stated",
             "audience": "student",
-            "category": "hoc-phi",
-            "department": "phong-tai-chinh-ke-toan",
+            "category": "hoc-vu",
+            "department": "phong-dao-tao",
             "language": "vi",
-            "source": "data\\k3_university_services\\tuition-policy.md",
-            "chunk_index": 2
+            "source": "data\\k3_university_services\\course-registration-student.md",
+            "chunk_index": 0
           },
-          "content_preview": "## 3. Các đối tượng sinh viên được miễn 100% học phí\nSinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí theo quy định hiện hành:\n- Sinh viên là con của người có công với cách mạng theo quy định của pháp luật về ưu đãi người có công với cách mạng.\n- Sinh viên mồ côi cả cha lẫn mẹ, không nơi tựa cậy.",
+          "content_preview": "# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên",
           "evidence_hit": false
         }
       ],
-      "evidence_hit": false,
-      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] - **Loại B (Giỏi):** Sinh viên có điểm trung bình học kỳ GPA đạt từ 3.2 đến dưới 3.6 và điểm rèn luyện đạt từ 80 điểm trở lên. Mức học bổng bằng 100% mức học phí của học kỳ.\n- **Loại C (Kh...",
-      "score_0_1_2": 0,
+      "evidence_hit": true,
+      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] - **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.\n- **Sinh viên bị cảnh cáo học tập mức 2:** Khối lượng đăng ký tối đa không...",
+      "score_0_1_2": 2,
       "filter_ab": {
         "without_filter_top3_docs": [
-          "scholarship-policy::chunk_4",
-          "course-registration-faculty::chunk_5",
-          "course-registration-student::chunk_3"
+          "course-registration-student::chunk_4",
+          "course-registration-student::chunk_3",
+          "course-registration-faculty::chunk_3"
         ],
         "with_filter_top3_docs": [
-          "scholarship-policy::chunk_4",
+          "course-registration-student::chunk_4",
           "course-registration-student::chunk_3",
-          "tuition-policy::chunk_2"
+          "course-registration-student::chunk_0"
         ],
         "excluded_wrong_audience": true
       }
@@ -112,80 +112,80 @@
       "top3": [
         {
           "rank": 1,
-          "score": 0.3226,
-          "doc_id": "course-registration-student::chunk_5",
+          "score": 0.7904,
+          "doc_id": "scholarship-policy::chunk_0",
           "metadata": {
-            "doc_id": "course-registration-student::chunk_5",
-            "title": "Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên",
-            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=582",
+            "doc_id": "scholarship-policy::chunk_0",
+            "title": "Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1204",
             "retrieved_at": "2026-08-03",
             "document_version": "not-stated",
             "audience": "student",
-            "category": "hoc-vu",
-            "department": "phong-dao-tao",
+            "category": "hoc-bong",
+            "department": "phong-cong-tac-sinh-vien",
             "language": "vi",
-            "source": "data\\k3_university_services\\course-registration-student.md",
-            "chunk_index": 5
+            "source": "data\\k3_university_services\\scholarship-policy.md",
+            "chunk_index": 0
           },
-          "content_preview": "## 3. Điều kiện đăng ký và điều chỉnh đăng ký học phần\n- Sinh viên phải tuân thủ các điều kiện về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo.",
+          "content_preview": "# Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên",
           "evidence_hit": false
         },
         {
           "rank": 2,
-          "score": 0.3214,
-          "doc_id": "dormitory-regulations::chunk_4",
+          "score": 0.7486,
+          "doc_id": "scholarship-policy::chunk_3",
           "metadata": {
-            "doc_id": "dormitory-regulations::chunk_4",
-            "title": "Nội quy quản lý và quy định lưu trú Ký túc xá sinh viên",
-            "source_url": "https://ktx.hust.edu.vn/noi-quy-ky-tuc-xa",
+            "doc_id": "scholarship-policy::chunk_3",
+            "title": "Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1204",
             "retrieved_at": "2026-08-03",
             "document_version": "not-stated",
             "audience": "student",
-            "category": "ky-tuc-xa",
-            "department": "ban-quan-ly-ky-tuc-xa",
+            "category": "hoc-bong",
+            "department": "phong-cong-tac-sinh-vien",
             "language": "vi",
-            "source": "data\\k3_university_services\\dormitory-regulations.md",
-            "chunk_index": 4
+            "source": "data\\k3_university_services\\scholarship-policy.md",
+            "chunk_index": 3
           },
-          "content_preview": "## 4. Hình thức xử lý vi phạm nội quy Ký túc xá\n- Vi phạm lần 1: Nhắc nhở và ghi tên vào sổ theo dõi rèn luyện.\n- Vi phạm lần 2 hoặc vi phạm nghiêm trọng về an toàn phòng cháy chữa cháy: Chấm dứt hợp đồng lưu trú Ký túc xá trước thời hạn và thông báo về Khoa/Viện quản lý sinh viên để trừ điểm rèn luyện.",
-          "evidence_hit": false
+          "content_preview": "## 2. Tiêu chuẩn và phân loại mức học bổng khuyến khích học tập\nHọc bổng khuyến khích học tập được phân thành 3 loại với các điều kiện cụ thể như sau:\n- **Loại A (Xuất sắc):** Sinh viên có điểm trung bình học kỳ GPA đạt từ 3.6 trở lên (thang điểm 4) và điểm rèn luyện đạt từ 90 điểm trở lên (thang điểm 100). Mức học bổng bằng 120% đến 150% mức học p",
+          "evidence_hit": true
         },
         {
           "rank": 3,
-          "score": 0.1078,
-          "doc_id": "course-registration-student::chunk_1",
+          "score": 0.6976,
+          "doc_id": "scholarship-policy::chunk_1",
           "metadata": {
-            "doc_id": "course-registration-student::chunk_1",
-            "title": "Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên",
-            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=582",
+            "doc_id": "scholarship-policy::chunk_1",
+            "title": "Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1204",
             "retrieved_at": "2026-08-03",
             "document_version": "not-stated",
             "audience": "student",
-            "category": "hoc-vu",
-            "department": "phong-dao-tao",
+            "category": "hoc-bong",
+            "department": "phong-cong-tac-sinh-vien",
             "language": "vi",
-            "source": "data\\k3_university_services\\course-registration-student.md",
+            "source": "data\\k3_university_services\\scholarship-policy.md",
             "chunk_index": 1
           },
-          "content_preview": "## 1. Quy trình đăng ký học tập trên hệ thống\nĐăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc:\n- **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ký danh sách các mã học phần dự định sẽ học trong học kỳ kế tiếp.",
+          "content_preview": "## 1. Nguyên tắc chung và nguồn quỹ học bổng\n- Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% từ nguồn thu học phí hệ chính quy của nhà trường.\n- Học bổng được xét và cấp theo từng học kỳ chính dựa trên kết quả học tập (GPA) và kết quả rèn luyện (ĐRL) của học kỳ liền trước.",
           "evidence_hit": false
         }
       ],
-      "evidence_hit": false,
-      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] ## 3. Điều kiện đăng ký và điều chỉnh đăng ký học phần\n- Sinh viên phải tuân thủ các điều kiện về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào t...",
-      "score_0_1_2": 0,
+      "evidence_hit": true,
+      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] # Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên\n\n[2] ## 2. Tiêu chuẩn và phân loại mức học bổng khuyến khích học tập\nHọc bổng khuyến khích học tập được phân thành 3 ...",
+      "score_0_1_2": 2,
       "filter_ab": {
         "without_filter_top3_docs": [
-          "course-registration-student::chunk_5",
-          "dormitory-regulations::chunk_4",
-          "course-equivalency-policy::chunk_4"
+          "scholarship-policy::chunk_0",
+          "scholarship-policy::chunk_3",
+          "scholarship-policy::chunk_1"
         ],
         "with_filter_top3_docs": [
-          "course-registration-student::chunk_5",
-          "dormitory-regulations::chunk_4",
-          "course-registration-student::chunk_1"
+          "scholarship-policy::chunk_0",
+          "scholarship-policy::chunk_3",
+          "scholarship-policy::chunk_1"
         ],
-        "excluded_wrong_audience": true
+        "excluded_wrong_audience": false
       }
     },
     {
@@ -199,27 +199,102 @@
       "top3": [
         {
           "rank": 1,
-          "score": 0.2951,
-          "doc_id": "dormitory-regulations::chunk_3",
+          "score": 0.8424,
+          "doc_id": "library-services::chunk_3",
           "metadata": {
-            "doc_id": "dormitory-regulations::chunk_3",
-            "title": "Nội quy quản lý và quy định lưu trú Ký túc xá sinh viên",
-            "source_url": "https://ktx.hust.edu.vn/noi-quy-ky-tuc-xa",
+            "doc_id": "library-services::chunk_3",
+            "title": "Quy định sử dụng dịch vụ thư viện và quy tắc mượn trả tài liệu",
+            "source_url": "https://library.hust.edu.vn/quy-dinh-su-dung-thu-vien",
+            "retrieved_at": "2026-08-03",
+            "document_version": "not-stated",
+            "audience": "all",
+            "category": "thu-vien",
+            "department": "trung-tam-tri-thuc-so",
+            "language": "vi",
+            "source": "data\\k3_university_services\\library-services.md",
+            "chunk_index": 3
+          },
+          "content_preview": "## 3. Thời hạn mượn và quy định gia hạn tài liệu\n- **Sách giáo trình:** Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo trình được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày nếu không có độc giả khác đặt mượn trước.\n- **Sách tham khảo:** Được mượn tối đa 3 cuốn trong thời hạn 14 ngày, không áp dụng gia hạn.",
+          "evidence_hit": true
+        },
+        {
+          "rank": 2,
+          "score": 0.6294,
+          "doc_id": "tuition-policy::chunk_1",
+          "metadata": {
+            "doc_id": "tuition-policy::chunk_1",
+            "title": "Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1205",
             "retrieved_at": "2026-08-03",
             "document_version": "not-stated",
             "audience": "student",
-            "category": "ky-tuc-xa",
-            "department": "ban-quan-ly-ky-tuc-xa",
+            "category": "hoc-phi",
+            "department": "phong-tai-chinh-ke-toan",
             "language": "vi",
-            "source": "data\\k3_university_services\\dormitory-regulations.md",
-            "chunk_index": 3
+            "source": "data\\k3_university_services\\tuition-policy.md",
+            "chunk_index": 1
           },
-          "content_preview": "## 3. Quy định về an toàn, vệ sinh và sử dụng thiết bị\n- Sinh viên có trách nhiệm giữ gìn vệ sinh chung trong phòng ở và khu vực hành lang, cầu thang.\n- Nghiêm cấm đun nấu bằng bếp gas, bếp từ công suất lớn hoặc thiết bị gây nguy cơ cháy nổ trong phòng ở. Nghiêm cấm tàng trữ, sử dụng chất cấm, rượu bia, cờ bạc và chất nổ dưới mọi hình thức.",
+          "content_preview": "## 2. Thời hạn nộp học phí và xử lý nợ học phí\n- Sinh viên có nghĩa vụ nộp đủ học phí theo đúng thời hạn thông báo của Phòng Tài chính - Kế toán (thường vào tuần thứ 6 đến tuần thứ 10 của học kỳ).\n- Sinh viên không nộp đủ học phí đúng hạn mà không có đơn xin gia hạn được phê duyệt sẽ bị hủy đăng ký học phần, không được dự thi kết thúc học phần và b",
+          "evidence_hit": false
+        },
+        {
+          "rank": 3,
+          "score": 0.5984,
+          "doc_id": "tuition-policy::chunk_4",
+          "metadata": {
+            "doc_id": "tuition-policy::chunk_4",
+            "title": "Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1205",
+            "retrieved_at": "2026-08-03",
+            "document_version": "not-stated",
+            "audience": "student",
+            "category": "hoc-phi",
+            "department": "phong-tai-chinh-ke-toan",
+            "language": "vi",
+            "source": "data\\k3_university_services\\tuition-policy.md",
+            "chunk_index": 4
+          },
+          "content_preview": "## 4. Hồ sơ và thủ tục xin miễn giảm học phí\n- Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên.\n- Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ chính.",
+          "evidence_hit": false
+        }
+      ],
+      "evidence_hit": true,
+      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] ## 3. Thời hạn mượn và quy định gia hạn tài liệu\n- **Sách giáo trình:** Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo trình được gia hạn 01 lần với thời gi...",
+      "score_0_1_2": 2,
+      "filter_ab": null
+    },
+    {
+      "query_id": "q4",
+      "query": "Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí theo quy định hiện hành của nhà trường?",
+      "gold_answer": "Sinh viên là con của người có công với cách mạng; sinh viên mồ côi cả cha lẫn mẹ; sinh viên bị khuyết tật nặng/đặc biệt nặng; và sinh viên dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
+      "gold_doc_id": "tuition-policy",
+      "expected_section": "## 3. Các đối tượng sinh viên được miễn 100% học phí",
+      "evidence_phrase": "Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí: Sinh viên là con của người có công với cách mạng... Sinh viên mồ côi cả cha lẫn mẹ... Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng... Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
+      "metadata_filter": null,
+      "top3": [
+        {
+          "rank": 1,
+          "score": 0.8253,
+          "doc_id": "tuition-policy::chunk_2",
+          "metadata": {
+            "doc_id": "tuition-policy::chunk_2",
+            "title": "Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1205",
+            "retrieved_at": "2026-08-03",
+            "document_version": "not-stated",
+            "audience": "student",
+            "category": "hoc-phi",
+            "department": "phong-tai-chinh-ke-toan",
+            "language": "vi",
+            "source": "data\\k3_university_services\\tuition-policy.md",
+            "chunk_index": 2
+          },
+          "content_preview": "## 3. Các đối tượng sinh viên được miễn 100% học phí\nSinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí theo quy định hiện hành:\n- Sinh viên là con của người có công với cách mạng theo quy định của pháp luật về ưu đãi người có công với cách mạng.\n- Sinh viên mồ côi cả cha lẫn mẹ, không nơi tựa cậy.",
           "evidence_hit": false
         },
         {
           "rank": 2,
-          "score": 0.2534,
+          "score": 0.6973,
           "doc_id": "tuition-policy::chunk_0",
           "metadata": {
             "doc_id": "tuition-policy::chunk_0",
@@ -239,65 +314,10 @@
         },
         {
           "rank": 3,
-          "score": 0.2494,
-          "doc_id": "course-registration-student::chunk_4",
+          "score": 0.6381,
+          "doc_id": "tuition-policy::chunk_1",
           "metadata": {
-            "doc_id": "course-registration-student::chunk_4",
-            "title": "Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên",
-            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=582",
-            "retrieved_at": "2026-08-03",
-            "document_version": "not-stated",
-            "audience": "student",
-            "category": "hoc-vu",
-            "department": "phong-dao-tao",
-            "language": "vi",
-            "source": "data\\k3_university_services\\course-registration-student.md",
-            "chunk_index": 4
-          },
-          "content_preview": "- **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.\n- **Sinh viên bị cảnh cáo học tập mức 2:** Khối lượng đăng ký tối đa không quá 12 tín chỉ trong một học kỳ chính.\n- **Học kỳ hè (học kỳ phụ):** Sinh viên được phép đăng ký tối đa không quá 12 tín chỉ và không quy định mức tối thiểu.",
-          "evidence_hit": false
-        }
-      ],
-      "evidence_hit": false,
-      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] ## 3. Quy định về an toàn, vệ sinh và sử dụng thiết bị\n- Sinh viên có trách nhiệm giữ gìn vệ sinh chung trong phòng ở và khu vực hành lang, cầu thang.\n- Nghiêm cấm đun nấu bằng bếp gas, bế...",
-      "score_0_1_2": 0,
-      "filter_ab": null
-    },
-    {
-      "query_id": "q4",
-      "query": "Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí theo quy định hiện hành của nhà trường?",
-      "gold_answer": "Sinh viên là con của người có công với cách mạng; sinh viên mồ côi cả cha lẫn mẹ; sinh viên bị khuyết tật nặng/đặc biệt nặng; và sinh viên dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
-      "gold_doc_id": "tuition-policy",
-      "expected_section": "## 3. Các đối tượng sinh viên được miễn 100% học phí",
-      "evidence_phrase": "Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí: Sinh viên là con của người có công với cách mạng... Sinh viên mồ côi cả cha lẫn mẹ... Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng... Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
-      "metadata_filter": null,
-      "top3": [
-        {
-          "rank": 1,
-          "score": 0.2381,
-          "doc_id": "dormitory-regulations::chunk_3",
-          "metadata": {
-            "doc_id": "dormitory-regulations::chunk_3",
-            "title": "Nội quy quản lý và quy định lưu trú Ký túc xá sinh viên",
-            "source_url": "https://ktx.hust.edu.vn/noi-quy-ky-tuc-xa",
-            "retrieved_at": "2026-08-03",
-            "document_version": "not-stated",
-            "audience": "student",
-            "category": "ky-tuc-xa",
-            "department": "ban-quan-ly-ky-tuc-xa",
-            "language": "vi",
-            "source": "data\\k3_university_services\\dormitory-regulations.md",
-            "chunk_index": 3
-          },
-          "content_preview": "## 3. Quy định về an toàn, vệ sinh và sử dụng thiết bị\n- Sinh viên có trách nhiệm giữ gìn vệ sinh chung trong phòng ở và khu vực hành lang, cầu thang.\n- Nghiêm cấm đun nấu bằng bếp gas, bếp từ công suất lớn hoặc thiết bị gây nguy cơ cháy nổ trong phòng ở. Nghiêm cấm tàng trữ, sử dụng chất cấm, rượu bia, cờ bạc và chất nổ dưới mọi hình thức.",
-          "evidence_hit": false
-        },
-        {
-          "rank": 2,
-          "score": 0.1847,
-          "doc_id": "tuition-policy::chunk_4",
-          "metadata": {
-            "doc_id": "tuition-policy::chunk_4",
+            "doc_id": "tuition-policy::chunk_1",
             "title": "Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí",
             "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=1205",
             "retrieved_at": "2026-08-03",
@@ -307,34 +327,14 @@
             "department": "phong-tai-chinh-ke-toan",
             "language": "vi",
             "source": "data\\k3_university_services\\tuition-policy.md",
-            "chunk_index": 4
+            "chunk_index": 1
           },
-          "content_preview": "## 4. Hồ sơ và thủ tục xin miễn giảm học phí\n- Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên.\n- Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ chính.",
-          "evidence_hit": false
-        },
-        {
-          "rank": 3,
-          "score": 0.1804,
-          "doc_id": "dormitory-regulations::chunk_2",
-          "metadata": {
-            "doc_id": "dormitory-regulations::chunk_2",
-            "title": "Nội quy quản lý và quy định lưu trú Ký túc xá sinh viên",
-            "source_url": "https://ktx.hust.edu.vn/noi-quy-ky-tuc-xa",
-            "retrieved_at": "2026-08-03",
-            "document_version": "not-stated",
-            "audience": "student",
-            "category": "ky-tuc-xa",
-            "department": "ban-quan-ly-ky-tuc-xa",
-            "language": "vi",
-            "source": "data\\k3_university_services\\dormitory-regulations.md",
-            "chunk_index": 2
-          },
-          "content_preview": "- Khách đến thăm sinh viên phải gửi giấy tờ tùy thân tại cổng bảo vệ và chỉ được tiếp khách tại phòng tiếp khách chung từ 08h00 đến 20h00. Không được đưa người ngoài vào ở qua đêm trong phòng ở ký túc xá.",
+          "content_preview": "## 2. Thời hạn nộp học phí và xử lý nợ học phí\n- Sinh viên có nghĩa vụ nộp đủ học phí theo đúng thời hạn thông báo của Phòng Tài chính - Kế toán (thường vào tuần thứ 6 đến tuần thứ 10 của học kỳ).\n- Sinh viên không nộp đủ học phí đúng hạn mà không có đơn xin gia hạn được phê duyệt sẽ bị hủy đăng ký học phần, không được dự thi kết thúc học phần và b",
           "evidence_hit": false
         }
       ],
       "evidence_hit": false,
-      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] ## 3. Quy định về an toàn, vệ sinh và sử dụng thiết bị\n- Sinh viên có trách nhiệm giữ gìn vệ sinh chung trong phòng ở và khu vực hành lang, cầu thang.\n- Nghiêm cấm đun nấu bằng bếp gas, bế...",
+      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] ## 3. Các đối tượng sinh viên được miễn 100% học phí\nSinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí theo quy định hiện hành:\n- Sinh viên là con của người có ...",
       "score_0_1_2": 0,
       "filter_ab": null
     },
@@ -351,27 +351,7 @@
       "top3": [
         {
           "rank": 1,
-          "score": 0.0876,
-          "doc_id": "course-registration-faculty::chunk_1",
-          "metadata": {
-            "doc_id": "course-registration-faculty::chunk_1",
-            "title": "Quy định về tư vấn và phê duyệt kế hoạch học tập dành cho Giảng viên và Cố vấn học tập",
-            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=789",
-            "retrieved_at": "2026-08-03",
-            "document_version": "not-stated",
-            "audience": "faculty",
-            "category": "hoc-vu",
-            "department": "phong-dao-tao",
-            "language": "vi",
-            "source": "data\\k3_university_services\\course-registration-faculty.md",
-            "chunk_index": 1
-          },
-          "content_preview": "## 1. Trách nhiệm của Cố vấn học tập (CVHT)\n- Cố vấn học tập có nhiệm vụ hướng dẫn sinh viên xây dựng lộ trình học tập toàn khóa phù hợp với năng lực và điều kiện cá nhân.\n- Kiểm tra danh sách đăng ký kế hoạch học tập của sinh viên được phân công quản lý trước khi mở đợt đăng ký lớp học chính thức.",
-          "evidence_hit": false
-        },
-        {
-          "rank": 2,
-          "score": 0.0761,
+          "score": 0.7683,
           "doc_id": "course-equivalency-policy::chunk_4",
           "metadata": {
             "doc_id": "course-equivalency-policy::chunk_4",
@@ -390,8 +370,28 @@
           "evidence_hit": true
         },
         {
+          "rank": 2,
+          "score": 0.7586,
+          "doc_id": "course-registration-faculty::chunk_0",
+          "metadata": {
+            "doc_id": "course-registration-faculty::chunk_0",
+            "title": "Quy định về tư vấn và phê duyệt kế hoạch học tập dành cho Giảng viên và Cố vấn học tập",
+            "source_url": "https://ctt.hust.edu.vn/Display/DisplayMNews?NewsID=789",
+            "retrieved_at": "2026-08-03",
+            "document_version": "not-stated",
+            "audience": "faculty",
+            "category": "hoc-vu",
+            "department": "phong-dao-tao",
+            "language": "vi",
+            "source": "data\\k3_university_services\\course-registration-faculty.md",
+            "chunk_index": 0
+          },
+          "content_preview": "# Quy định về tư vấn và phê duyệt kế hoạch học tập dành cho Giảng viên và Cố vấn học tập",
+          "evidence_hit": false
+        },
+        {
           "rank": 3,
-          "score": 0.0672,
+          "score": 0.7191,
           "doc_id": "course-equivalency-policy::chunk_2",
           "metadata": {
             "doc_id": "course-equivalency-policy::chunk_2",
@@ -411,22 +411,22 @@
         }
       ],
       "evidence_hit": true,
-      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] # Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí\n\n## 1. Mức thu học phí và phương thức tính\n- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh vi...",
+      "agent_answer": "[DEMO LLM] Answer generated from context preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.\n\nContext:\n[1] ## 3. Quy trình và thẩm quyền phê duyệt\n- Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục học phần tương đương/thay thế đối với các môn học do bộ môn phụ trách.\n- Trưởng Khoa/Viện k...",
       "score_0_1_2": 2,
       "filter_ab": {
         "without_filter_top3_docs": [
-          "tuition-policy::chunk_0",
-          "scholarship-policy::chunk_5",
-          "scholarship-policy::chunk_1"
-        ],
-        "with_filter_top3_docs": [
-          "course-registration-faculty::chunk_1",
           "course-equivalency-policy::chunk_4",
+          "course-registration-faculty::chunk_0",
           "course-equivalency-policy::chunk_2"
         ],
-        "excluded_wrong_audience": true
+        "with_filter_top3_docs": [
+          "course-equivalency-policy::chunk_4",
+          "course-registration-faculty::chunk_0",
+          "course-equivalency-policy::chunk_2"
+        ],
+        "excluded_wrong_audience": false
       }
     }
   ],
-  "total_score": 2
+  "total_score": 8
 }
