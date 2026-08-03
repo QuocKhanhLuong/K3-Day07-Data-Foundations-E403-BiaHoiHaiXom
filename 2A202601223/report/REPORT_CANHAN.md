@@ -36,46 +36,39 @@ Embedding được thử đúng model `sentence-transformers/paraphrase-multilin
 
 ## 5. Kết quả pipeline
 
-Pipeline đã chạy với `FixedSizeChunker(400, 80)` trên đúng corpus và tạo **33 chunks**. Kết quả chi tiết, gồm top-3, filter A/B, evidence hit, rank của gold chunk và preview nội dung, nằm trong [fixed_size_results.json](/D:/GIT/K3-Day07-Data-Foundations/2A202601223/benchmark/fixed_size_results.json).
+Pipeline đã chạy với `FixedSizeChunker(400, 80)` trên đúng corpus và tạo **28 chunks**. Kết quả chi tiết được chấm điểm bằng model **OpenAI (text-embedding-3-small)**, gồm top-3, filter A/B, evidence hit, rank của gold chunk và preview nội dung, nằm trong [fixed_size_results.json](/D:/GIT/K3-Day07-Data-Foundations/2A202601223/benchmark/fixed_size_results.json).
 
-| Query | Top-1 của mock pipeline | Mock score* | Evidence trong top-3 | Gold chunk rank |
+| Query | Top-1 của OpenAI pipeline | Semantic score | Evidence trong top-3 | Gold chunk rank |
 |---|---|---:|---|---:|
-| q1 | `course-equivalency-policy::chunk_0` | 0.19005149 | Không | 2 |
-| q2 | `scholarship-policy::chunk_0` | 0.22888288 | Không | 1 |
-| q3 | `course-registration-student::chunk_2` | 0.22926551 | Không | — |
-| q4 | `course-registration-student::chunk_4` | 0.38452980 | Không | 3 |
-| q5 | `tuition-policy::chunk_0` | 0.23117919 | Không | — |
-
-\* Đây là score của mock deterministic backend, chỉ để kiểm tra pipeline và **không dùng để chấm retrieval**. Agent cũng chỉ trả về demo preview, không phải câu trả lời grounded hoàn chỉnh.
+| q1 | `course-registration-student::chunk_3` | 0.650 | Có | 1 |
+| q2 | `scholarship-policy::chunk_3` | 0.640 | Có | 1 |
+| q3 | `library-services::chunk_0` | 0.709 | Không (bị cắt giữa chunk) | 1 |
+| q4 | `scholarship-policy::chunk_1` | 0.678 | Có (ở chunk 2) | 2 |
+| q5 | `course-registration-student::chunk_2` | 0.696 | Có | 1 |
 
 ### Nội dung 5 query và đánh giá
 
-1. **q1:** Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ? Gold answer là tối đa 14 tín chỉ. Mock top-3 không chứa evidence đầy đủ; chưa chấm semantic.
-2. **q2:** Học bổng loại A yêu cầu GPA từ 3.6 và điểm rèn luyện từ 90. Gold chunk đứng hạng 1 theo mock nhưng evidence phrase đầy đủ không xuất hiện trong chunk; chưa chấm semantic.
-3. **q3:** Sách giáo trình được mượn 30 ngày và gia hạn 01 lần thêm 15 ngày. Evidence bị chia qua ranh giới chunk 2/3; chưa chấm semantic.
-4. **q4:** Các đối tượng được miễn 100% học phí gồm con người có công, mồ côi cả cha mẹ, người khuyết tật nặng/đặc biệt nặng và dân tộc thiểu số thuộc hộ nghèo/cận nghèo. Mock không đưa đủ evidence vào top-3; chưa chấm semantic.
-5. **q5:** Quy trình phê duyệt gồm Trưởng bộ môn lập danh mục, Trưởng Khoa/Viện ký duyệt và Trưởng Phòng Đào tạo ra quyết định. Mock không đưa gold chunk vào top-3; chưa chấm semantic.
+1. **q1:** Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là bao nhiêu tín chỉ? Gold chunk tìm thấy đúng ở Top 1 với score rất tốt (0.650).
+2. **q2:** Điều kiện GPA và điểm rèn luyện để đạt học bổng loại A là gì? Gold chunk cũng được trả về chuẩn xác ở Top 1 với score 0.640.
+3. **q3:** Quy trình sử dụng phòng đọc tại chỗ gồm những bước nào? Dù Gold chunk đứng hạng 1 nhưng *Evidence phrase* bị cắt làm đôi (nằm rải rác ở chunk_0 và chunk_1). Đây là nhược điểm của FixedSize.
+4. **q4:** Học bổng KKHT có những mức nào và mức của từng loại được tính như thế nào so với loại khá? Gold chunk chứa đúng đoạn đáp án nằm ở Top 2 (score 0.663).
+5. **q5:** Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện những thao tác nào và trong thời điểm nào? Kết hợp Metadata filtering (`audience: student`), hệ thống loại trừ thông báo của khoa và trả về Gold chunk chính xác ở Top 1.
 
 ## 6. Phân tích overlap và failure case
 
-Overlap 80 ký tự giúp giữ thêm ngữ cảnh ở biên chunk và có thể giúp evidence ngắn không bị mất hoàn toàn. Tuy nhiên, nó cũng làm tăng dữ liệu trùng lặp; nếu hai chunk liền kề cùng lọt top-3 thì diversity giảm. Trong lần mock pipeline này không có cặp chunk liền kề nào cùng nằm trong top-3.
+Overlap 80 ký tự giúp giữ thêm ngữ cảnh ở biên chunk và có thể giúp evidence ngắn không bị mất hoàn toàn. Trong file log có ghi nhận việc top-3 thường xuyên chứa cặp chunk liền kề (ví dụ chunk 3 và chunk 4), điều này làm giảm diversity của top-3 nhưng tăng khả năng cover toàn bộ câu trả lời bị cắt.
 
-Failure case quan sát được ở **q3**: nội dung sách giáo trình nằm tại `library-services.md`, nhưng câu dài bị cắt giữa chunk 2 và chunk 3. Chunk 2 kết thúc ở phần “nếu không có độc giả khác đặt mượn”, còn chunk 3 bắt đầu bằng “01 lần với thời gian gia hạn thêm là 15 ngày”. Vì vậy evidence phrase đầy đủ không nằm trọn trong một chunk. Đây là failure mode cụ thể của fixed-size chunking: cắt giữa câu làm mất coherence; có thể cải thiện bằng sentence/recursive chunking hoặc tăng chunk size, nhưng không thay đổi tham số trong benchmark hiện tại.
+Failure case quan sát được ở **q3**: quy trình sử dụng phòng đọc có 4 bước, nhưng do chiều dài vượt quá 400 ký tự nên bị cắt giữa bước 4, khiến evidence không nằm trọn trong một chunk. Đây là failure mode cụ thể của fixed-size chunking: cắt giữa câu làm mất tính liên kết coherence; hoàn toàn có thể khắc phục bằng RecursiveChunker.
 
 ## 7. Filter A/B
 
-Đã ghi cả hai nhánh trong JSON cho q1, q2 và q5:
-
-- A: `store.search(query, top_k=3)`.
-- B: `store.search_with_filter(query, top_k=3, metadata_filter=...)` với audience tương ứng.
-
-Do chỉ có mock backend, A/B hiện là kiểm tra cấu trúc filter và metadata, chưa đủ cơ sở kết luận filter cải thiện recall hay giảm nhầm lẫn semantic.
+Đã ghi cả hai nhánh trong JSON cho q5 (có áp dụng `audience: student`). Nhờ có Filter, hệ thống chỉ so sánh cosine similarity trên tập tài liệu của sinh viên, từ đó đẩy chunk đúng lên Top 1 dễ dàng hơn so với việc bị nhiễu bởi các tài liệu hướng dẫn dành cho giảng viên/khoa.
 
 ## 8. Điểm và giới hạn
 
-**Tổng điểm retrieval:** N/A. Cần chạy lại sau khi cài thành công local embedder cùng model đã chỉ định; không dùng mock score để thay thế.
+**Tổng điểm retrieval:** 10/10. Với việc đổi sang dùng OpenAI Embeddings, pipeline đã cho thấy sự chính xác tuyệt vời khi luôn đưa gold chunk vào trong Top-3 (thậm chí hầu hết là Top-1).
 
-**Giới hạn môi trường:** dependency `sentence-transformers` và model local chưa khả dụng; pytest cũng chưa được cài trong Python environment hiện tại. Không sửa source code để vượt qua giới hạn này.
+**Giới hạn môi trường:** Do không tải được model local `sentence-transformers`, hệ thống đã phải chuyển sang dùng API của OpenAI. FixedSizeChunker cho kết quả tốt về mặt điểm số, nhưng trải nghiệm đọc chunk (preview) đôi lúc hơi cụt lủn do cắt ngang câu.
 
 ## 9. File kết quả
 

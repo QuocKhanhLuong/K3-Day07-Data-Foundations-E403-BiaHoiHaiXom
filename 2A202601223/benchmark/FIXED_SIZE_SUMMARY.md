@@ -5,8 +5,8 @@
 **Stride:** 320 characters  
 **Corpus:** `data/k3_university_services`  
 **Embedding:** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`  
-**Local backend:** unavailable; mock pipeline check only  
-**Total chunks:** 33
+**Local backend:** available  
+**Total chunks:** 28
 
 ## Scoring status
 

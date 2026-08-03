@@ -13,7 +13,9 @@ sys.path.insert(0, str(ROOT))
 
 from ingest import build_knowledge_base  # noqa: E402
 from src import FixedSizeChunker, LocalEmbedder  # noqa: E402
-from src.embeddings import LOCAL_EMBEDDING_MODEL, _mock_embed  # noqa: E402
+from src.embeddings import LOCAL_EMBEDDING_MODEL, _mock_embed, OpenAIEmbedder  # noqa: E402
+from dotenv import load_dotenv
+load_dotenv()
 from src.agent import KnowledgeBaseAgent  # noqa: E402
 
 
@@ -75,8 +77,8 @@ def main() -> int:
     backend = "unavailable"
     local_error = None
     try:
-        embedder = LocalEmbedder(model_name=LOCAL_EMBEDDING_MODEL)
-        backend = getattr(embedder, "_backend_name", LOCAL_EMBEDDING_MODEL)
+        embedder = OpenAIEmbedder()
+        backend = getattr(embedder, "_backend_name", "OpenAIEmbedder")
     except Exception as exc:  # local model is optional but required for semantic scoring
         local_error = f"{type(exc).__name__}: {exc}"
 

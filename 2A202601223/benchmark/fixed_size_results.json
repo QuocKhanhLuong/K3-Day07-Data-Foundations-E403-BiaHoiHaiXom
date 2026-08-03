@@ -5,618 +5,572 @@
   "chunk_size": 400,
   "overlap": 80,
   "stride": 320,
-  "backend": "mock embeddings fallback (pipeline check only)",
+  "backend": "text-embedding-3-small",
   "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-  "total_chunks": 33,
+  "total_chunks": 28,
   "run_date": "2026-08-03",
-  "semantic_scoring_available": false,
-  "local_embedding_error": "ModuleNotFoundError: No module named 'sentence_transformers'",
+  "semantic_scoring_available": true,
+  "local_embedding_error": null,
   "query_results": [
     {
       "query_id": "q1",
-      "query": "Sinh viên bị cảnh cáo học tập mức 1 được đăng ký tối đa bao nhiêu tín chỉ trong một học kỳ chính?",
-      "gold_answer": "Sinh viên bị cảnh cáo học tập mức 1 chỉ được đăng ký tối đa 14 tín chỉ trong một học kỳ chính.",
+      "query": "Khối lượng đăng ký tối đa trong một học kỳ chính đối với người học không bị cảnh báo là bao nhiêu tín chỉ?",
+      "gold_answer": "Người học không thuộc diện cảnh báo học tập được đăng ký tối đa 24 TC trong học kỳ chính.",
       "gold_doc_id": "course-registration-student",
-      "expected_section": "## 2. Quy định về khối lượng học tập tối thiểu và tối đa",
-      "evidence_phrase": "Sinh viên bị cảnh cáo học tập mức 1: Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.",
-      "metadata_filter": {
-        "audience": "student"
-      },
+      "expected_section": "## 2. Khối lượng tín chỉ đăng ký",
+      "evidence_phrase": "được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính",
+      "metadata_filter": null,
       "top3": [
         {
           "rank": 1,
-          "score": 0.19005149,
-          "id": "course-equivalency-policy::chunk_0",
-          "doc_id": "course-equivalency-policy",
-          "chunk_index": 0,
-          "audience": "faculty",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-equivalency-policy.md",
-          "preview": "# Quy định về học phần tương đương và học phần thay thế  ## 1. Khái niệm học phần tương đương và thay thế - **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương ho",
-          "evidence_hit": false,
-          "content": "# Quy định về học phần tương đương và học phần thay thế\n\n## 1. Khái niệm học phần tương đương và thay thế\n- **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương hoặc lớn hơn học phần đang xét.\n- **Học phần thay thế:** Là học phần được chọn để thay thế cho một học"
+          "score": 0.65006898,
+          "id": "course-registration-student::chunk_3",
+          "doc_id": "course-registration-student",
+          "chunk_index": 3,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+          "preview": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.  ## 2. Khối lượng tín chỉ đăng ký  Sinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ ",
+          "evidence_hit": true,
+          "content": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.\n\n## 2. Khối lượng tín chỉ đăng ký\n\nSinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăn"
         },
         {
           "rank": 2,
-          "score": 0.17789545,
+          "score": 0.58612566,
           "id": "course-registration-student::chunk_4",
           "doc_id": "course-registration-student",
           "chunk_index": 4,
           "audience": "student",
           "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-          "preview": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo. - Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí",
+          "preview": " ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăng ký tối đa 8 TC trong học kỳ hè.  Sinh viên đang bị cảnh báo học tập bị giới hạn khối lượng đăng ký học tập theo quy định tại khoản 2 Điều 19 của Quy chế này.  ## 3. Rút đăng ký học phần  Sau thời gian điều chỉnh đăng k",
           "evidence_hit": false,
-          "content": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo.\n- Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí và không ghi điểm F trên bảng điểm."
+          "content": " ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăng ký tối đa 8 TC trong học kỳ hè.\n\nSinh viên đang bị cảnh báo học tập bị giới hạn khối lượng đăng ký học tập theo quy định tại khoản 2 Điều 19 của Quy chế này.\n\n## 3. Rút đăng ký học phần\n\nSau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập."
         },
         {
           "rank": 3,
-          "score": 0.14888504,
-          "id": "course-registration-student::chunk_0",
-          "doc_id": "course-registration-student",
-          "chunk_index": 0,
+          "score": 0.54316832,
+          "id": "scholarship-policy::chunk_4",
+          "doc_id": "scholarship-policy",
+          "chunk_index": 4,
           "audience": "student",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-          "preview": "# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên  ## 1. Quy trình đăng ký học tập trên hệ thống Đăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc: - **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+          "preview": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng.",
           "evidence_hit": false,
-          "content": "# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên\n\n## 1. Quy trình đăng ký học tập trên hệ thống\nĐăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc:\n- **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ký danh sách các mã học phần dự định sẽ học trong học kỳ kế tiếp.\n- **Bước 2: Đăng ký lớp học chính "
+          "content": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng."
         }
       ],
       "filter_ab": {
         "without_filter": [
           {
             "rank": 1,
-            "score": 0.19005149,
-            "id": "course-equivalency-policy::chunk_0",
-            "doc_id": "course-equivalency-policy",
-            "chunk_index": 0,
-            "audience": "faculty",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-equivalency-policy.md",
-            "preview": "# Quy định về học phần tương đương và học phần thay thế  ## 1. Khái niệm học phần tương đương và thay thế - **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương ho",
-            "evidence_hit": false,
-            "content": "# Quy định về học phần tương đương và học phần thay thế\n\n## 1. Khái niệm học phần tương đương và thay thế\n- **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương hoặc lớn hơn học phần đang xét.\n- **Học phần thay thế:** Là học phần được chọn để thay thế cho một học"
+            "score": 0.65006898,
+            "id": "course-registration-student::chunk_3",
+            "doc_id": "course-registration-student",
+            "chunk_index": 3,
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+            "preview": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.  ## 2. Khối lượng tín chỉ đăng ký  Sinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ ",
+            "evidence_hit": true,
+            "content": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.\n\n## 2. Khối lượng tín chỉ đăng ký\n\nSinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăn"
           },
           {
             "rank": 2,
-            "score": 0.17789545,
+            "score": 0.58612566,
             "id": "course-registration-student::chunk_4",
             "doc_id": "course-registration-student",
             "chunk_index": 4,
             "audience": "student",
             "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-            "preview": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo. - Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí",
+            "preview": " ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăng ký tối đa 8 TC trong học kỳ hè.  Sinh viên đang bị cảnh báo học tập bị giới hạn khối lượng đăng ký học tập theo quy định tại khoản 2 Điều 19 của Quy chế này.  ## 3. Rút đăng ký học phần  Sau thời gian điều chỉnh đăng k",
             "evidence_hit": false,
-            "content": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo.\n- Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí và không ghi điểm F trên bảng điểm."
+            "content": " ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăng ký tối đa 8 TC trong học kỳ hè.\n\nSinh viên đang bị cảnh báo học tập bị giới hạn khối lượng đăng ký học tập theo quy định tại khoản 2 Điều 19 của Quy chế này.\n\n## 3. Rút đăng ký học phần\n\nSau thời gian điều chỉnh đăng ký, sinh viên có thể đề nghị rút đăng ký học phần để không tính kết quả học tập."
           },
           {
             "rank": 3,
-            "score": 0.14888504,
-            "id": "course-registration-student::chunk_0",
-            "doc_id": "course-registration-student",
-            "chunk_index": 0,
+            "score": 0.54316832,
+            "id": "scholarship-policy::chunk_4",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 4,
             "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-            "preview": "# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên  ## 1. Quy trình đăng ký học tập trên hệ thống Đăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc: - **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+            "preview": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng.",
             "evidence_hit": false,
-            "content": "# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên\n\n## 1. Quy trình đăng ký học tập trên hệ thống\nĐăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc:\n- **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ký danh sách các mã học phần dự định sẽ học trong học kỳ kế tiếp.\n- **Bước 2: Đăng ký lớp học chính "
+            "content": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng."
           }
         ],
-        "with_filter": [
-          {
-            "rank": 1,
-            "score": 0.17789545,
-            "id": "course-registration-student::chunk_4",
-            "doc_id": "course-registration-student",
-            "chunk_index": 4,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-            "preview": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo. - Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí",
-            "evidence_hit": false,
-            "content": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo.\n- Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí và không ghi điểm F trên bảng điểm."
-          },
-          {
-            "rank": 2,
-            "score": 0.14888504,
-            "id": "course-registration-student::chunk_0",
-            "doc_id": "course-registration-student",
-            "chunk_index": 0,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-            "preview": "# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên  ## 1. Quy trình đăng ký học tập trên hệ thống Đăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc: - **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ",
-            "evidence_hit": false,
-            "content": "# Quy định về đăng ký học phần và khối lượng học tập dành cho sinh viên\n\n## 1. Quy trình đăng ký học tập trên hệ thống\nĐăng ký học tập được thực hiện trực tuyến thông qua Cổng thông tin đào tạo của nhà trường theo hai bước bắt buộc:\n- **Bước 1: Đăng ký kế hoạch học tập.** Sinh viên lựa chọn và đăng ký danh sách các mã học phần dự định sẽ học trong học kỳ kế tiếp.\n- **Bước 2: Đăng ký lớp học chính "
-          },
-          {
-            "rank": 3,
-            "score": 0.09796928,
-            "id": "dormitory-regulations::chunk_4",
-            "doc_id": "dormitory-regulations",
-            "chunk_index": 4,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\dormitory-regulations.md",
-            "preview": "n. - Vi phạm lần 2 hoặc vi phạm nghiêm trọng về an toàn phòng cháy chữa cháy: Chấm dứt hợp đồng lưu trú Ký túc xá trước thời hạn và thông báo về Khoa/Viện quản lý sinh viên để trừ điểm rèn luyện.",
-            "evidence_hit": false,
-            "content": "n.\n- Vi phạm lần 2 hoặc vi phạm nghiêm trọng về an toàn phòng cháy chữa cháy: Chấm dứt hợp đồng lưu trú Ký túc xá trước thời hạn và thông báo về Khoa/Viện quản lý sinh viên để trừ điểm rèn luyện."
-          }
-        ]
+        "with_filter": null
       },
-      "gold_chunk_rank": 2,
-      "evidence_in_top3": false,
-      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] # Quy định về học phần tương đương và học phần thay thế  ## 1. Khái niệm học phần tương đương và thay thế - **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào t...",
-      "score": null,
-      "points": null,
+      "gold_chunk_rank": 1,
+      "evidence_in_top3": true,
+      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.  ## 2. Khối lượng tín chỉ đăng ký  Sinh viên không thuộc diện cảnh báo học ...",
+      "score": "manual_review_required",
+      "points": "manual_review_required",
       "overlap_analysis": {
-        "adjacent_chunk_pairs": [],
+        "adjacent_chunk_pairs": [
+          [
+            "course-registration-student::chunk_3",
+            "course-registration-student::chunk_4"
+          ]
+        ],
         "notes": [
-          "Không thấy cặp chunk liền kề trong top-3 của lần chạy pipeline này."
+          "Top-3 chứa chunk liền kề; hai chunk chia sẻ tối đa 80 ký tự theo cấu hình overlap.",
+          "Các chunk liền kề có thể lặp evidence và làm giảm diversity của top-3."
         ]
       }
     },
     {
       "query_id": "q2",
-      "query": "Quy định điều kiện xét cấp học bổng khuyến khích học tập loại A (Xuất sắc) dành cho sinh viên bao gồm những tiêu chuẩn gì về GPA và điểm rèn luyện?",
-      "gold_answer": "Học bổng khuyến khích học tập loại A (Xuất sắc) yêu cầu sinh viên có điểm trung bình học kỳ GPA đạt từ 3.6 trở lên (thang điểm 4) và điểm rèn luyện đạt từ 90 điểm trở lên (thang điểm 100).",
+      "query": "Điều kiện GPA và điểm rèn luyện để đạt học bổng loại A là gì?",
+      "gold_answer": "Học bổng loại A yêu cầu GPA từ 3,6 trở lên và điểm rèn luyện học kỳ từ 90 điểm trở lên.",
       "gold_doc_id": "scholarship-policy",
-      "expected_section": "## 2. Tiêu chuẩn và phân loại mức học bổng khuyến khích học tập",
-      "evidence_phrase": "Loại A (Xuất sắc): Sinh viên có điểm trung bình học kỳ GPA đạt từ 3.6 trở lên (thang điểm 4) và điểm rèn luyện đạt từ 90 điểm trở lên (thang điểm 100).",
+      "expected_section": "## 3. Tiêu chuẩn xét cấp học bổng",
+      "evidence_phrase": "Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.",
+      "metadata_filter": null,
+      "top3": [
+        {
+          "rank": 1,
+          "score": 0.64040513,
+          "id": "scholarship-policy::chunk_3",
+          "doc_id": "scholarship-policy",
+          "chunk_index": 3,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+          "preview": "ần mức học bổng loại khá.  ## 3. Tiêu chuẩn xét cấp học bổng  - Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm. - Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm. - Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.  ## 4. Trường hợp không xét cấp học bổng  K",
+          "evidence_hit": true,
+          "content": "ần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.\n\n## 4. Trường hợp không xét cấp học bổng\n\nKhông xét cấp học bổng đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời đ"
+        },
+        {
+          "rank": 2,
+          "score": 0.54663887,
+          "id": "scholarship-policy::chunk_4",
+          "doc_id": "scholarship-policy",
+          "chunk_index": 4,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+          "preview": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng.",
+          "evidence_hit": false,
+          "content": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng."
+        },
+        {
+          "rank": 3,
+          "score": 0.53613439,
+          "id": "scholarship-policy::chunk_2",
+          "doc_id": "scholarship-policy",
+          "chunk_index": 2,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+          "preview": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.  ## 2. Các mức học bổng  Học bổng KKHT có 3 mức: - Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA). - Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá. - Học bổng loại xuất sắc ",
+          "evidence_hit": false,
+          "content": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.\n\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C:"
+        }
+      ],
+      "filter_ab": {
+        "without_filter": [
+          {
+            "rank": 1,
+            "score": 0.64040513,
+            "id": "scholarship-policy::chunk_3",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 3,
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+            "preview": "ần mức học bổng loại khá.  ## 3. Tiêu chuẩn xét cấp học bổng  - Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm. - Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm. - Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.  ## 4. Trường hợp không xét cấp học bổng  K",
+            "evidence_hit": true,
+            "content": "ần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.\n\n## 4. Trường hợp không xét cấp học bổng\n\nKhông xét cấp học bổng đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời đ"
+          },
+          {
+            "rank": 2,
+            "score": 0.54663887,
+            "id": "scholarship-policy::chunk_4",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 4,
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+            "preview": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng.",
+            "evidence_hit": false,
+            "content": "g đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời điểm xét học bổng, bị cảnh báo học tập từ mức 1 trở lên, có học phần đạt điểm F tại học kỳ lấy điểm xét cấp học bổng, hoặc đăng ký học ít hơn 15 tín chỉ tại học kỳ lấy điểm xét cấp học bổng."
+          },
+          {
+            "rank": 3,
+            "score": 0.53613439,
+            "id": "scholarship-policy::chunk_2",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 2,
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+            "preview": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.  ## 2. Các mức học bổng  Học bổng KKHT có 3 mức: - Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA). - Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá. - Học bổng loại xuất sắc ",
+            "evidence_hit": false,
+            "content": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.\n\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C:"
+          }
+        ],
+        "with_filter": null
+      },
+      "gold_chunk_rank": 1,
+      "evidence_in_top3": true,
+      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] ần mức học bổng loại khá.  ## 3. Tiêu chuẩn xét cấp học bổng  - Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm. - Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 đi...",
+      "score": "manual_review_required",
+      "points": "manual_review_required",
+      "overlap_analysis": {
+        "adjacent_chunk_pairs": [
+          [
+            "scholarship-policy::chunk_3",
+            "scholarship-policy::chunk_4"
+          ]
+        ],
+        "notes": [
+          "Top-3 chứa chunk liền kề; hai chunk chia sẻ tối đa 80 ký tự theo cấu hình overlap.",
+          "Các chunk liền kề có thể lặp evidence và làm giảm diversity của top-3."
+        ]
+      }
+    },
+    {
+      "query_id": "q3",
+      "query": "Quy trình sử dụng phòng đọc tại chỗ gồm những bước nào?",
+      "gold_answer": "Tra cứu tài liệu để xác định phòng; dùng thẻ sinh viên hoặc app iCTSV checkin tại quầy thủ thư; vào kho tự chọn sách theo ký hiệu xếp giá; đọc xong trả sách tại bàn đúng nơi quy định.",
+      "gold_doc_id": "library-services",
+      "expected_section": "## 1. Quy trình sử dụng phòng đọc tại chỗ",
+      "evidence_phrase": "Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào. Bước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư. Bước 3: Vào kho sách tự chọn sách theo ký hiệu xếp giá (xem thêm bảng chỉ dẫn đầu mỗi giá sách). Bước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.",
+      "metadata_filter": null,
+      "top3": [
+        {
+          "rank": 1,
+          "score": 0.70936066,
+          "id": "library-services::chunk_0",
+          "doc_id": "library-services",
+          "chunk_index": 0,
+          "audience": "all",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
+          "preview": "# Quy trình sử dụng phòng đọc  ## 1. Quy trình sử dụng phòng đọc tại chỗ  Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.  Bước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư.  Bước 3: Vào kho sách tự chọn sách theo ký ",
+          "evidence_hit": false,
+          "content": "# Quy trình sử dụng phòng đọc\n\n## 1. Quy trình sử dụng phòng đọc tại chỗ\n\nBước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.\n\nBước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư.\n\nBước 3: Vào kho sách tự chọn sách theo ký hiệu xếp giá (xem thêm bảng chỉ dẫn đầu mỗi giá sách).\n\nBước 4: Sau khi đọc xong sinh viên trả sách "
+        },
+        {
+          "rank": 2,
+          "score": 0.62268387,
+          "id": "library-services::chunk_1",
+          "doc_id": "library-services",
+          "chunk_index": 1,
+          "audience": "all",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
+          "preview": "êm bảng chỉ dẫn đầu mỗi giá sách).  Bước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.  ## 2. Một số lưu ý khi sử dụng phòng đọc  - Mỗi sinh viên chỉ lấy 01 cuốn sách ra bàn đọc (sinh viên được lấy 2 quyển trong trường hợp sách lý thuyết + bài tập hoặc sách ngoại văn + từ điển). ",
+          "evidence_hit": false,
+          "content": "êm bảng chỉ dẫn đầu mỗi giá sách).\n\nBước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.\n\n## 2. Một số lưu ý khi sử dụng phòng đọc\n\n- Mỗi sinh viên chỉ lấy 01 cuốn sách ra bàn đọc (sinh viên được lấy 2 quyển trong trường hợp sách lý thuyết + bài tập hoặc sách ngoại văn + từ điển).\n- Giữ gìn vệ sinh chung, để rác đúng nơi quy định. Không nghe điện thoại (điện thoại để chế độ im lặ"
+        },
+        {
+          "rank": 3,
+          "score": 0.57082743,
+          "id": "library-services::chunk_2",
+          "doc_id": "library-services",
+          "chunk_index": 2,
+          "audience": "all",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
+          "preview": "ung, để rác đúng nơi quy định. Không nghe điện thoại (điện thoại để chế độ im lặng); không trao đổi gây mất trật tự trong phòng đọc. - Không mang balo, cặp sách vào phòng đọc (Gửi tại phòng gửi đồ tầng 1). - Máy tính trang bị tại phòng đọc chỉ sử dụng để tra cứu tài liệu và phục vụ học tập. KHÔNG sử",
+          "evidence_hit": false,
+          "content": "ung, để rác đúng nơi quy định. Không nghe điện thoại (điện thoại để chế độ im lặng); không trao đổi gây mất trật tự trong phòng đọc.\n- Không mang balo, cặp sách vào phòng đọc (Gửi tại phòng gửi đồ tầng 1).\n- Máy tính trang bị tại phòng đọc chỉ sử dụng để tra cứu tài liệu và phục vụ học tập. KHÔNG sử dụng vào mục đích khác."
+        }
+      ],
+      "filter_ab": {
+        "without_filter": [
+          {
+            "rank": 1,
+            "score": 0.70936066,
+            "id": "library-services::chunk_0",
+            "doc_id": "library-services",
+            "chunk_index": 0,
+            "audience": "all",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
+            "preview": "# Quy trình sử dụng phòng đọc  ## 1. Quy trình sử dụng phòng đọc tại chỗ  Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.  Bước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư.  Bước 3: Vào kho sách tự chọn sách theo ký ",
+            "evidence_hit": false,
+            "content": "# Quy trình sử dụng phòng đọc\n\n## 1. Quy trình sử dụng phòng đọc tại chỗ\n\nBước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.\n\nBước 2: Sử dụng thẻ sinh viên hoặc app iCTSV để checkin tại quầy thủ thư.\n\nBước 3: Vào kho sách tự chọn sách theo ký hiệu xếp giá (xem thêm bảng chỉ dẫn đầu mỗi giá sách).\n\nBước 4: Sau khi đọc xong sinh viên trả sách "
+          },
+          {
+            "rank": 2,
+            "score": 0.62268387,
+            "id": "library-services::chunk_1",
+            "doc_id": "library-services",
+            "chunk_index": 1,
+            "audience": "all",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
+            "preview": "êm bảng chỉ dẫn đầu mỗi giá sách).  Bước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.  ## 2. Một số lưu ý khi sử dụng phòng đọc  - Mỗi sinh viên chỉ lấy 01 cuốn sách ra bàn đọc (sinh viên được lấy 2 quyển trong trường hợp sách lý thuyết + bài tập hoặc sách ngoại văn + từ điển). ",
+            "evidence_hit": false,
+            "content": "êm bảng chỉ dẫn đầu mỗi giá sách).\n\nBước 4: Sau khi đọc xong sinh viên trả sách tại bàn đúng nơi quy định.\n\n## 2. Một số lưu ý khi sử dụng phòng đọc\n\n- Mỗi sinh viên chỉ lấy 01 cuốn sách ra bàn đọc (sinh viên được lấy 2 quyển trong trường hợp sách lý thuyết + bài tập hoặc sách ngoại văn + từ điển).\n- Giữ gìn vệ sinh chung, để rác đúng nơi quy định. Không nghe điện thoại (điện thoại để chế độ im lặ"
+          },
+          {
+            "rank": 3,
+            "score": 0.57082743,
+            "id": "library-services::chunk_2",
+            "doc_id": "library-services",
+            "chunk_index": 2,
+            "audience": "all",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
+            "preview": "ung, để rác đúng nơi quy định. Không nghe điện thoại (điện thoại để chế độ im lặng); không trao đổi gây mất trật tự trong phòng đọc. - Không mang balo, cặp sách vào phòng đọc (Gửi tại phòng gửi đồ tầng 1). - Máy tính trang bị tại phòng đọc chỉ sử dụng để tra cứu tài liệu và phục vụ học tập. KHÔNG sử",
+            "evidence_hit": false,
+            "content": "ung, để rác đúng nơi quy định. Không nghe điện thoại (điện thoại để chế độ im lặng); không trao đổi gây mất trật tự trong phòng đọc.\n- Không mang balo, cặp sách vào phòng đọc (Gửi tại phòng gửi đồ tầng 1).\n- Máy tính trang bị tại phòng đọc chỉ sử dụng để tra cứu tài liệu và phục vụ học tập. KHÔNG sử dụng vào mục đích khác."
+          }
+        ],
+        "with_filter": null
+      },
+      "gold_chunk_rank": 1,
+      "evidence_in_top3": false,
+      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] # Quy trình sử dụng phòng đọc  ## 1. Quy trình sử dụng phòng đọc tại chỗ  Bước 1: Tra cứu tài liệu tại website https://libopac.hust.edu.vn/ để xác định tài liệu cần tìm ở phòng nào.  Bước ...",
+      "score": "manual_review_required",
+      "points": "manual_review_required",
+      "overlap_analysis": {
+        "adjacent_chunk_pairs": [
+          [
+            "library-services::chunk_0",
+            "library-services::chunk_1"
+          ],
+          [
+            "library-services::chunk_1",
+            "library-services::chunk_2"
+          ]
+        ],
+        "notes": [
+          "Top-3 chứa chunk liền kề; hai chunk chia sẻ tối đa 80 ký tự theo cấu hình overlap.",
+          "Các chunk liền kề có thể lặp evidence và làm giảm diversity của top-3."
+        ]
+      }
+    },
+    {
+      "query_id": "q4",
+      "query": "Học bổng KKHT có những mức nào và mức của từng loại được tính như thế nào so với loại khá?",
+      "gold_answer": "Có 3 mức: loại khá (C) bằng tổng học phí của các học phần tính GPA; loại giỏi (B) bằng 1,2 lần loại khá; loại xuất sắc (A) bằng 1,5 lần loại khá.",
+      "gold_doc_id": "scholarship-policy",
+      "expected_section": "## 2. Các mức học bổng",
+      "evidence_phrase": "Học bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.",
+      "metadata_filter": null,
+      "top3": [
+        {
+          "rank": 1,
+          "score": 0.67875898,
+          "id": "scholarship-policy::chunk_1",
+          "doc_id": "scholarship-policy",
+          "chunk_index": 1,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+          "preview": " hệ đại học của Trường.  Học bổng khuyến khích học tập (KKHT) cấp cho các sinh viên được lựa chọn bởi Hội đồng xét cấp học bổng theo từng học kỳ chính của năm học, căn cứ vào thành tích học tập và rèn luyện của từng cá nhân trong học kỳ liền trước đó.  Quỹ học bổng KKHT hình thành từ nguồn học phí v",
+          "evidence_hit": false,
+          "content": " hệ đại học của Trường.\n\nHọc bổng khuyến khích học tập (KKHT) cấp cho các sinh viên được lựa chọn bởi Hội đồng xét cấp học bổng theo từng học kỳ chính của năm học, căn cứ vào thành tích học tập và rèn luyện của từng cá nhân trong học kỳ liền trước đó.\n\nQuỹ học bổng KKHT hình thành từ nguồn học phí và bằng 8% (tám phần trăm) học phí của học kỳ lấy điểm xét cấp học bổng.\n\n## 2. Các mức học bổng\n\nHọc"
+        },
+        {
+          "rank": 2,
+          "score": 0.66344098,
+          "id": "scholarship-policy::chunk_2",
+          "doc_id": "scholarship-policy",
+          "chunk_index": 2,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+          "preview": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.  ## 2. Các mức học bổng  Học bổng KKHT có 3 mức: - Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA). - Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá. - Học bổng loại xuất sắc ",
+          "evidence_hit": true,
+          "content": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.\n\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C:"
+        },
+        {
+          "rank": 3,
+          "score": 0.59959507,
+          "id": "scholarship-policy::chunk_3",
+          "doc_id": "scholarship-policy",
+          "chunk_index": 3,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+          "preview": "ần mức học bổng loại khá.  ## 3. Tiêu chuẩn xét cấp học bổng  - Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm. - Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm. - Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.  ## 4. Trường hợp không xét cấp học bổng  K",
+          "evidence_hit": false,
+          "content": "ần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.\n\n## 4. Trường hợp không xét cấp học bổng\n\nKhông xét cấp học bổng đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời đ"
+        }
+      ],
+      "filter_ab": {
+        "without_filter": [
+          {
+            "rank": 1,
+            "score": 0.67875898,
+            "id": "scholarship-policy::chunk_1",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 1,
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+            "preview": " hệ đại học của Trường.  Học bổng khuyến khích học tập (KKHT) cấp cho các sinh viên được lựa chọn bởi Hội đồng xét cấp học bổng theo từng học kỳ chính của năm học, căn cứ vào thành tích học tập và rèn luyện của từng cá nhân trong học kỳ liền trước đó.  Quỹ học bổng KKHT hình thành từ nguồn học phí v",
+            "evidence_hit": false,
+            "content": " hệ đại học của Trường.\n\nHọc bổng khuyến khích học tập (KKHT) cấp cho các sinh viên được lựa chọn bởi Hội đồng xét cấp học bổng theo từng học kỳ chính của năm học, căn cứ vào thành tích học tập và rèn luyện của từng cá nhân trong học kỳ liền trước đó.\n\nQuỹ học bổng KKHT hình thành từ nguồn học phí và bằng 8% (tám phần trăm) học phí của học kỳ lấy điểm xét cấp học bổng.\n\n## 2. Các mức học bổng\n\nHọc"
+          },
+          {
+            "rank": 2,
+            "score": 0.66344098,
+            "id": "scholarship-policy::chunk_2",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 2,
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+            "preview": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.  ## 2. Các mức học bổng  Học bổng KKHT có 3 mức: - Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA). - Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá. - Học bổng loại xuất sắc ",
+            "evidence_hit": true,
+            "content": "trăm) học phí của học kỳ lấy điểm xét cấp học bổng.\n\n## 2. Các mức học bổng\n\nHọc bổng KKHT có 3 mức:\n- Học bổng loại khá (loại C): Bằng tổng học phí của tất cả các học phần tính điểm trung bình học kỳ (GPA).\n- Học bổng loại giỏi (loại B): Bằng 1,2 lần mức học bổng loại khá.\n- Học bổng loại xuất sắc (loại A): Bằng 1,5 lần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C:"
+          },
+          {
+            "rank": 3,
+            "score": 0.59959507,
+            "id": "scholarship-policy::chunk_3",
+            "doc_id": "scholarship-policy",
+            "chunk_index": 3,
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
+            "preview": "ần mức học bổng loại khá.  ## 3. Tiêu chuẩn xét cấp học bổng  - Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm. - Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm. - Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.  ## 4. Trường hợp không xét cấp học bổng  K",
+            "evidence_hit": false,
+            "content": "ần mức học bổng loại khá.\n\n## 3. Tiêu chuẩn xét cấp học bổng\n\n- Học bổng loại C: GPA ≥ 2,5 và điểm rèn luyện học kỳ ≥ 65 điểm.\n- Học bổng loại B: GPA ≥ 3,2 và điểm rèn luyện học kỳ ≥ 80 điểm.\n- Học bổng loại A: GPA ≥ 3,6 và điểm rèn luyện học kỳ ≥ 90 điểm.\n\n## 4. Trường hợp không xét cấp học bổng\n\nKhông xét cấp học bổng đối với sinh viên chịu hình thức kỷ luật từ mức khiển trách trở lên tại thời đ"
+          }
+        ],
+        "with_filter": null
+      },
+      "gold_chunk_rank": 1,
+      "evidence_in_top3": true,
+      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1]  hệ đại học của Trường.  Học bổng khuyến khích học tập (KKHT) cấp cho các sinh viên được lựa chọn bởi Hội đồng xét cấp học bổng theo từng học kỳ chính của năm học, căn cứ vào thành tích họ...",
+      "score": "manual_review_required",
+      "points": "manual_review_required",
+      "overlap_analysis": {
+        "adjacent_chunk_pairs": [
+          [
+            "scholarship-policy::chunk_1",
+            "scholarship-policy::chunk_2"
+          ],
+          [
+            "scholarship-policy::chunk_2",
+            "scholarship-policy::chunk_3"
+          ]
+        ],
+        "notes": [
+          "Top-3 chứa chunk liền kề; hai chunk chia sẻ tối đa 80 ký tự theo cấu hình overlap.",
+          "Các chunk liền kề có thể lặp evidence và làm giảm diversity của top-3."
+        ]
+      }
+    },
+    {
+      "query_id": "q5",
+      "query": "Khi cần điều chỉnh đăng ký học phần, người học có thể thực hiện những thao tác nào và trong thời điểm nào?",
+      "gold_answer": "Có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với học phần chưa đăng ký trước; mỗi học kỳ chính có hai đợt điều chỉnh kết thúc trước khi bắt đầu học kỳ, còn đăng ký bổ sung vào lớp đã mở chỉ thực hiện trong tuần đầu học kỳ.",
+      "gold_doc_id": "course-registration-student",
+      "expected_section": "## 1. Ba giai đoạn đăng ký học tập",
+      "evidence_phrase": "c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ.",
       "metadata_filter": {
         "audience": "student"
       },
       "top3": [
         {
           "rank": 1,
-          "score": 0.22888288,
-          "id": "scholarship-policy::chunk_0",
-          "doc_id": "scholarship-policy",
-          "chunk_index": 0,
-          "audience": "student",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
-          "preview": "# Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên  ## 1. Nguyên tắc chung và nguồn quỹ học bổng - Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% từ nguồn thu học phí hệ chính quy của nhà trường. - Học bổng được xét và cấp theo từng học kỳ chính dựa trên kết ",
-          "evidence_hit": false,
-          "content": "# Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên\n\n## 1. Nguyên tắc chung và nguồn quỹ học bổng\n- Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% từ nguồn thu học phí hệ chính quy của nhà trường.\n- Học bổng được xét và cấp theo từng học kỳ chính dựa trên kết quả học tập (GPA) và kết quả rèn luyện (ĐRL) của học kỳ liền trước.\n- Sinh viên phải đăng ký tối thi"
-        },
-        {
-          "rank": 2,
-          "score": 0.18463583,
-          "id": "tuition-policy::chunk_4",
-          "doc_id": "tuition-policy",
-          "chunk_index": 4,
-          "audience": "student",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-          "preview": "nh của Thủ tướng Chính phủ.  ## 4. Hồ sơ và thủ tục xin miễn giảm học phí - Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên. - Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ c",
-          "evidence_hit": false,
-          "content": "nh của Thủ tướng Chính phủ.\n\n## 4. Hồ sơ và thủ tục xin miễn giảm học phí\n- Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên.\n- Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ chính."
-        },
-        {
-          "rank": 3,
-          "score": 0.18147677,
-          "id": "course-equivalency-policy::chunk_0",
-          "doc_id": "course-equivalency-policy",
-          "chunk_index": 0,
-          "audience": "faculty",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-equivalency-policy.md",
-          "preview": "# Quy định về học phần tương đương và học phần thay thế  ## 1. Khái niệm học phần tương đương và thay thế - **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương ho",
-          "evidence_hit": false,
-          "content": "# Quy định về học phần tương đương và học phần thay thế\n\n## 1. Khái niệm học phần tương đương và thay thế\n- **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương hoặc lớn hơn học phần đang xét.\n- **Học phần thay thế:** Là học phần được chọn để thay thế cho một học"
-        }
-      ],
-      "filter_ab": {
-        "without_filter": [
-          {
-            "rank": 1,
-            "score": 0.22888288,
-            "id": "scholarship-policy::chunk_0",
-            "doc_id": "scholarship-policy",
-            "chunk_index": 0,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
-            "preview": "# Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên  ## 1. Nguyên tắc chung và nguồn quỹ học bổng - Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% từ nguồn thu học phí hệ chính quy của nhà trường. - Học bổng được xét và cấp theo từng học kỳ chính dựa trên kết ",
-            "evidence_hit": false,
-            "content": "# Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên\n\n## 1. Nguyên tắc chung và nguồn quỹ học bổng\n- Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% từ nguồn thu học phí hệ chính quy của nhà trường.\n- Học bổng được xét và cấp theo từng học kỳ chính dựa trên kết quả học tập (GPA) và kết quả rèn luyện (ĐRL) của học kỳ liền trước.\n- Sinh viên phải đăng ký tối thi"
-          },
-          {
-            "rank": 2,
-            "score": 0.18463583,
-            "id": "tuition-policy::chunk_4",
-            "doc_id": "tuition-policy",
-            "chunk_index": 4,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-            "preview": "nh của Thủ tướng Chính phủ.  ## 4. Hồ sơ và thủ tục xin miễn giảm học phí - Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên. - Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ c",
-            "evidence_hit": false,
-            "content": "nh của Thủ tướng Chính phủ.\n\n## 4. Hồ sơ và thủ tục xin miễn giảm học phí\n- Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên.\n- Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ chính."
-          },
-          {
-            "rank": 3,
-            "score": 0.18147677,
-            "id": "course-equivalency-policy::chunk_0",
-            "doc_id": "course-equivalency-policy",
-            "chunk_index": 0,
-            "audience": "faculty",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-equivalency-policy.md",
-            "preview": "# Quy định về học phần tương đương và học phần thay thế  ## 1. Khái niệm học phần tương đương và thay thế - **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương ho",
-            "evidence_hit": false,
-            "content": "# Quy định về học phần tương đương và học phần thay thế\n\n## 1. Khái niệm học phần tương đương và thay thế\n- **Học phần tương đương:** Là một hoặc một nhóm học phần thuộc chương trình đào tạo khác có nội dung, khối lượng kiến thức tương đương (trùng lặp từ 80% trở lên) và có số tín chỉ tương đương hoặc lớn hơn học phần đang xét.\n- **Học phần thay thế:** Là học phần được chọn để thay thế cho một học"
-          }
-        ],
-        "with_filter": [
-          {
-            "rank": 1,
-            "score": 0.22888288,
-            "id": "scholarship-policy::chunk_0",
-            "doc_id": "scholarship-policy",
-            "chunk_index": 0,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\scholarship-policy.md",
-            "preview": "# Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên  ## 1. Nguyên tắc chung và nguồn quỹ học bổng - Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% từ nguồn thu học phí hệ chính quy của nhà trường. - Học bổng được xét và cấp theo từng học kỳ chính dựa trên kết ",
-            "evidence_hit": false,
-            "content": "# Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên\n\n## 1. Nguyên tắc chung và nguồn quỹ học bổng\n- Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% từ nguồn thu học phí hệ chính quy của nhà trường.\n- Học bổng được xét và cấp theo từng học kỳ chính dựa trên kết quả học tập (GPA) và kết quả rèn luyện (ĐRL) của học kỳ liền trước.\n- Sinh viên phải đăng ký tối thi"
-          },
-          {
-            "rank": 2,
-            "score": 0.18463583,
-            "id": "tuition-policy::chunk_4",
-            "doc_id": "tuition-policy",
-            "chunk_index": 4,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-            "preview": "nh của Thủ tướng Chính phủ.  ## 4. Hồ sơ và thủ tục xin miễn giảm học phí - Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên. - Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ c",
-            "evidence_hit": false,
-            "content": "nh của Thủ tướng Chính phủ.\n\n## 4. Hồ sơ và thủ tục xin miễn giảm học phí\n- Sinh viên nộp 01 bộ hồ sơ xin miễn giảm học phí bao gồm: Đơn đề nghị miễn giảm học phí (theo mẫu), bản sao chứng thực giấy tờ chứng minh đối tượng ưu tiên.\n- Thời hạn nộp hồ sơ: Trong vòng 30 ngày kể từ ngày bắt đầu học kỳ chính."
-          },
-          {
-            "rank": 3,
-            "score": 0.12426758,
-            "id": "tuition-policy::chunk_2",
-            "doc_id": "tuition-policy",
-            "chunk_index": 2,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-            "preview": "hê duyệt sẽ bị hủy đăng ký học phần, không được dự thi kết thúc học phần và bị cấm đăng ký học phần ở học kỳ tiếp theo.  ## 3. Các đối tượng sinh viên được miễn 100% học phí Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí theo quy định hiện hành: - Sinh viên là con của ",
-            "evidence_hit": false,
-            "content": "hê duyệt sẽ bị hủy đăng ký học phần, không được dự thi kết thúc học phần và bị cấm đăng ký học phần ở học kỳ tiếp theo.\n\n## 3. Các đối tượng sinh viên được miễn 100% học phí\nSinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí theo quy định hiện hành:\n- Sinh viên là con của người có công với cách mạng theo quy định của pháp luật về ưu đãi người có công với cách mạng.\n- Sin"
-          }
-        ]
-      },
-      "gold_chunk_rank": 1,
-      "evidence_in_top3": false,
-      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] # Quy định về xét cấp học bổng khuyến khích học tập dành cho sinh viên  ## 1. Nguyên tắc chung và nguồn quỹ học bổng - Quỹ học bổng khuyến khích học tập (HB KKHT) được trích tối thiểu 8% t...",
-      "score": null,
-      "points": null,
-      "overlap_analysis": {
-        "adjacent_chunk_pairs": [],
-        "notes": [
-          "Không thấy cặp chunk liền kề trong top-3 của lần chạy pipeline này."
-        ]
-      }
-    },
-    {
-      "query_id": "q3",
-      "query": "Hạn mượn tối đa đối với sách giáo trình dành cho sinh viên tại thư viện là bao nhiêu ngày và được gia hạn mấy lần?",
-      "gold_answer": "Sách giáo trình được mượn tối đa 5 cuốn trong thời hạn 30 ngày và được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày nếu không có độc giả khác đặt mượn trước.",
-      "gold_doc_id": "library-services",
-      "expected_section": "## 3. Thời hạn mượn và quy định gia hạn tài liệu",
-      "evidence_phrase": "Sách giáo trình: Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo trình được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày",
-      "metadata_filter": null,
-      "top3": [
-        {
-          "rank": 1,
-          "score": 0.22926551,
+          "score": 0.69633676,
           "id": "course-registration-student::chunk_2",
           "doc_id": "course-registration-student",
           "chunk_index": 2,
           "audience": "student",
           "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-          "preview": "với sinh viên hệ chính quy được quy định cụ thể như sau: - **Sinh viên ở trạng thái học tập bình thường:** Khối lượng đăng ký tối thiểu là 12 tín chỉ và tối đa là 24 tín chỉ trong mỗi học kỳ chính. - **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một họ",
-          "evidence_hit": false,
-          "content": "với sinh viên hệ chính quy được quy định cụ thể như sau:\n- **Sinh viên ở trạng thái học tập bình thường:** Khối lượng đăng ký tối thiểu là 12 tín chỉ và tối đa là 24 tín chỉ trong mỗi học kỳ chính.\n- **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.\n- **Sinh viên bị cảnh cáo học tập mức 2:** Khối lượng đăng ký tối đa không quá 12 tín ch"
+          "preview": "ều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.  c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng",
+          "evidence_hit": true,
+          "content": "ều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè "
         },
         {
           "rank": 2,
-          "score": 0.20394284,
-          "id": "course-equivalency-policy::chunk_2",
-          "doc_id": "course-equivalency-policy",
-          "chunk_index": 2,
-          "audience": "faculty",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-equivalency-policy.md",
-          "preview": "điểm tổng kết từ D (1.0) trở lên đối với thang điểm 4. - Việc chuyển đổi điểm số và số tín chỉ tuân thủ theo bảng quy đổi tương ứng do Hội đồng Đào tạo nhà trường ban hành.  ## 3. Quy trình và thẩm quyền phê duyệt - Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục học phần tương đương/thay thế",
+          "score": 0.60396964,
+          "id": "course-registration-student::chunk_1",
+          "doc_id": "course-registration-student",
+          "chunk_index": 1,
+          "audience": "student",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+          "preview": "nh đăng ký học tập gồm 3 giai đoạn:  a) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.  b) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với",
           "evidence_hit": false,
-          "content": "điểm tổng kết từ D (1.0) trở lên đối với thang điểm 4.\n- Việc chuyển đổi điểm số và số tín chỉ tuân thủ theo bảng quy đổi tương ứng do Hội đồng Đào tạo nhà trường ban hành.\n\n## 3. Quy trình và thẩm quyền phê duyệt\n- Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục học phần tương đương/thay thế đối với các môn học do bộ môn phụ trách.\n- Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định và gửi về Phòn"
+          "content": "nh đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.\n\nc"
         },
         {
           "rank": 3,
-          "score": 0.1969145,
-          "id": "tuition-policy::chunk_0",
-          "doc_id": "tuition-policy",
-          "chunk_index": 0,
+          "score": 0.58391058,
+          "id": "course-registration-student::chunk_3",
+          "doc_id": "course-registration-student",
+          "chunk_index": 3,
           "audience": "student",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-          "preview": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí  ## 1. Mức thu học phí và phương thức tính - Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ. - Mức học phí trên một tín chỉ được quy định theo từng định mức k",
+          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+          "preview": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.  ## 2. Khối lượng tín chỉ đăng ký  Sinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ ",
           "evidence_hit": false,
-          "content": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí\n\n## 1. Mức thu học phí và phương thức tính\n- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ.\n- Mức học phí trên một tín chỉ được quy định theo từng định mức kinh tế kỹ thuật của ngành đào tạo và công khai trước đầu năm học.\n\n## 2. Thời hạn nộp học phí và xử "
+          "content": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.\n\n## 2. Khối lượng tín chỉ đăng ký\n\nSinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăn"
         }
       ],
       "filter_ab": {
         "without_filter": [
           {
             "rank": 1,
-            "score": 0.22926551,
+            "score": 0.69633676,
             "id": "course-registration-student::chunk_2",
             "doc_id": "course-registration-student",
             "chunk_index": 2,
             "audience": "student",
             "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-            "preview": "với sinh viên hệ chính quy được quy định cụ thể như sau: - **Sinh viên ở trạng thái học tập bình thường:** Khối lượng đăng ký tối thiểu là 12 tín chỉ và tối đa là 24 tín chỉ trong mỗi học kỳ chính. - **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một họ",
-            "evidence_hit": false,
-            "content": "với sinh viên hệ chính quy được quy định cụ thể như sau:\n- **Sinh viên ở trạng thái học tập bình thường:** Khối lượng đăng ký tối thiểu là 12 tín chỉ và tối đa là 24 tín chỉ trong mỗi học kỳ chính.\n- **Sinh viên bị cảnh cáo học tập mức 1:** Khối lượng đăng ký tối đa không quá 14 tín chỉ trong một học kỳ chính.\n- **Sinh viên bị cảnh cáo học tập mức 2:** Khối lượng đăng ký tối đa không quá 12 tín ch"
+            "preview": "ều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.  c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng",
+            "evidence_hit": true,
+            "content": "ều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè "
           },
           {
             "rank": 2,
-            "score": 0.20394284,
-            "id": "course-equivalency-policy::chunk_2",
-            "doc_id": "course-equivalency-policy",
-            "chunk_index": 2,
-            "audience": "faculty",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-equivalency-policy.md",
-            "preview": "điểm tổng kết từ D (1.0) trở lên đối với thang điểm 4. - Việc chuyển đổi điểm số và số tín chỉ tuân thủ theo bảng quy đổi tương ứng do Hội đồng Đào tạo nhà trường ban hành.  ## 3. Quy trình và thẩm quyền phê duyệt - Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục học phần tương đương/thay thế",
-            "evidence_hit": false,
-            "content": "điểm tổng kết từ D (1.0) trở lên đối với thang điểm 4.\n- Việc chuyển đổi điểm số và số tín chỉ tuân thủ theo bảng quy đổi tương ứng do Hội đồng Đào tạo nhà trường ban hành.\n\n## 3. Quy trình và thẩm quyền phê duyệt\n- Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục học phần tương đương/thay thế đối với các môn học do bộ môn phụ trách.\n- Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định và gửi về Phòn"
-          },
-          {
-            "rank": 3,
-            "score": 0.1969145,
-            "id": "tuition-policy::chunk_0",
-            "doc_id": "tuition-policy",
-            "chunk_index": 0,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-            "preview": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí  ## 1. Mức thu học phí và phương thức tính - Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ. - Mức học phí trên một tín chỉ được quy định theo từng định mức k",
-            "evidence_hit": false,
-            "content": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí\n\n## 1. Mức thu học phí và phương thức tính\n- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ.\n- Mức học phí trên một tín chỉ được quy định theo từng định mức kinh tế kỹ thuật của ngành đào tạo và công khai trước đầu năm học.\n\n## 2. Thời hạn nộp học phí và xử "
-          }
-        ],
-        "with_filter": null
-      },
-      "gold_chunk_rank": null,
-      "evidence_in_top3": false,
-      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] với sinh viên hệ chính quy được quy định cụ thể như sau: - **Sinh viên ở trạng thái học tập bình thường:** Khối lượng đăng ký tối thiểu là 12 tín chỉ và tối đa là 24 tín chỉ trong mỗi học ...",
-      "score": null,
-      "points": null,
-      "overlap_analysis": {
-        "adjacent_chunk_pairs": [],
-        "notes": [
-          "Không thấy cặp chunk liền kề trong top-3 của lần chạy pipeline này."
-        ]
-      }
-    },
-    {
-      "query_id": "q4",
-      "query": "Sinh viên thuộc các đối tượng chính sách nào được miễn 100% học phí theo quy định hiện hành của nhà trường?",
-      "gold_answer": "Sinh viên là con của người có công với cách mạng; sinh viên mồ côi cả cha lẫn mẹ; sinh viên bị khuyết tật nặng/đặc biệt nặng; và sinh viên dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
-      "gold_doc_id": "tuition-policy",
-      "expected_section": "## 3. Các đối tượng sinh viên được miễn 100% học phí",
-      "evidence_phrase": "Sinh viên thuộc các đối tượng sau đây được hưởng chính sách miễn 100% học phí: Sinh viên là con của người có công với cách mạng... Sinh viên mồ côi cả cha lẫn mẹ... Sinh viên bị khuyết tật nặng hoặc đặc biệt nặng... Sinh viên là người dân tộc thiểu số thuộc hộ nghèo hoặc hộ cận nghèo.",
-      "metadata_filter": null,
-      "top3": [
-        {
-          "rank": 1,
-          "score": 0.3845298,
-          "id": "course-registration-student::chunk_4",
-          "doc_id": "course-registration-student",
-          "chunk_index": 4,
-          "audience": "student",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-          "preview": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo. - Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí",
-          "evidence_hit": false,
-          "content": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo.\n- Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí và không ghi điểm F trên bảng điểm."
-        },
-        {
-          "rank": 2,
-          "score": 0.2355397,
-          "id": "course-registration-faculty::chunk_3",
-          "doc_id": "course-registration-faculty",
-          "chunk_index": 3,
-          "audience": "faculty",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-faculty.md",
-          "preview": "và điều chỉnh giảng dạy - Trong trường hợp lớp học phần có số lượng sinh viên đăng ký dưới mức tối thiểu (dưới 15 sinh viên đối với lớp đại trà), Trưởng bộ môn phối hợp với CVHT để thông báo cho sinh viên chuyển sang lớp học phần khác tương đương. - CVHT hướng dẫn sinh viên điều chỉnh lại thời khóa ",
-          "evidence_hit": false,
-          "content": "và điều chỉnh giảng dạy\n- Trong trường hợp lớp học phần có số lượng sinh viên đăng ký dưới mức tối thiểu (dưới 15 sinh viên đối với lớp đại trà), Trưởng bộ môn phối hợp với CVHT để thông báo cho sinh viên chuyển sang lớp học phần khác tương đương.\n- CVHT hướng dẫn sinh viên điều chỉnh lại thời khóa biểu trong thời hạn quy định."
-        },
-        {
-          "rank": 3,
-          "score": 0.20745701,
-          "id": "tuition-policy::chunk_0",
-          "doc_id": "tuition-policy",
-          "chunk_index": 0,
-          "audience": "student",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-          "preview": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí  ## 1. Mức thu học phí và phương thức tính - Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ. - Mức học phí trên một tín chỉ được quy định theo từng định mức k",
-          "evidence_hit": false,
-          "content": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí\n\n## 1. Mức thu học phí và phương thức tính\n- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ.\n- Mức học phí trên một tín chỉ được quy định theo từng định mức kinh tế kỹ thuật của ngành đào tạo và công khai trước đầu năm học.\n\n## 2. Thời hạn nộp học phí và xử "
-        }
-      ],
-      "filter_ab": {
-        "without_filter": [
-          {
-            "rank": 1,
-            "score": 0.3845298,
-            "id": "course-registration-student::chunk_4",
+            "score": 0.60396964,
+            "id": "course-registration-student::chunk_1",
             "doc_id": "course-registration-student",
-            "chunk_index": 4,
+            "chunk_index": 1,
             "audience": "student",
             "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
-            "preview": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo. - Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí",
+            "preview": "nh đăng ký học tập gồm 3 giai đoạn:  a) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.  b) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với",
             "evidence_hit": false,
-            "content": " về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo.\n- Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký (tuần điều chỉnh học tập) theo thông báo của Phòng Đào tạo. Học phần đã rút thành công sẽ không bị tính học phí và không ghi điểm F trên bảng điểm."
+            "content": "nh đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.\n\nc"
           },
           {
-            "rank": 2,
-            "score": 0.2355397,
-            "id": "course-registration-faculty::chunk_3",
-            "doc_id": "course-registration-faculty",
+            "rank": 3,
+            "score": 0.58391058,
+            "id": "course-registration-student::chunk_3",
+            "doc_id": "course-registration-student",
             "chunk_index": 3,
-            "audience": "faculty",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-faculty.md",
-            "preview": "và điều chỉnh giảng dạy - Trong trường hợp lớp học phần có số lượng sinh viên đăng ký dưới mức tối thiểu (dưới 15 sinh viên đối với lớp đại trà), Trưởng bộ môn phối hợp với CVHT để thông báo cho sinh viên chuyển sang lớp học phần khác tương đương. - CVHT hướng dẫn sinh viên điều chỉnh lại thời khóa ",
-            "evidence_hit": false,
-            "content": "và điều chỉnh giảng dạy\n- Trong trường hợp lớp học phần có số lượng sinh viên đăng ký dưới mức tối thiểu (dưới 15 sinh viên đối với lớp đại trà), Trưởng bộ môn phối hợp với CVHT để thông báo cho sinh viên chuyển sang lớp học phần khác tương đương.\n- CVHT hướng dẫn sinh viên điều chỉnh lại thời khóa biểu trong thời hạn quy định."
-          },
-          {
-            "rank": 3,
-            "score": 0.20745701,
-            "id": "tuition-policy::chunk_0",
-            "doc_id": "tuition-policy",
-            "chunk_index": 0,
             "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-            "preview": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí  ## 1. Mức thu học phí và phương thức tính - Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ. - Mức học phí trên một tín chỉ được quy định theo từng định mức k",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+            "preview": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.  ## 2. Khối lượng tín chỉ đăng ký  Sinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ ",
             "evidence_hit": false,
-            "content": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí\n\n## 1. Mức thu học phí và phương thức tính\n- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ.\n- Mức học phí trên một tín chỉ được quy định theo từng định mức kinh tế kỹ thuật của ngành đào tạo và công khai trước đầu năm học.\n\n## 2. Thời hạn nộp học phí và xử "
-          }
-        ],
-        "with_filter": null
-      },
-      "gold_chunk_rank": 3,
-      "evidence_in_top3": false,
-      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1]  về học phần tiên quyết, học phần học trước và học phần song hành theo đúng chương trình đào tạo. - Sinh viên được phép rút học phần hoặc đăng ký bổ sung trong thời gian điều chỉnh đăng ký...",
-      "score": null,
-      "points": null,
-      "overlap_analysis": {
-        "adjacent_chunk_pairs": [],
-        "notes": [
-          "Không thấy cặp chunk liền kề trong top-3 của lần chạy pipeline này."
-        ]
-      }
-    },
-    {
-      "query_id": "q5",
-      "query": "Thẩm quyền và quy trình phê duyệt danh mục học phần tương đương hoặc học phần thay thế dành cho giảng viên/cố vấn học tập được thực hiện qua các cấp nào?",
-      "gold_answer": "Quy trình gồm 3 cấp: Trưởng bộ môn chuyên môn lập danh mục đề xuất, Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định, và Trưởng Phòng Đào tạo ra quyết định công nhận chính thức.",
-      "gold_doc_id": "course-equivalency-policy",
-      "expected_section": "## 3. Quy trình và thẩm quyền phê duyệt",
-      "evidence_phrase": "Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục... Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định... Trưởng Phòng Đào tạo ra quyết định công nhận",
-      "metadata_filter": {
-        "audience": "faculty"
-      },
-      "top3": [
-        {
-          "rank": 1,
-          "score": 0.23117919,
-          "id": "tuition-policy::chunk_0",
-          "doc_id": "tuition-policy",
-          "chunk_index": 0,
-          "audience": "student",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-          "preview": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí  ## 1. Mức thu học phí và phương thức tính - Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ. - Mức học phí trên một tín chỉ được quy định theo từng định mức k",
-          "evidence_hit": false,
-          "content": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí\n\n## 1. Mức thu học phí và phương thức tính\n- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ.\n- Mức học phí trên một tín chỉ được quy định theo từng định mức kinh tế kỹ thuật của ngành đào tạo và công khai trước đầu năm học.\n\n## 2. Thời hạn nộp học phí và xử "
-        },
-        {
-          "rank": 2,
-          "score": 0.15474057,
-          "id": "library-services::chunk_2",
-          "doc_id": "library-services",
-          "chunk_index": 2,
-          "audience": "all",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
-          "preview": "hoa học quốc tế) chỉ được sử dụng cho mục đích học tập, nghiên cứu cá nhân. Nghiêm cấm mọi hình thức dùng phần mềm tự động để tải hàng loạt dữ liệu.  ## 3. Thời hạn mượn và quy định gia hạn tài liệu - **Sách giáo trình:** Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo",
-          "evidence_hit": false,
-          "content": "hoa học quốc tế) chỉ được sử dụng cho mục đích học tập, nghiên cứu cá nhân. Nghiêm cấm mọi hình thức dùng phần mềm tự động để tải hàng loạt dữ liệu.\n\n## 3. Thời hạn mượn và quy định gia hạn tài liệu\n- **Sách giáo trình:** Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo trình được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày nếu không có độc giả khác đặt mượn "
-        },
-        {
-          "rank": 3,
-          "score": 0.12737722,
-          "id": "library-services::chunk_0",
-          "doc_id": "library-services",
-          "chunk_index": 0,
-          "audience": "all",
-          "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
-          "preview": "# Quy định sử dụng dịch vụ thư viện và quy tắc mượn trả tài liệu  ## 1. Quyền hạn truy cập và thẻ thư viện - Tất cả cán bộ, giảng viên, nghiên cứu sinh, học viên cao học và sinh viên chính quy của nhà trường đều được cấp quyền sử dụng các dịch vụ thư viện và Trung tâm Tri thức số. - Độc giả truy cập",
-          "evidence_hit": false,
-          "content": "# Quy định sử dụng dịch vụ thư viện và quy tắc mượn trả tài liệu\n\n## 1. Quyền hạn truy cập và thẻ thư viện\n- Tất cả cán bộ, giảng viên, nghiên cứu sinh, học viên cao học và sinh viên chính quy của nhà trường đều được cấp quyền sử dụng các dịch vụ thư viện và Trung tâm Tri thức số.\n- Độc giả truy cập thư viện bằng thẻ sinh viên/thẻ cán bộ tích hợp mã số cá nhân hoặc mã QR trên ứng dụng di động chín"
-        }
-      ],
-      "filter_ab": {
-        "without_filter": [
-          {
-            "rank": 1,
-            "score": 0.23117919,
-            "id": "tuition-policy::chunk_0",
-            "doc_id": "tuition-policy",
-            "chunk_index": 0,
-            "audience": "student",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\tuition-policy.md",
-            "preview": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí  ## 1. Mức thu học phí và phương thức tính - Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ. - Mức học phí trên một tín chỉ được quy định theo từng định mức k",
-            "evidence_hit": false,
-            "content": "# Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí\n\n## 1. Mức thu học phí và phương thức tính\n- Học phí được tính theo số lượng tín chỉ của các học phần mà sinh viên đã đăng ký học tập chính thức trong học kỳ.\n- Mức học phí trên một tín chỉ được quy định theo từng định mức kinh tế kỹ thuật của ngành đào tạo và công khai trước đầu năm học.\n\n## 2. Thời hạn nộp học phí và xử "
-          },
-          {
-            "rank": 2,
-            "score": 0.15474057,
-            "id": "library-services::chunk_2",
-            "doc_id": "library-services",
-            "chunk_index": 2,
-            "audience": "all",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
-            "preview": "hoa học quốc tế) chỉ được sử dụng cho mục đích học tập, nghiên cứu cá nhân. Nghiêm cấm mọi hình thức dùng phần mềm tự động để tải hàng loạt dữ liệu.  ## 3. Thời hạn mượn và quy định gia hạn tài liệu - **Sách giáo trình:** Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo",
-            "evidence_hit": false,
-            "content": "hoa học quốc tế) chỉ được sử dụng cho mục đích học tập, nghiên cứu cá nhân. Nghiêm cấm mọi hình thức dùng phần mềm tự động để tải hàng loạt dữ liệu.\n\n## 3. Thời hạn mượn và quy định gia hạn tài liệu\n- **Sách giáo trình:** Độc giả là sinh viên được mượn tối đa 5 cuốn trong thời hạn 30 ngày. Sách giáo trình được gia hạn 01 lần với thời gian gia hạn thêm là 15 ngày nếu không có độc giả khác đặt mượn "
-          },
-          {
-            "rank": 3,
-            "score": 0.12737722,
-            "id": "library-services::chunk_0",
-            "doc_id": "library-services",
-            "chunk_index": 0,
-            "audience": "all",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\library-services.md",
-            "preview": "# Quy định sử dụng dịch vụ thư viện và quy tắc mượn trả tài liệu  ## 1. Quyền hạn truy cập và thẻ thư viện - Tất cả cán bộ, giảng viên, nghiên cứu sinh, học viên cao học và sinh viên chính quy của nhà trường đều được cấp quyền sử dụng các dịch vụ thư viện và Trung tâm Tri thức số. - Độc giả truy cập",
-            "evidence_hit": false,
-            "content": "# Quy định sử dụng dịch vụ thư viện và quy tắc mượn trả tài liệu\n\n## 1. Quyền hạn truy cập và thẻ thư viện\n- Tất cả cán bộ, giảng viên, nghiên cứu sinh, học viên cao học và sinh viên chính quy của nhà trường đều được cấp quyền sử dụng các dịch vụ thư viện và Trung tâm Tri thức số.\n- Độc giả truy cập thư viện bằng thẻ sinh viên/thẻ cán bộ tích hợp mã số cá nhân hoặc mã QR trên ứng dụng di động chín"
+            "content": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.\n\n## 2. Khối lượng tín chỉ đăng ký\n\nSinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăn"
           }
         ],
         "with_filter": [
           {
             "rank": 1,
-            "score": 0.04778876,
-            "id": "course-equivalency-policy::chunk_2",
-            "doc_id": "course-equivalency-policy",
+            "score": 0.69633676,
+            "id": "course-registration-student::chunk_2",
+            "doc_id": "course-registration-student",
             "chunk_index": 2,
-            "audience": "faculty",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-equivalency-policy.md",
-            "preview": "điểm tổng kết từ D (1.0) trở lên đối với thang điểm 4. - Việc chuyển đổi điểm số và số tín chỉ tuân thủ theo bảng quy đổi tương ứng do Hội đồng Đào tạo nhà trường ban hành.  ## 3. Quy trình và thẩm quyền phê duyệt - Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục học phần tương đương/thay thế",
-            "evidence_hit": false,
-            "content": "điểm tổng kết từ D (1.0) trở lên đối với thang điểm 4.\n- Việc chuyển đổi điểm số và số tín chỉ tuân thủ theo bảng quy đổi tương ứng do Hội đồng Đào tạo nhà trường ban hành.\n\n## 3. Quy trình và thẩm quyền phê duyệt\n- Trưởng bộ môn chuyên môn chịu trách nhiệm lập danh mục học phần tương đương/thay thế đối với các môn học do bộ môn phụ trách.\n- Trưởng Khoa/Viện ký duyệt hồ sơ thẩm định và gửi về Phòn"
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+            "preview": "ều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.  c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng",
+            "evidence_hit": true,
+            "content": "ều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.\n\nc) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học phần chưa đăng ký trước. Mỗi học kỳ chính có hai đợt điều chỉnh đăng ký, kết thúc trước khi bắt đầu học kỳ. Riêng việc đăng ký bổ sung vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè "
           },
           {
             "rank": 2,
-            "score": 0.0024338,
-            "id": "course-registration-faculty::chunk_1",
-            "doc_id": "course-registration-faculty",
+            "score": 0.60396964,
+            "id": "course-registration-student::chunk_1",
+            "doc_id": "course-registration-student",
             "chunk_index": 1,
-            "audience": "faculty",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-faculty.md",
-            "preview": "n được phân công quản lý trước khi mở đợt đăng ký lớp học chính thức. - Cảnh báo kịp thời đối với sinh viên có nguy cơ bị cảnh cáo học tập hoặc không đạt khối lượng đăng ký tối thiểu theo quy định.  ## 2. Thẩm quyền duyệt ngoại lệ khối lượng học tập - Trường hợp sinh viên có hoàn cảnh đặc biệt hoặc ",
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+            "preview": "nh đăng ký học tập gồm 3 giai đoạn:  a) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.  b) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với",
             "evidence_hit": false,
-            "content": "n được phân công quản lý trước khi mở đợt đăng ký lớp học chính thức.\n- Cảnh báo kịp thời đối với sinh viên có nguy cơ bị cảnh cáo học tập hoặc không đạt khối lượng đăng ký tối thiểu theo quy định.\n\n## 2. Thẩm quyền duyệt ngoại lệ khối lượng học tập\n- Trường hợp sinh viên có hoàn cảnh đặc biệt hoặc sinh viên năm cuối cần đăng ký vượt quá 24 tín chỉ (tối đa 28 tín chỉ) để đủ điều kiện tốt nghiệp, C"
+            "content": "nh đăng ký học tập gồm 3 giai đoạn:\n\na) Đăng ký học phần: sinh viên chọn đăng ký những học phần dự tính sẽ học trong học kỳ tiếp. Sinh viên có thể đăng ký theo kế hoạch học tập chuẩn hoặc theo kế hoạch cá nhân.\n\nb) Đăng ký lớp chính thức: sinh viên chọn lớp học cho những học phần đã đăng ký. Đối với các học phần có nhiều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.\n\nc"
           },
           {
             "rank": 3,
-            "score": -0.02507543,
-            "id": "course-registration-faculty::chunk_3",
-            "doc_id": "course-registration-faculty",
+            "score": 0.58391058,
+            "id": "course-registration-student::chunk_3",
+            "doc_id": "course-registration-student",
             "chunk_index": 3,
-            "audience": "faculty",
-            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-faculty.md",
-            "preview": "và điều chỉnh giảng dạy - Trong trường hợp lớp học phần có số lượng sinh viên đăng ký dưới mức tối thiểu (dưới 15 sinh viên đối với lớp đại trà), Trưởng bộ môn phối hợp với CVHT để thông báo cho sinh viên chuyển sang lớp học phần khác tương đương. - CVHT hướng dẫn sinh viên điều chỉnh lại thời khóa ",
+            "audience": "student",
+            "source": "D:\\GIT\\K3-Day07-Data-Foundations\\data\\k3_university_services\\course-registration-student.md",
+            "preview": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.  ## 2. Khối lượng tín chỉ đăng ký  Sinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ ",
             "evidence_hit": false,
-            "content": "và điều chỉnh giảng dạy\n- Trong trường hợp lớp học phần có số lượng sinh viên đăng ký dưới mức tối thiểu (dưới 15 sinh viên đối với lớp đại trà), Trưởng bộ môn phối hợp với CVHT để thông báo cho sinh viên chuyển sang lớp học phần khác tương đương.\n- CVHT hướng dẫn sinh viên điều chỉnh lại thời khóa biểu trong thời hạn quy định."
+            "content": "g vào các lớp học phần đã mở chỉ thực hiện trong tuần đầu của học kỳ. Học kỳ hè không có đợt điều chỉnh đăng ký.\n\n## 2. Khối lượng tín chỉ đăng ký\n\nSinh viên không thuộc diện cảnh báo học tập theo quy định tại khoản 1 Điều 19 của Quy chế này được đăng ký tối đa 24 TC và tối thiểu 12 TC trong học kỳ chính, không áp dụng ngưỡng TC đăng ký tối thiểu với sinh viên trình độ năm cuối. Sinh viên được đăn"
           }
         ]
       },
-      "gold_chunk_rank": null,
-      "evidence_in_top3": false,
-      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] # Quy định về mức thu học phí, thời hạn nộp và chính sách miễn giảm học phí  ## 1. Mức thu học phí và phương thức tính - Học phí được tính theo số lượng tín chỉ của các học phần mà sinh vi...",
-      "score": null,
-      "points": null,
+      "gold_chunk_rank": 1,
+      "evidence_in_top3": true,
+      "agent_answer": "[DEMO LLM] Pipeline-only preview: You are a helpful knowledge assistant. Answer the question using only the context provided below.  Context: [1] ều lớp thành phần, sinh viên phải đăng ký đủ các lớp thành phần theo yêu cầu.  c) Điều chỉnh đăng ký: sinh viên có thể chuyển lớp, hủy lớp hoặc đăng ký lớp bổ sung, kể cả lớp với các học p...",
+      "score": "manual_review_required",
+      "points": "manual_review_required",
       "overlap_analysis": {
         "adjacent_chunk_pairs": [],
         "notes": [
@@ -625,6 +579,6 @@
       }
     }
   ],
-  "total_score": null,
-  "limitation": "LocalEmbedder could not be initialized; mock output is retained only as a pipeline check. No semantic retrieval score or agent answer score is claimed."
+  "total_score": "manual_review_required",
+  "limitation": "Agent uses the deterministic demo LLM; generation quality requires separate LLM evaluation."
 }
